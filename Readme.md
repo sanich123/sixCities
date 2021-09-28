@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов»
 
-* Студент: [Alexander Voronin](https://up.htmlacademy.ru/react/8/user/1541333).
-* Наставник: `Неизвестно`.
+* Студент: [Alexander Voronin](https://htmlacademy.ru/profile/aovoronin).
+* Наставник: [Artyom Rudov](https://htmlacademy.ru/profile/artrudov).
 
 ---
 
