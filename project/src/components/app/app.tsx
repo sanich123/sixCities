@@ -1,13 +1,12 @@
-// import MainScreen from '../main/main';
-import NoPage from '../no-page/no-page404';
+import MainScreen from '../main/main';
+
 
 type AppProps = {
   placesCount: number;
 }
 function App({placesCount}: AppProps): JSX.Element {
 
-  return <NoPage />;
-  // <MainScreen placesCount={placesCount}/>;
+  return <MainScreen placesCount={placesCount}/>;
 }
 
 export default App;
