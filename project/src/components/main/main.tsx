@@ -1,8 +1,9 @@
-import OfferCard from '../../offer-card/offer-card';
+import OfferCard from '../offer-card/offer-card';
 
 type MainScreenProps = {
   placesCount: number;
 }
+
 function MainScreen({placesCount}: MainScreenProps): JSX.Element {
   return (
     <>
@@ -97,8 +98,6 @@ function MainScreen({placesCount}: MainScreenProps): JSX.Element {
                   </ul>
                 </form>
                 <div className="cities__places-list places__list tabs__content">
-                  {OfferCard()}
-                  {OfferCard()}
                   {OfferCard()}
                   {OfferCard()}
                   {OfferCard()}
