@@ -1,12 +1,14 @@
 import MainScreen from '../main/main';
 
+type Cards = number[];
+
 type AppProps = {
   placesCount: number,
-  cardsList: number[]
+  cards: Cards
 }
 
-function App({placesCount, cardsList}: AppProps): JSX.Element {
-  return <MainScreen placesCount={placesCount} cardsList={cardsList} />;
+function App({placesCount, cards}: AppProps): JSX.Element {
+  return <MainScreen placesCount={placesCount} cards={cards} />;
 }
 
 export default App;

@@ -10,7 +10,7 @@ const fiveCards = [1, 2, 3, 4, 5];
 
 ReactDOM.render(
   <React.StrictMode>
-    <App placesCount={PlacesCount.PLACES_COUNT} cardsList={fiveCards} />
+    <App placesCount={PlacesCount.PLACES_COUNT} cards={fiveCards} />
   </React.StrictMode>,
   document.getElementById('root'),
 );

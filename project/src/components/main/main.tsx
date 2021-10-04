@@ -1,12 +1,14 @@
 import CardsList from '../cards-list/cards-list';
 import Header from '../header/header';
 
+type Cards = number[];
+
 type MainScreenProps = {
   placesCount: number,
-  cardsList: number[],
+  cards: Cards
 }
 
-function MainScreen({placesCount, cardsList}: MainScreenProps): JSX.Element {
+function MainScreen({placesCount, cards}: MainScreenProps): JSX.Element {
   return (
     <>
       <div style={{ display: 'none' }}>
@@ -74,7 +76,7 @@ function MainScreen({placesCount, cardsList}: MainScreenProps): JSX.Element {
                     <li className="places__option" tabIndex={0}>Top rated first</li>
                   </ul>
                 </form>
-                <CardsList cardsList={cardsList} />
+                <CardsList cards={cards} />
               </section>
               <div className="cities__right-section">
                 <section className="cities__map map"></section>

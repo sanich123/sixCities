@@ -1,13 +1,13 @@
 import OfferCard from '../offer-card/offer-card';
 
 type cardsListProps = {
-  cardsList: number[]
+  cards: number[]
 }
 
-function CardsList({cardsList}: cardsListProps): JSX.Element {
+function CardsList({cards}: cardsListProps): JSX.Element {
   return (
     <div className="cities__places-list places__list tabs__content">
-      {cardsList.map((number) => <OfferCard key={number}/>)}
+      {cards.map((number) => <OfferCard key={number}/>)}
     </div>
   );
 }
