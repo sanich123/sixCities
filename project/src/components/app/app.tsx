@@ -6,7 +6,7 @@ type AppProps = {
 }
 
 function App({placesCount, cardsList}: AppProps): JSX.Element {
-  return <MainScreen placesCount={placesCount} cardsList={cardsList}/>;
+  return <MainScreen placesCount={placesCount} cardsList={cardsList} />;
 }
 
 export default App;
