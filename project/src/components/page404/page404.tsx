@@ -1,4 +1,4 @@
-function NoPage(): JSX.Element {
+function Page404(): JSX.Element {
   return (
     <div className="page page--favorites-empty">
       <header className="header">
@@ -49,4 +49,4 @@ function NoPage(): JSX.Element {
   );
 }
 
-export default NoPage;
+export default Page404;
