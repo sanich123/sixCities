@@ -1,4 +1,4 @@
-import OfferCard from '../offer-card/offer-card';
+import OfferCard from '../card/card';
 
 type cardsListProps = {
   cards: number[]

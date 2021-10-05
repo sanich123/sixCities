@@ -1,4 +1,4 @@
-import CardsList from '../cards-list/cards-list';
+import CardsList from '../cards/cards';
 import Header from '../header/header';
 import Sprite from '../sprite/sprite';
 import Sort from '../sort/sort';
