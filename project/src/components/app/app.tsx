@@ -1,4 +1,5 @@
 import MainScreen from '../main/main';
+import Page404 from '../page404/page404';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { AppRoute } from '../../components/const ';
 import LogIn from '../login/login';
@@ -27,10 +28,12 @@ function App({placesCount, cards}: AppProps): JSX.Element {
           <Favorites />
         </Route>
         <Route exact path={AppRoute.Room} />
+        <Route>
+          <Page404 />
+        </Route>
       </Switch>
     </BrowserRouter>
   );
-  // return <MainScreen placesCount={placesCount} cards={cards} />;
 }
 
 export default App;
