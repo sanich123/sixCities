@@ -1,12 +1,17 @@
-export enum AppRoute {
-  Main = '/',
-  SignIn = '/login',
-  Favorites = '/favorites',
-  Room = '/offer/:id'
-}
+export const AppRoute = {
+  Main: '/',
+  SignIn: '/login',
+  Favorites: '/favorites',
+  Room: '/offer/:id',
+};
 
 export enum AuthorizationStatus {
-  Auth = 'AUTH',
-  NoAuth = 'NO_AUTH',
-  Unknown = 'UNKNOWN',
+  AUTH,
+  NO_AUTH,
+  UNKNOWN,
 }
+export const authorizationStatus = {
+  AUTH: 'AUTH',
+  NO_AUTH: 'NO-AUTH',
+  UNKNOWN: 'UNKNOWN',
+};

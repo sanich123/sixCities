@@ -1,12 +1,12 @@
-import MainScreen from '../main/main';
-import Page404 from '../page404/page404';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../../components/const ';
 import LogIn from '../login/login';
-// import Favorites from '../favorites/favorites';
 import Properties from '../properties/properties';
 import PrivateRoute from '../private-route';
 import Favorites from '../favorites/favorites';
+import MainScreen from '../main/main';
+import Page404 from '../page404/page404';
+import { AppRoute, AuthorizationStatus } from '../../components/const ';
+
 
 type AppProps = {
   placesCount: number,
@@ -28,7 +28,7 @@ function App({placesCount, cards}: AppProps): JSX.Element {
         <PrivateRoute
           exact
           path={AppRoute.Favorites}
-          authorizationStatus={AuthorizationStatus.Auth}
+          authorizationStatus={AuthorizationStatus.AUTH}
           render={() => <Favorites />}
         >
         </PrivateRoute>
