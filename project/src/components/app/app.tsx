@@ -7,11 +7,9 @@ import Favorites from '../favorites/favorites';
 import Properties from '../properties/properties';
 import PrivateRoute from '../private-route';
 
-type Cards = number[];
-
 type AppProps = {
   placesCount: number,
-  cards: Cards
+  cards: number[]
 }
 
 function App({placesCount, cards}: AppProps): JSX.Element {

@@ -4,11 +4,9 @@ import Sprite from '../sprite/sprite';
 import Sort from '../sort/sort';
 import Filter from '../filter/filter';
 
-type Cards = number[];
-
 type MainProps = {
   placesCount: number,
-  cards: Cards
+  cards: number[]
 }
 
 function Main({placesCount, cards}: MainProps): JSX.Element {
