@@ -3,9 +3,10 @@ import Page404 from '../page404/page404';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../components/const ';
 import LogIn from '../login/login';
-import Favorites from '../favorites/favorites';
+// import Favorites from '../favorites/favorites';
 import Properties from '../properties/properties';
 import PrivateRoute from '../private-route';
+import Favorites from '../favorites/favorites';
 
 type AppProps = {
   placesCount: number,
@@ -27,10 +28,9 @@ function App({placesCount, cards}: AppProps): JSX.Element {
         <PrivateRoute
           exact
           path={AppRoute.Favorites}
-          render={() => <LogIn />}
-          authorizationStatus={AuthorizationStatus.NoAuth}
+          authorizationStatus={AuthorizationStatus.Auth}
+          render={() => <Favorites />}
         >
-          <Favorites />
         </PrivateRoute>
         <Route exact path={AppRoute.Room}>
           <Properties />
