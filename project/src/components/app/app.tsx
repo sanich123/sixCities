@@ -7,7 +7,6 @@ import MainScreen from '../main/main';
 import Page404 from '../page404/page404';
 import { AppRoute, AuthorizationStatus } from '../../components/const ';
 
-
 type AppProps = {
   placesCount: number,
   cards: number[]
@@ -42,5 +41,26 @@ function App({placesCount, cards}: AppProps): JSX.Element {
     </BrowserRouter>
   );
 }
+// const array = [{
+//   component: 'MainScreen',
+//   isPrivate: false,
+//   route: AppRoute.Main,
+// },{
+//   component: 'LogIn',
+//   isPrivate: false,
+//   route: AppRoute.SignIn,
+// },{
+//   component: 'Favorites',
+//   isPrivate: true,
+//   route: AppRoute.Favorites,
+// }, {
+//   component: 'Properties',
+//   isPrivate: false,
+//   route: AppRoute.Room,
+// }];
+
+// array.map((it) => <Route exact path={it.route}>
+//   <{it.component} />
+//         </Route>);
 
 export default App;

@@ -10,8 +10,9 @@ export enum AuthorizationStatus {
   NO_AUTH,
   UNKNOWN,
 }
-export const authorizationStatus = {
-  AUTH: 'AUTH',
-  NO_AUTH: 'NO-AUTH',
-  UNKNOWN: 'UNKNOWN',
-};
+
+// export const AuthorizationStatus = {
+//   AUTH: 'AUTH',
+//   NO_AUTH: 'NO-AUTH',
+//   UNKNOWN: 'UNKNOWN',
+// };
