@@ -14,28 +14,33 @@ const PlacesCount = {
 
 const Cards = [1, 2, 3, 4, 5];
 
-const Pages = [{
-  component: () => <MainScreen placesCount={PlacesCount.PLACES_COUNT} cards={Cards} />,
-  isPrivate: false,
-  route: AppRoute.Main,
-},{
-  component: () => <LogIn />,
-  isPrivate: false,
-  route: AppRoute.SignIn,
-},{
-  component: () => <Favorites />,
-  isPrivate: true,
-  route: AppRoute.Favorites,
-}, {
-  component: () => <Properties />,
-  isPrivate: false,
-  route: AppRoute.Room,
-},
-{
-  component: () => <Page404 />,
-  isPrivate: false,
-  route: '',
-}];
+const Pages = [
+  {
+    component: () => <MainScreen placesCount={PlacesCount.PLACES_COUNT} cards={Cards} />,
+    isPrivate: false,
+    route: AppRoute.Main,
+  },
+  {
+    component: () => <LogIn />,
+    isPrivate: false,
+    route: AppRoute.SignIn,
+  },
+  {
+    component: () => <Favorites />,
+    isPrivate: true,
+    route: AppRoute.Favorites,
+  },
+  {
+    component: () => <Properties />,
+    isPrivate: false,
+    route: AppRoute.Room,
+  },
+  {
+    component: () => <Page404 />,
+    isPrivate: false,
+    route: '',
+  },
+];
 
 ReactDOM.render(
   <React.StrictMode>

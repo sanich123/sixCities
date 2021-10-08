@@ -5,7 +5,7 @@ import { AuthorizationStatus } from '../../components/const ';
 
 type AppProps = {
   pages: {
-    component: any,
+    component: () => JSX.Element,
     isPrivate: boolean,
     route: string,
   }[]
