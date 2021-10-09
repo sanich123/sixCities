@@ -1,10 +1,13 @@
 import Card from '../card/card';
+import { Offers } from '../types/types';
 
 type cardsListProps = {
-  cards: number[]
+  cards: number[],
+  offers: Offers
 }
 
-function CardsList({cards}: cardsListProps): JSX.Element {
+function CardsList({cards, offers}: cardsListProps): JSX.Element {
+
   return (
     <div className="cities__places-list places__list tabs__content">
       {cards.map((number) => <Card key={number} />)}

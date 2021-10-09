@@ -7,6 +7,8 @@ import Favorites from './components/favorites/favorites';
 import Properties from './components/properties/properties';
 import Page404 from './components/page404/page404';
 import { AppRoute } from './components/const ';
+import { mockOffers } from './components/mock/offers';
+
 
 const PlacesCount = {
   PLACES_COUNT: 233,
@@ -16,7 +18,7 @@ const Cards = [1, 2, 3, 4, 5];
 
 const Pages = [
   {
-    component: () => <MainScreen placesCount={PlacesCount.PLACES_COUNT} cards={Cards} />,
+    component: () => <MainScreen placesCount={PlacesCount.PLACES_COUNT} cards={Cards} offers={mockOffers}/>,
     isPrivate: false,
     route: AppRoute.Main,
   },

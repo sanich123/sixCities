@@ -3,13 +3,16 @@ import Header from '../header/header';
 import Sprite from '../sprite/sprite';
 import Sort from '../sort/sort';
 import Filter from '../filter/filter';
+import { Offers } from '../types/types';
 
 type MainProps = {
   placesCount: number,
-  cards: number[]
+  cards: number[],
+  offers: Offers,
 }
 
-function Main({placesCount, cards}: MainProps): JSX.Element {
+function Main({placesCount, cards, offers}: MainProps): JSX.Element {
+
   return (
     <>
 
@@ -31,7 +34,7 @@ function Main({placesCount, cards}: MainProps): JSX.Element {
 
                 <Sort />
 
-                <CardsList cards={cards} />
+                <CardsList cards={cards} offers={offers} />
 
               </section>
               <div className="cities__right-section">
