@@ -9,7 +9,7 @@ import Page404 from './components/page404/page404';
 import { AppRoute } from './components/const ';
 
 const PlacesCount = {
-  PLACES_COUNT: 458,
+  PLACES_COUNT: 233,
 };
 
 const Cards = [1, 2, 3, 4, 5];
