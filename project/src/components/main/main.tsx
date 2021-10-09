@@ -7,11 +7,10 @@ import { Offers } from '../types/types';
 
 type MainProps = {
   placesCount: number,
-  cards: number[],
   offers: Offers,
 }
 
-function Main({placesCount, cards, offers}: MainProps): JSX.Element {
+function Main({placesCount, offers}: MainProps): JSX.Element {
 
   return (
     <>
@@ -34,7 +33,7 @@ function Main({placesCount, cards, offers}: MainProps): JSX.Element {
 
                 <Sort />
 
-                <CardsList cards={cards} offers={offers} />
+                <CardsList offers={offers} />
 
               </section>
               <div className="cities__right-section">

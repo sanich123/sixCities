@@ -32,7 +32,7 @@ export const mockOffers: Offers = [
     maxAdults: 4,
     previewImage: 'img/apartment-01.jpg',
     price: 125,
-    rating: 4.8,
+    rating: 2,
     title: 'Beautiful & luxurious studio at great location',
     type: 'Apartment',
   }, {
@@ -65,7 +65,7 @@ export const mockOffers: Offers = [
     maxAdults: 7,
     previewImage: 'img/apartment-02.jpg',
     price: 125,
-    rating: 4.6,
+    rating: 5,
     title: 'Очень классная комнатенка в Бирюлево',
     type: 'Private room',
   }, {
@@ -96,9 +96,9 @@ export const mockOffers: Offers = [
     //   zoom: 8,
     // },
     maxAdults: 2,
-    previewImage: 'img/apartment-01.jpg',
+    previewImage: 'img/room.jpg',
     price: 190,
-    rating: 4.2,
+    rating: 3,
     title: 'Очень классная комнатенка в Солнцево',
     type: 'Apartment',
   }, {
@@ -131,7 +131,7 @@ export const mockOffers: Offers = [
     maxAdults: 5,
     previewImage: 'img/apartment-03.jpg',
     price: 78,
-    rating: 5,
+    rating: 4,
     title: 'Очень классная комнатенка в Внуково',
     type: 'Private room',
   }];

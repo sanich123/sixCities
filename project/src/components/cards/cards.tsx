@@ -1,20 +1,20 @@
 import Card from '../card/card';
 import { Offers } from '../types/types';
 
-type cardsListProps = {
-  cards: number[],
+type cardsProps = {
   offers: Offers
 }
 
-function CardsList({cards, offers}: cardsListProps): JSX.Element {
-
+function Cards({offers}: cardsProps): JSX.Element {
   return (
     <div className="cities__places-list places__list tabs__content">
-      {cards.map((number) => <Card key={number} />)}
+      {offers.map(({ id, description, price, type, rating, isPremium, isFavorite, previewImage }) =>
+        (<Card key={id} type={type} description={description} price={price} rating={rating} isPremium={isPremium} isFavorite={isFavorite} previewImage={previewImage} />),
+      )}
     </div>
   );
 }
 
-export default CardsList;
+export default Cards;
 
 
