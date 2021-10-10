@@ -22,25 +22,25 @@ const Pages = [
         offers={mockOffers}
       />),
     isPrivate: false,
-    route: AppRoute.Main,
+    route: AppRoute.MAIN,
     key: nanoid(),
   },
   {
     component: () => <LogIn />,
     isPrivate: false,
-    route: AppRoute.SignIn,
+    route: AppRoute.SIGNIN,
     key: nanoid(),
   },
   {
     component: () => (<Favorites offers={mockOffers}/>),
     isPrivate: true,
-    route: AppRoute.Favorites,
+    route: AppRoute.FAVORITES,
     key: nanoid(),
   },
   {
     component: () => <Properties />,
     isPrivate: false,
-    route: AppRoute.Room,
+    route: AppRoute.ROOM,
     key: nanoid(),
   },
   {
