@@ -35,10 +35,11 @@ export const mockOffers: Offers = [
     rating: 2,
     title: 'Beautiful & luxurious studio at great location',
     type: 'Apartment',
-  }, {
+  },
+  {
     bedrooms: 5,
     city: {
-      name: 'Brussel',
+      name: 'Cologne',
       // location: {
       //   latitude: 52.370916,
       //   longitude: 4.895168,
@@ -68,10 +69,11 @@ export const mockOffers: Offers = [
     rating: 5,
     title: 'Очень классная комнатенка в Бирюлево',
     type: 'Private room',
-  }, {
+  },
+  {
     bedrooms: 2,
     city: {
-      name: 'Vishny Volochek',
+      name: 'Brussels',
       // location: {
       //   latitude: 52.370916,
       //   longitude: 4.895168,
@@ -101,10 +103,11 @@ export const mockOffers: Offers = [
     rating: 3,
     title: 'Очень классная комнатенка в Солнцево',
     type: 'Apartment',
-  }, {
+  },
+  {
     bedrooms: 9,
     city: {
-      name: 'Nizhniy Novgorod',
+      name: 'Hamburg',
       // location: {
       //   latitude: 52.370916,
       //   longitude: 4.895168,

@@ -1,4 +1,5 @@
-// import { Offers } from '../types/types';
+/* eslint-disable no-console */
+import { useState } from 'react';
 type cardProps = {
   type: string,
   description: string,
@@ -7,11 +8,14 @@ type cardProps = {
   isPremium: boolean,
   isFavorite: boolean,
   previewImage: string,
+  id: string,
 }
 
-function Card({type, description, price, rating, isPremium, isFavorite, previewImage }: cardProps): JSX.Element {
+function Card({type, description, price, rating, isPremium, isFavorite, previewImage, id }: cardProps): JSX.Element {
+  const [cardId, setId] = useState('');
+  console.log(cardId);
   return (
-    <article className="cities__place-card place-card">
+    <article className="cities__place-card place-card" onMouseEnter={() => setId(id)} onMouseLeave={() => setId('')}>
       {isPremium ? <div className="place-card__mark"><span>Premium</span></div> : ''}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="/">
@@ -28,7 +32,7 @@ function Card({type, description, price, rating, isPremium, isFavorite, previewI
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
-            <span className="visually-hidden">To bookmarks</span>
+            <span className="visually-hidden">{`${isFavorite ? 'In' : 'To'}bookmarks`}</span>
           </button>
         </div>
         <div className="place-card__rating rating">

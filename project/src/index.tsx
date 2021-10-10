@@ -32,7 +32,7 @@ const Pages = [
     key: nanoid(),
   },
   {
-    component: () => <Favorites />,
+    component: () => (<Favorites offers={mockOffers}/>),
     isPrivate: true,
     route: AppRoute.Favorites,
     key: nanoid(),
