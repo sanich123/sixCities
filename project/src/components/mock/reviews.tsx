@@ -3,10 +3,10 @@ import { Reviews } from '../types/types';
 
 export const mockReviews: Reviews = [
   {
-    comment: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    comment: 'Полное говно, совсем не понравилось ничиво',
     date: '2019-05-08T14:13:56.569Z',
     id: nanoid(),
-    rating: 4,
+    rating: 2,
     user: {
       avatarUrl: 'img/avatar-max.jpg',
       id: nanoid(),
@@ -14,10 +14,10 @@ export const mockReviews: Reviews = [
       name: 'Max',
     },
   }, {
-    comment: 'Уютненькое местечко возле деревни Бухалово',
+    comment: 'Уютненькое местечко возле деревни Бухалово, но многовато алканавтов',
     date: '2019-07-08T14:13:56.569Z',
     id: nanoid(),
-    rating: 5,
+    rating: 3,
     user: {
       avatarUrl: 'img/avatar-angelina.jpg',
       id: nanoid(),

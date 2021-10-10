@@ -1,17 +1,19 @@
+import { Link } from 'react-router-dom';
+
 type FavoriteCityProps = {
   type: string,
   description: string,
   price: number,
   rating: number,
   isPremium: boolean,
-  isFavorite: boolean,
   previewImage: string,
   city: {
     name: string,
-  }
+  },
+  id: string,
 }
 
-function FavoriteCity({type, description, price, rating, isPremium, isFavorite, city, previewImage }: FavoriteCityProps): JSX.Element {
+function FavoriteCity({type, description, price, rating, isPremium, city, previewImage, id }: FavoriteCityProps): JSX.Element {
   return (
     <li className="favorites__locations-items">
       <div className="favorites__locations locations locations--current">
@@ -25,9 +27,9 @@ function FavoriteCity({type, description, price, rating, isPremium, isFavorite, 
         <article className="favorites__card place-card">
           {isPremium ? <div className="place-card__mark"><span>Premium</span></div> : ''}
           <div className="favorites__image-wrapper place-card__image-wrapper">
-            <a href="/">
+            <Link to={`/offer/:${id}`}>
               <img className="place-card__image" src={previewImage} width="150" height="110" alt=""/>
-            </a>
+            </Link>
           </div>
           <div className="favorites__card-info place-card__info">
             <div className="place-card__price-wrapper">
@@ -49,7 +51,7 @@ function FavoriteCity({type, description, price, rating, isPremium, isFavorite, 
               </div>
             </div>
             <h2 className="place-card__name">
-              <a href="/">{description}</a>
+              <Link to={`/offer/:${id}`}>{description}</Link>
             </h2>
             <p className="place-card__type">{type}</p>
           </div>

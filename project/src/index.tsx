@@ -8,17 +8,13 @@ import Properties from './components/properties/properties';
 import Page404 from './components/page404/page404';
 import { AppRoute } from './components/const ';
 import { mockOffers } from './components/mock/offers';
+import { mockReviews } from './components/mock/reviews';
 import { nanoid } from '@reduxjs/toolkit';
-
-const PlacesCount = {
-  PLACES_COUNT: 233,
-};
 
 const Pages = [
   {
     component: () => (
       <MainScreen
-        placesCount={PlacesCount.PLACES_COUNT}
         offers={mockOffers}
       />),
     isPrivate: false,
@@ -38,7 +34,7 @@ const Pages = [
     key: nanoid(),
   },
   {
-    component: () => <Properties />,
+    component: () => <Properties reviews={mockReviews}/>,
     isPrivate: false,
     route: AppRoute.ROOM,
     key: nanoid(),

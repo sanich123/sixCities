@@ -22,7 +22,29 @@ function Favorites({offers}: favoriteProps): JSX.Element {
             <section className="favorites">
               <h1 className="favorites__title">Saved listing</h1>
               <ul className="favorites__list">
-                {offers.map(({id, description, price, type, rating, isPremium, isFavorite, city, previewImage}) => isFavorite ? <FavoriteCity key={id} type={type} description={description} price={price} rating={rating} isPremium={isPremium} isFavorite={isFavorite} city={city} previewImage={previewImage}/> : '')}
+                {offers.map((
+                  { id,
+                    description,
+                    price,
+                    type,
+                    rating,
+                    isPremium,
+                    isFavorite,
+                    city,
+                    previewImage,
+                  }) =>
+                  isFavorite ?
+                    <FavoriteCity
+                      key={id}
+                      type={type}
+                      description={description}
+                      price={price}
+                      rating={rating}
+                      isPremium={isPremium}
+                      city={city}
+                      previewImage={previewImage}
+                      id={id}
+                    /> : '')}
               </ul>
             </section>
           </div>
