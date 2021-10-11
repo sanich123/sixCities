@@ -1,13 +1,14 @@
 /* eslint-disable no-console */
 import { nanoid } from '@reduxjs/toolkit';
 import { useState } from 'react';
-// import { Rating } from './rating';
+import { Marks } from '../../const';
+
 function ReviewForm(): JSX.Element {
   const [text, setText] = useState('');
   const [rating, getRating] = useState('');
-  const marks = ['terribly', 'badly', 'not bad', 'good', 'perfect' ];
-  // const marks2 = ['perfect', 'good', 'not bad', 'badly', 'terribly'];
+
   console.log(text, rating);
+
   return (
     <form className="reviews__form form"
       action="#"
@@ -16,29 +17,34 @@ function ReviewForm(): JSX.Element {
     >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
-        {marks.map((mark, index) => (
+        { Object.entries(Marks).reverse().map(([key, value]) => (
           <>
             <input
               className="form__rating-input visually-hidden"
               key={nanoid()}
               name="rating"
-              value={`${index + 1}`}
-              id={`${index + 1}-stars`}
+              value={`${key}`}
+              id={`${key}-stars`}
               type="radio"
               onChange={(evt) => getRating(evt.target.value)}
             />
             <label
-              htmlFor={`${index + 1}-stars`} className="reviews__rating-label form__rating-label"
-              title={`${mark}`}
+              htmlFor={`${key}-stars`}
+              className="reviews__rating-label form__rating-label"
+              title={`${value}`}
             >
-              <svg className="form__star-image" width="37" height="33">
+              <svg
+                className="form__star-image"
+                width="37"
+                height="33"
+              >
                 <use xlinkHref="#icon-star"></use>
               </svg>
             </label>
           </>
         ))}
-        {/* <Rating /> */}
       </div>
+
       <textarea
         className="reviews__textarea form__textarea"
         id="review"
@@ -56,7 +62,7 @@ function ReviewForm(): JSX.Element {
           <b className="reviews__text-amount">50 characters</b>.
         </p>
         <button
-          className="reviews__submit form__submit button" type="submit"
+          className="reviews__submit form__submit button" type="submit" disabled
         >Submit
         </button>
       </div>

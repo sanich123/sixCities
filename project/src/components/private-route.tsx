@@ -1,6 +1,6 @@
 import {Route, Redirect} from 'react-router-dom';
 import {RouteProps} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus} from '../components/const ';
+import {AppRoute, AuthorizationStatus} from './const';
 
 type PrivateRouteProps = RouteProps & {
   render: () => JSX.Element;

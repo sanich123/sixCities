@@ -1,7 +1,7 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import PrivateRoute from '../private-route';
 import Favorites from '../favorites/favorites';
-import { AuthorizationStatus } from '../../components/const ';
+import { AuthorizationStatus } from '../const';
 import { mockOffers } from '../../mock/offers';
 
 type AppProps = {
