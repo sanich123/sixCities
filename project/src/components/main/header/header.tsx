@@ -1,4 +1,4 @@
-import UserMenu from '../user-menu/user-menu';
+import UserMenu from '../../login/user-menu/user-menu';
 import Logo from '../logo/logo';
 
 function Header(): JSX.Element {

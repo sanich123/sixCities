@@ -7,8 +7,8 @@ import Favorites from './components/favorites/favorites';
 import Properties from './components/properties/properties';
 import Page404 from './components/page404/page404';
 import { AppRoute } from './components/const ';
-import { mockOffers } from './components/mock/offers';
-import { mockReviews } from './components/mock/reviews';
+import { mockOffers } from './mock/offers';
+import { mockReviews } from './mock/reviews';
 import { nanoid } from '@reduxjs/toolkit';
 
 const Pages = [

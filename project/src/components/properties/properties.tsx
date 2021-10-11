@@ -1,8 +1,8 @@
-import Header from '../header/header';
-import Sprite from '../sprite/sprite';
-import { ReviewForm } from '../review-form/review-form';
-import { Reviews } from '../types/types';
-import { Review } from '../review-form/review';
+import Header from '../main/header/header';
+import Sprite from '../main/sprite/sprite';
+import { ReviewForm } from './review-form/review-form';
+import { Reviews } from '../../types/types';
+import { Review } from './review-form/review';
 
 type propertiesProps = {
   reviews: Reviews,

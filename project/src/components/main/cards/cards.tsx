@@ -1,5 +1,5 @@
 import Card from '../card/card';
-import { Offers } from '../types/types';
+import { Offers } from '../../../../src/types/types';
 
 
 type cardsProps = {

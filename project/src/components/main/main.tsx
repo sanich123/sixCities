@@ -1,9 +1,9 @@
-import CardsList from '../cards/cards';
-import Header from '../header/header';
-import Sprite from '../sprite/sprite';
-import Sort from '../sort/sort';
-import Filter from '../filter/filter';
-import { Offers } from '../types/types';
+import Cards from '../main/cards/cards';
+import Header from './header/header';
+import Sprite from './sprite/sprite';
+import Sort from './sort/sort';
+import Filter from './filter/filter';
+import { Offers } from '../../types/types';
 
 type MainProps = {
   offers: Offers,
@@ -32,7 +32,7 @@ function Main({ offers }: MainProps): JSX.Element {
 
                 <Sort />
 
-                <CardsList offers={offers} />
+                <Cards offers={offers} />
 
               </section>
               <div className="cities__right-section">
