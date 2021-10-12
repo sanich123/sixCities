@@ -9,6 +9,9 @@ type favoriteProps = {
 }
 
 function Favorites({offers}: favoriteProps): JSX.Element {
+  const uniqueСities = Array.from(new Set(offers.map(({city}) => city.name)));
+  // eslint-disable-next-line no-console
+  console.log(uniqueСities);
   return (
     <>
       <Sprite />

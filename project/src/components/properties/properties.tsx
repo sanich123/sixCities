@@ -3,12 +3,16 @@ import Sprite from '../main/sprite/sprite';
 import { ReviewForm } from './review-form/review-form';
 import { Reviews } from '../../types/types';
 import { Review } from './review-form/review';
+import { useHistory} from 'react-router-dom';
 
 type propertiesProps = {
   reviews: Reviews,
 }
 
 function Properties({reviews}: propertiesProps): JSX.Element {
+  const history = useHistory();
+  // eslint-disable-next-line no-console
+  console.log(history.location);
   return (
     <>
 
