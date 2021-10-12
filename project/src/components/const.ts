@@ -18,3 +18,10 @@ export const Marks = {
   2: 'badly',
   1: 'terribly',
 };
+
+export const Cities = ['Paris','Cologne','Brussels','Amsterdam','Hamburg','Dusseldorf'];
+
+export const dateFormatter = (date: string): string => {
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  return `${months[(new Date(date).getMonth())]} ${new Date(date).getFullYear()}`;
+};

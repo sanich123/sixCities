@@ -45,3 +45,5 @@ export type Reviews = {
     name: string,
   }
 }[];
+
+export type Strings = string[];

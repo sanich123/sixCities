@@ -1,3 +1,5 @@
+import {dateFormatter} from '../../const';
+
 type reviewProps = {
   comment: string,
   date: string,
@@ -32,7 +34,7 @@ function Review({comment, date, id, rating, user}: reviewProps): JSX.Element {
         <p className="reviews__text">
           {comment}
         </p>
-        <time className="reviews__time" dateTime={date}>{date}</time>
+        <time className="reviews__time" dateTime={date}>{dateFormatter(date)}</time>
       </div>
     </li>
   );
