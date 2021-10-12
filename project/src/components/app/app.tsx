@@ -17,7 +17,7 @@ function App({pages}: AppProps): JSX.Element {
   const simplyRoute = pages.map(({component, route, isPrivate, key}) =>
     isPrivate ?
       <PrivateRoute exact path={route} key={key} authorizationStatus={AuthorizationStatus.AUTH} render={() => <Favorites offers={mockOffers}/>} /> :
-      <Route exact path={route} key={key}>{component}</Route>,
+      <Route exact path={route} key={key} component={component} />,
   );
   return (
     <BrowserRouter>
