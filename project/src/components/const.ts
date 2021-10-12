@@ -21,7 +21,7 @@ export const Marks = {
 
 export const Cities = ['Paris','Cologne','Brussels','Amsterdam','Hamburg','Dusseldorf'];
 
-export const dateFormatter = (date: string): string => {
-  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  return `${months[(new Date(date).getMonth())]} ${new Date(date).getFullYear()}`;
-};
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+export const dateFormatter = (date: string): string => `${months[(new Date(date).getMonth())]} ${new Date(date).getFullYear()}`;
+
