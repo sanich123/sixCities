@@ -1,5 +1,4 @@
 import { Offers } from '../types/types';
-// import { nanoid } from '@reduxjs/toolkit';
 
 export const mockOffers: Offers = [
   {
@@ -125,7 +124,7 @@ export const mockOffers: Offers = [
     id: 4,
     images: ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg'],
     isPremium: true,
-    isFavorite: true,
+    isFavorite: false,
     // location: {
     //   latitude: 52.358987234,
     //   longitude: 4.679870987,

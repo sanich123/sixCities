@@ -9,9 +9,9 @@ type favoriteProps = {
 }
 
 function Favorites({offers}: favoriteProps): JSX.Element {
-  const uniqueСities = Array.from(new Set(offers.map(({city}) => city.name)));
-  // eslint-disable-next-line no-console
-  console.log(uniqueСities);
+  const favoriteOffers = offers.filter((offer) => offer.isFavorite);
+  const uniqueСities = Array.from(new Set(favoriteOffers.map(({city}) => city.name)));
+
   return (
     <>
       <Sprite />
@@ -25,7 +25,7 @@ function Favorites({offers}: favoriteProps): JSX.Element {
             <section className="favorites">
               <h1 className="favorites__title">Saved listing</h1>
               <ul className="favorites__list">
-                { uniqueСities.map((city) => <FavoritesList city={city} offers={offers} key={city} />) }
+                { uniqueСities.map((city) => <FavoritesList city={city} offers={favoriteOffers} key={city} />) }
               </ul>
             </section>
           </div>
@@ -39,27 +39,3 @@ function Favorites({offers}: favoriteProps): JSX.Element {
 }
 
 export default Favorites;
-
-// {//offers.map((
-//   { id,
-//     description,
-//     price,
-//     type,
-//     rating,
-//     isPremium,
-//     isFavorite,
-//     city,
-//     previewImage,
-//   }) =>
-//   isFavorite ?
-//     <FavoritesList
-//       key={id}
-//       type={type}
-//       description={description}
-//       price={price}
-//       rating={rating}
-//       isPremium={isPremium}
-//       city={city}
-//       previewImage={previewImage}
-//       id={id}
-//     /> : '')}

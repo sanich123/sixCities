@@ -46,4 +46,40 @@ export type Reviews = {
   }
 }[];
 
+export type Offer = {
+  offer: {
+bedrooms: number,
+city: {
+  name: string,
+  // location: {
+  //   latitude: number,
+  //   longitude: number,
+  //   zoom: number,
+  // }
+}
+description: string,
+goods: string[],
+host: {
+  isPro: boolean,
+  avatarUrl: string,
+  id: number,
+  name: string,
+}
+  id: number,
+  images: string[],
+  isPremium: boolean,
+  isFavorite: boolean,
+  // location: {
+  //   latitude: number,
+  //   longitude: number,
+  //   zoom: number,
+  // }
+  maxAdults: number,
+  previewImage: string,
+  price: number,
+  rating: number,
+  title: string,
+  type: string,
+}}
+
 export type Strings = string[];

@@ -1,41 +1,6 @@
 import { Offers } from '../../../types/types';
 import FavoriteCity from '../favorite-city/favorite-city';
 
-// type Offer = {
-// bedrooms: number,
-// city: {
-//   name: string,
-//   // location: {
-//   //   latitude: number,
-//   //   longitude: number,
-//   //   zoom: number,
-//   // }
-// }
-// description: string,
-// goods: string[],
-// host: {
-//   isPro: boolean,
-//   avatarUrl: string,
-//   id: number,
-//   name: string,
-// }
-//   id: number,
-//   images: string[],
-//   isPremium: boolean,
-//   isFavorite: boolean,
-//   // location: {
-//   //   latitude: number,
-//   //   longitude: number,
-//   //   zoom: number,
-//   // }
-//   maxAdults: number,
-//   previewImage: string,
-//   price: number,
-//   rating: number,
-//   title: string,
-//   type: string,
-//  }
-
 type FavoritesListProps = {
   city: string,
   offers: Offers,
@@ -54,7 +19,7 @@ function FavoritesList(props: FavoritesListProps): JSX.Element {
         </div>
       </div>
       <div className="favorites__places">
-        {cityOffers.map((offer) => <FavoriteCity offer={offer} key={offer.id} />)}
+        { cityOffers.map((offer) => <FavoriteCity offer={offer} key={offer.id} />) }
       </div>
     </li>
   );

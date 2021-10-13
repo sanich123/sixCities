@@ -1,53 +1,9 @@
 import { Link } from 'react-router-dom';
-// import { Offers } from '../../../types/types';
-type Offer = {
-  offer: {
-bedrooms: number,
-city: {
-  name: string,
-  // location: {
-  //   latitude: number,
-  //   longitude: number,
-  //   zoom: number,
-  // }
-}
-description: string,
-goods: string[],
-host: {
-  isPro: boolean,
-  avatarUrl: string,
-  id: number,
-  name: string,
-}
-  id: number,
-  images: string[],
-  isPremium: boolean,
-  isFavorite: boolean,
-  // location: {
-  //   latitude: number,
-  //   longitude: number,
-  //   zoom: number,
-  // }
-  maxAdults: number,
-  previewImage: string,
-  price: number,
-  rating: number,
-  title: string,
-  type: string,
-}}
-// type FavoriteCityProps = {
-//   type: string,
-//   description: string,
-//   price: number,
-//   rating: number,
-//   isPremium: boolean,
-//   previewImage: string,
-//   id: number,
-// }
+import { Offer } from '../../../types/types';
 
 function FavoriteCity(offer: Offer): JSX.Element {
   // eslint-disable-next-line no-console
-  console.log(offer.offer);
+  console.log(offer);
   const {type, description, price, rating, isPremium, previewImage, id} = offer.offer;
   return (
     <article className="favorites__card place-card">
