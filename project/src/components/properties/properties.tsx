@@ -12,7 +12,6 @@ type propertiesProps = {
 
 function Properties({reviews, offers}: propertiesProps): JSX.Element {
   const uniqUrl = +useHistory().location.pathname.split('').slice(8).join('');
-
   const [uniqOffer] = offers.slice().filter(({id}) => id === uniqUrl);
   const nearPlaces = offers.slice().filter(({city, id}) => city.name === uniqOffer.city.name && id !== uniqOffer.id);
   const {images, isPremium, title, isFavorite, rating, type, bedrooms, maxAdults, price, goods, host, description } = uniqOffer;

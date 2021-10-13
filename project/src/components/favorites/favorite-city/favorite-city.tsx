@@ -2,8 +2,6 @@ import { Link } from 'react-router-dom';
 import { Offer } from '../../../types/types';
 
 function FavoriteCity(offer: Offer): JSX.Element {
-  // eslint-disable-next-line no-console
-  console.log(offer);
   const {type, description, price, rating, isPremium, previewImage, id} = offer.offer;
   return (
     <article className="favorites__card place-card">

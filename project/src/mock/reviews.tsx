@@ -1,4 +1,3 @@
-// import { nanoid } from '@reduxjs/toolkit';
 import { Reviews } from '../types/types';
 
 export const mockReviews: Reviews = [
