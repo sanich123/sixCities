@@ -1,14 +1,11 @@
-/* eslint-disable no-console */
-// import { nanoid } from '@reduxjs/toolkit';
 import { useState } from 'react';
 import { Marks } from '../../const';
 
 function ReviewForm(): JSX.Element {
   const [text, setText] = useState('');
   const [rating, getRating] = useState('');
-
+  // eslint-disable-next-line no-console
   console.log(text, rating);
-
   return (
     <form className="reviews__form form"
       action="#"

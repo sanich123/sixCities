@@ -1,7 +1,7 @@
 import Sprite from '../main/sprite/sprite';
 import Header from '../main/header/header';
 import Footer from '../main/footer/footer';
-import FavoriteCity from './favorites-city/favorites-city';
+import FavoritesList from './favorite-list/favorite-list';
 import { Offers } from '../../types/types';
 
 type favoriteProps = {
@@ -25,29 +25,7 @@ function Favorites({offers}: favoriteProps): JSX.Element {
             <section className="favorites">
               <h1 className="favorites__title">Saved listing</h1>
               <ul className="favorites__list">
-                {offers.map((
-                  { id,
-                    description,
-                    price,
-                    type,
-                    rating,
-                    isPremium,
-                    isFavorite,
-                    city,
-                    previewImage,
-                  }) =>
-                  isFavorite ?
-                    <FavoriteCity
-                      key={id}
-                      type={type}
-                      description={description}
-                      price={price}
-                      rating={rating}
-                      isPremium={isPremium}
-                      city={city}
-                      previewImage={previewImage}
-                      id={id}
-                    /> : '')}
+                { uniqueСities.map((city) => <FavoritesList city={city} offers={offers} key={city} />) }
               </ul>
             </section>
           </div>
@@ -61,3 +39,27 @@ function Favorites({offers}: favoriteProps): JSX.Element {
 }
 
 export default Favorites;
+
+// {//offers.map((
+//   { id,
+//     description,
+//     price,
+//     type,
+//     rating,
+//     isPremium,
+//     isFavorite,
+//     city,
+//     previewImage,
+//   }) =>
+//   isFavorite ?
+//     <FavoritesList
+//       key={id}
+//       type={type}
+//       description={description}
+//       price={price}
+//       rating={rating}
+//       isPremium={isPremium}
+//       city={city}
+//       previewImage={previewImage}
+//       id={id}
+//     /> : '')}
