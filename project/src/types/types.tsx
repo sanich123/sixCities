@@ -13,10 +13,10 @@ goods: string[],
 host: {
   isPro: boolean,
   avatarUrl: string,
-  id: string,
+  id: number,
   name: string,
 }
-  id: string,
+  id: number,
   images: string[],
   isPremium: boolean,
   isFavorite: boolean,
@@ -36,11 +36,11 @@ host: {
 export type Reviews = {
   comment: string,
   date: string,
-  id: string,
+  id: number,
   rating: number,
   user: {
     avatarUrl: string,
-    id: string,
+    id: number,
     isPro: boolean,
     name: string,
   }

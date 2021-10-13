@@ -10,7 +10,7 @@ type FavoriteCityProps = {
   city: {
     name: string,
   },
-  id: string,
+  id: number,
 }
 
 function FavoriteCity({type, description, price, rating, isPremium, city, previewImage, id }: FavoriteCityProps): JSX.Element {

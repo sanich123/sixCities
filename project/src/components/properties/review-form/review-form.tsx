@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { nanoid } from '@reduxjs/toolkit';
+// import { nanoid } from '@reduxjs/toolkit';
 import { useState } from 'react';
 import { Marks } from '../../const';
 
@@ -21,7 +21,7 @@ function ReviewForm(): JSX.Element {
           <>
             <input
               className="form__rating-input visually-hidden"
-              key={nanoid()}
+              key={value}
               name="rating"
               value={`${key}`}
               id={`${key}-stars`}

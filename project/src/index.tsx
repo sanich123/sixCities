@@ -34,7 +34,7 @@ const Pages = [
     key: nanoid(),
   },
   {
-    component: () => <Properties reviews={mockReviews}/>,
+    component: () => <Properties offers={mockOffers} reviews={mockReviews}/>,
     isPrivate: false,
     route: AppRoute.ROOM,
     key: nanoid(),

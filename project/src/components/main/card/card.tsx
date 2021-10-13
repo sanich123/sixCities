@@ -4,22 +4,22 @@ import { Link } from 'react-router-dom';
 
 type cardProps = {
   type: string,
-  description: string,
+  title: string,
   price: number,
   rating: number,
   isPremium: boolean,
   isFavorite: boolean,
   previewImage: string,
-  id: string,
+  id: number,
 }
 
-function Card({type, description, price, rating, isPremium, isFavorite, previewImage, id }: cardProps): JSX.Element {
+function Card({type, title, price, rating, isPremium, isFavorite, previewImage, id }: cardProps): JSX.Element {
   const [cardId, setId] = useState('');
   console.log(cardId);
   return (
     <article
       className="cities__place-card place-card"
-      onMouseEnter={() => setId(id)}
+      onMouseEnter={() => setId(id.toString())}
       onMouseLeave={() => setId('')}
     >
       {isPremium ? <div className="place-card__mark"><span>Premium</span></div> : ''}
@@ -54,7 +54,7 @@ function Card({type, description, price, rating, isPremium, isFavorite, previewI
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`/offer/:${id}`}>{description}</Link>
+          <Link to={`/offer/:${id}`}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

@@ -1,5 +1,5 @@
 import { Offers } from '../types/types';
-import { nanoid } from '@reduxjs/toolkit';
+// import { nanoid } from '@reduxjs/toolkit';
 
 export const mockOffers: Offers = [
   {
@@ -17,10 +17,10 @@ export const mockOffers: Offers = [
     host: {
       isPro: true,
       avatarUrl: 'img/avatar-angelina.jpg',
-      id: nanoid(),
+      id: 1,
       name: 'Angelina',
     },
-    id: nanoid(),
+    id: 1,
     images: ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'],
     isPremium: false,
     isFavorite: true,
@@ -49,12 +49,12 @@ export const mockOffers: Offers = [
     description: 'Очень красивое описание',
     goods: ['Wi-Fi', 'Heating', 'Kitchen', 'Fridge', 'Washing machine', 'Dishwasher'],
     host: {
-      isPro: true,
+      isPro: false,
       avatarUrl: 'img/avatar-angelina.jpg',
-      id: nanoid(),
+      id: 2,
       name: 'Снежана',
     },
-    id: nanoid(),
+    id: 2,
     images: ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'],
     isPremium: true,
     isFavorite: false,
@@ -85,10 +85,10 @@ export const mockOffers: Offers = [
     host: {
       isPro: false,
       avatarUrl: 'img/avatar-max.jpg',
-      id: nanoid(),
+      id: 3,
       name: 'Ольга',
     },
-    id: nanoid(),
+    id: 3,
     images: ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'],
     isPremium: false,
     isFavorite: true,
@@ -107,7 +107,7 @@ export const mockOffers: Offers = [
   {
     bedrooms: 9,
     city: {
-      name: 'Hamburg',
+      name: 'Amsterdam',
       // location: {
       //   latitude: 52.370916,
       //   longitude: 4.895168,
@@ -119,10 +119,10 @@ export const mockOffers: Offers = [
     host: {
       isPro: true,
       avatarUrl: 'img/avatar-angelina.jpg',
-      id: nanoid(),
+      id: 4,
       name: 'Василий',
     },
-    id: nanoid(),
+    id: 4,
     images: ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-01.jpg'],
     isPremium: true,
     isFavorite: true,

@@ -10,7 +10,7 @@ function Cards( { offers }: cardsProps): JSX.Element {
     <div className="cities__places-list places__list tabs__content">
       {offers.map(({
         id,
-        description,
+        title,
         price,
         type,
         rating,
@@ -21,7 +21,7 @@ function Cards( { offers }: cardsProps): JSX.Element {
           <Card
             key={id}
             type={type}
-            description={description}
+            title={title}
             price={price}
             rating={rating}
             isPremium={isPremium}

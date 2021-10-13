@@ -3,19 +3,20 @@ import {dateFormatter} from '../../const';
 type reviewProps = {
   comment: string,
   date: string,
-  id: string,
+  id: number,
   rating: number,
+  key: number,
   user: {
     avatarUrl: string,
-    id: string,
+    id: number,
     isPro: boolean,
     name: string,
   }
 }
 
-function Review({comment, date, id, rating, user}: reviewProps): JSX.Element {
+function Review({comment, date, id, rating, user, key}: reviewProps): JSX.Element {
   return (
-    <li className="reviews__item">
+    <li key={id} className="reviews__item">
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
           <img className="reviews__avatar user__avatar" src={user.avatarUrl} width="54" height="54" alt="Reviews avatar" />

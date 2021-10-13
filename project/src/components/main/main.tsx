@@ -4,16 +4,12 @@ import Sprite from './sprite/sprite';
 import Sort from './sort/sort';
 import Filter from './filter/filter';
 import { Offers } from '../../types/types';
-import {useHistory} from 'react-router-dom';
 
 type MainProps = {
   offers: Offers,
 }
 
 function Main({ offers }: MainProps): JSX.Element {
-  const history = useHistory();
-  // eslint-disable-next-line no-console
-  console.log(history);
   return (
     <>
 
