@@ -56,7 +56,7 @@ export const mockOffers: Offers = [
     id: 2,
     images: ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/studio-01.jpg'],
     isPremium: true,
-    isFavorite: false,
+    isFavorite: true,
     // location: {
     //   latitude: 52.358987234,
     //   longitude: 4.679870987,
