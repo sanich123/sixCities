@@ -52,7 +52,9 @@ function Properties({reviews, offers}: propertiesProps): JSX.Element {
                   <h1 className="property__name">
                     {title}
                   </h1>
-                  <button className={isFavorite ? 'property__bookmark-button button property__bookmark-button--active' : 'property__bookmark-button button'} type="button">
+                  <button
+                    className={isFavorite ? 'property__bookmark-button button property__bookmark-button--active' : 'property__bookmark-button button'} type="button"
+                  >
                     <svg className="property__bookmark-icon" width="31" height="33">
                       <use xlinkHref="#icon-bookmark"></use>
                     </svg>
@@ -84,14 +86,7 @@ function Properties({reviews, offers}: propertiesProps): JSX.Element {
                 <div className="property__inside">
                   <h2 className="property__inside-title">What&apos;s inside</h2>
                   <ul className="property__inside-list">
-                    {goods.map((good) => (
-                      <li
-                        key={good}
-                        className="property__inside-item"
-                      >
-                        {good}
-                      </li>
-                    ))}
+                    {goods.map((good) => (<li key={good} className="property__inside-item">{good}</li>))}
                   </ul>
                 </div>
                 <div className="property__host">
@@ -138,7 +133,7 @@ function Properties({reviews, offers}: propertiesProps): JSX.Element {
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
               <div className="near-places__list places__list">
                 {nearPlaces.map((place) => nearPlaces ? (
-                  <article className="near-places__card place-card">
+                  <article key={place.id} className="near-places__card place-card">
                     {place.isPremium ? <div className="place-card__mark"><span>Premium</span></div> : ''}
                     <div className="near-places__image-wrapper place-card__image-wrapper">
                       <Link to={`/offer/:${place.id}`}>

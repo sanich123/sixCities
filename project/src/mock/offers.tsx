@@ -21,7 +21,7 @@ export const mockOffers: Offers = [
       name: 'Angelina',
     },
     id: 1,
-    images: ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'],
+    images: ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg'],
     isPremium: false,
     isFavorite: true,
     // location: {
@@ -55,7 +55,7 @@ export const mockOffers: Offers = [
       name: 'Снежана',
     },
     id: 2,
-    images: ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'],
+    images: ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/studio-01.jpg'],
     isPremium: true,
     isFavorite: false,
     // location: {
@@ -89,7 +89,7 @@ export const mockOffers: Offers = [
       name: 'Ольга',
     },
     id: 3,
-    images: ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'],
+    images: ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/studio-01.jpg'],
     isPremium: false,
     isFavorite: true,
     // location: {
@@ -123,7 +123,7 @@ export const mockOffers: Offers = [
       name: 'Василий',
     },
     id: 4,
-    images: ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-01.jpg'],
+    images: ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg'],
     isPremium: true,
     isFavorite: true,
     // location: {

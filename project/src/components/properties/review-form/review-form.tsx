@@ -18,7 +18,7 @@ function ReviewForm(): JSX.Element {
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         { Object.entries(Marks).reverse().map(([key, value]) => (
-          <>
+          <div key={value}>
             <input
               className="form__rating-input visually-hidden"
               key={value}
@@ -41,7 +41,7 @@ function ReviewForm(): JSX.Element {
                 <use xlinkHref="#icon-star"></use>
               </svg>
             </label>
-          </>
+          </div>
         ))}
       </div>
 

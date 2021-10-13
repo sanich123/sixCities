@@ -5,7 +5,6 @@ type reviewProps = {
   date: string,
   id: number,
   rating: number,
-  key: number,
   user: {
     avatarUrl: string,
     id: number,
@@ -14,7 +13,7 @@ type reviewProps = {
   }
 }
 
-function Review({comment, date, id, rating, user, key}: reviewProps): JSX.Element {
+function Review({comment, date, id, rating, user}: reviewProps): JSX.Element {
   return (
     <li key={id} className="reviews__item">
       <div className="reviews__user user">
