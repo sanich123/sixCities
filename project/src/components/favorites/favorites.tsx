@@ -2,10 +2,10 @@ import Sprite from '../main/sprite/sprite';
 import Header from '../main/header/header';
 import Footer from '../main/footer/footer';
 import FavoritesList from './favorite-list/favorite-list';
-import {Offers} from '../../types/types';
+import {Offer} from '../../types/types';
 
 type favoriteProps = {
-  offers: Offers;
+  offers: Offer[];
 }
 
 function Favorites({offers}: favoriteProps): JSX.Element {

@@ -1,7 +1,7 @@
-import {Offers} from '../types/types';
+import {Offer} from '../types/types';
 import fakerStatic from 'faker/locale/en_GB';
 
-export const mockOffers: Offers = [
+export const mockOffers: Offer[] = [
   {
     bedrooms: 3,
     city: {

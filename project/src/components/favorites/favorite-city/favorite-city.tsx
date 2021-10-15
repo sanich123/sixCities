@@ -1,8 +1,7 @@
 import {Link} from 'react-router-dom';
 import {Offer} from '../../../types/types';
 
-function FavoriteCity({offer}: Offer): JSX.Element {
-  const {type, description, price, rating, isPremium, previewImage, id} = offer;
+function FavoriteCity({id, type, description, price, rating, isPremium, previewImage}: Offer): JSX.Element {
   return (
     <article className="favorites__card place-card">
       {isPremium && <div className="place-card__mark"><span>Premium</span></div>}

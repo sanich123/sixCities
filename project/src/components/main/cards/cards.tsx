@@ -1,8 +1,8 @@
 import Card from '../card/card';
-import {Offers} from '../../../../src/types/types';
+import {Offer} from '../../../../src/types/types';
 
 type cardsProps = {
-  offers: Offers,
+  offers: Offer[],
 }
 
 function Cards( {offers}: cardsProps): JSX.Element {

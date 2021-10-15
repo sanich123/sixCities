@@ -1,19 +1,7 @@
 import {dateFormatter} from '../../const';
+import {Review} from '../../../types/types';
 
-type reviewProps = {
-  comment: string,
-  date: string,
-  id: number,
-  rating: number,
-  user: {
-    avatarUrl: string,
-    id: number,
-    isPro: boolean,
-    name: string,
- }
-}
-
-function Review({comment, date, id, rating, user}: reviewProps): JSX.Element {
+function Comments({comment, date, id, rating, user}: Review): JSX.Element {
   return (
     <li key={id} className="reviews__item">
       <div className="reviews__user user">
@@ -40,4 +28,4 @@ function Review({comment, date, id, rating, user}: reviewProps): JSX.Element {
   );
 }
 
-export {Review};
+export {Comments};

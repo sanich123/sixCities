@@ -1,13 +1,13 @@
 import Header from '../main/header/header';
 import Sprite from '../main/sprite/sprite';
 import {ReviewForm} from './review-form/review-form';
-import {Reviews, Offers} from '../../types/types';
-import {Review} from './review-form/review';
+import {Review, Offer} from '../../types/types';
+import {Comments} from './review-form/comments';
 import {Link, useHistory} from 'react-router-dom';
 
 type propertiesProps = {
-  reviews: Reviews,
-  offers: Offers,
+  reviews: Review[],
+  offers: Offer[],
 }
 
 function Properties({reviews, offers}: propertiesProps): JSX.Element {
@@ -45,7 +45,7 @@ function Properties({reviews, offers}: propertiesProps): JSX.Element {
             </div>
             <div className="property__container container">
               <div className="property__wrapper">
-                {isPremium ? <div className="property__mark"><span>Premium</span></div> : ''}
+                {isPremium && <div className="property__mark"><span>Premium</span></div>}
                 <div className="property__name-wrapper">
                   <h1 className="property__name">
                     {title}
@@ -96,7 +96,7 @@ function Properties({reviews, offers}: propertiesProps): JSX.Element {
                     <span className="property__user-name">
                       {host.name}
                     </span>
-                    {host.isPro ? <span className="property__user-status">Pro</span> : ''}
+                    {host.isPro && <span className="property__user-status">Pro</span>}
                   </div>
                   <div className="property__description">
                     <p className="property__text">
@@ -108,7 +108,7 @@ function Properties({reviews, offers}: propertiesProps): JSX.Element {
                   <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
                   <ul className="reviews__list">
                     {reviews.map((review) => (
-                      <Review
+                      <Comments
                         key={review.id}
                         id={review.id}
                         comment={review.comment}
