@@ -1,11 +1,9 @@
 import {useState} from 'react';
 import {Marks} from '../../const';
+import Rating from './rating';
 
 function ReviewForm(): JSX.Element {
   const [text, setText] = useState('');
-  const [rating, getRating] = useState('');
-  // eslint-disable-next-line no-console
-  console.log(text, rating);
   return (
     <form className="reviews__form form"
       action="#"
@@ -14,31 +12,8 @@ function ReviewForm(): JSX.Element {
     >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
-        {Object.entries(Marks).reverse().map(([key, value]) => (
-          <div key={value}>
-            <input
-              className="form__rating-input visually-hidden"
-              key={value}
-              name="rating"
-              value={`${key}`}
-              id={`${key}-stars`}
-              type="radio"
-              onChange={(evt) => getRating(evt.target.value)}
-            />
-            <label
-              htmlFor={`${key}-stars`}
-              className="reviews__rating-label form__rating-label"
-              title={`${value}`}
-            >
-              <svg
-                className="form__star-image"
-                width="37"
-                height="33"
-              >
-                <use xlinkHref="#icon-star"></use>
-              </svg>
-            </label>
-          </div>
+        {Object.entries(Marks).reverse().map(([number, value]) => (
+          <Rating key={value} value={value} number={number}/>
         ))}
       </div>
 
