@@ -5,7 +5,7 @@ type RatingProps = {
   value: string,
 }
 
-function Rating({ number, value}: RatingProps):JSX.Element {
+function Rating({number, value}: RatingProps):JSX.Element {
   const [rating, getRating] = useState('');
   // eslint-disable-next-line no-console
   console.log(rating);
