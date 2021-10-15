@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom';
-import { Offer } from '../../../types/types';
+import {Link} from 'react-router-dom';
+import {Offer} from '../../../types/types';
 
-function FavoriteCity(offer: Offer): JSX.Element {
-  const {type, description, price, rating, isPremium, previewImage, id} = offer.offer;
+function FavoriteCity({offer}: Offer): JSX.Element {
+  const {type, description, price, rating, isPremium, previewImage, id} = offer;
   return (
     <article className="favorites__card place-card">
-      {isPremium ? <div className="place-card__mark"><span>Premium</span></div> : ''}
+      {isPremium && <div className="place-card__mark"><span>Premium</span></div>}
       <div className="favorites__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/:${id}`}>
           <img className="place-card__image" src={previewImage} width="150" height="110" alt=""/>

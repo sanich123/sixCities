@@ -1,27 +1,28 @@
-import { Reviews } from '../types/types';
+import {Reviews} from '../types/types';
+import fakerStatic from 'faker/locale/en_GB';
 
 export const mockReviews: Reviews = [
   {
-    comment: 'Полное говно, совсем не понравилось ничиво',
+    comment: fakerStatic.lorem.sentences(),
     date: '2019-05-08T14:13:56.569Z',
     id: 1,
     rating: 2,
     user: {
-      avatarUrl: 'img/avatar-max.jpg',
+      avatarUrl: fakerStatic.image.avatar(),
       id: 1,
       isPro: false,
-      name: 'Max',
+      name: fakerStatic.name.findName(),
     },
   }, {
-    comment: 'Уютненькое местечко возле деревни Бухалово, но многовато алканавтов',
+    comment: fakerStatic.lorem.sentences(),
     date: '2019-07-08T14:13:56.569Z',
     id: 2,
     rating: 3,
     user: {
-      avatarUrl: 'img/avatar-angelina.jpg',
+      avatarUrl: fakerStatic.image.avatar(),
       id: 2,
       isPro: true,
-      name: 'Василий',
+      name: fakerStatic.name.findName(),
     },
   },
 ];

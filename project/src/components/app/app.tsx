@@ -1,24 +1,53 @@
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import PrivateRoute from '../private-route';
 import Favorites from '../favorites/favorites';
-import { AuthorizationStatus } from '../const';
-import { mockOffers } from '../../mock/offers';
+import MainScreen from '../main/main';
+import LogIn from '../login/login';
+import Properties from '../properties/properties';
+import Page404 from '../page404/page404';
+import {AuthorizationStatus} from '../const';
+import {mockOffers} from '../../mock/offers';
+import {mockReviews} from '../../mock/reviews';
+import {AppRoute} from '../const';
 
-type AppProps = {
-  pages: {
-    component: () => JSX.Element,
-    isPrivate: boolean,
-    route: string,
-    key: string,
-  }[]
-}
+function App(): JSX.Element {
+  const Pages = [
+    {
+      component: () => (
+        <MainScreen
+          offers={mockOffers}
+        />),
+      isPrivate: false,
+      route: AppRoute.Main,
+    },
+    {
+      component: () => <LogIn />,
+      isPrivate: false,
+      route: AppRoute.SignIn,
+    },
+    {
+      component: () => (<Favorites offers={mockOffers}/>),
+      isPrivate: true,
+      route: AppRoute.Favorites,
+    },
+    {
+      component: () => <Properties offers={mockOffers} reviews={mockReviews}/>,
+      isPrivate: false,
+      route: AppRoute.Room,
+    },
+    {
+      component: () => <Page404 />,
+      isPrivate: false,
+      route: '',
+    },
+  ];
 
-function App({pages}: AppProps): JSX.Element {
-  const simplyRoute = pages.map(({component, route, isPrivate, key}) =>
+  const simplyRoute = Pages.map(({component, route, isPrivate}) =>
     isPrivate ?
-      <PrivateRoute exact path={route} key={key} authorizationStatus={AuthorizationStatus.AUTH} render={() => <Favorites offers={mockOffers}/>} /> :
-      <Route exact path={route} key={key} component={component} />,
+      <PrivateRoute exact path={route} key={route} authorizationStatus={AuthorizationStatus.AUTH} render={() => <Favorites offers={mockOffers}/>} /> :
+      <Route exact path={route} key={route} component={component} />,
   );
+
   return (
     <BrowserRouter>
       <Switch>

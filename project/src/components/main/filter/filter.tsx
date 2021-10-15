@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
+
 function Filter(): JSX.Element {
   return (
     <>
@@ -44,13 +45,3 @@ function Filter(): JSX.Element {
 }
 
 export default Filter;
-
-// import { Cities } from '../../const';
-// import { Link } from 'react-router-dom';
-// import { nanoid } from '@reduxjs/toolkit';
-// {Cities.map((city) => (
-//   <li key={nanoid()} className="locations__item">
-//     <Link className="locations__item-link tabs__item" to="/">
-//       <span>{city}</span>
-//     </Link>
-//   </li>))}

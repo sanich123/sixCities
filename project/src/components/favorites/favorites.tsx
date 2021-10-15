@@ -2,7 +2,7 @@ import Sprite from '../main/sprite/sprite';
 import Header from '../main/header/header';
 import Footer from '../main/footer/footer';
 import FavoritesList from './favorite-list/favorite-list';
-import { Offers } from '../../types/types';
+import {Offers} from '../../types/types';
 
 type favoriteProps = {
   offers: Offers;
@@ -25,7 +25,7 @@ function Favorites({offers}: favoriteProps): JSX.Element {
             <section className="favorites">
               <h1 className="favorites__title">Saved listing</h1>
               <ul className="favorites__list">
-                { uniqueСities.map((city) =>
+                {uniqueСities.map((city) =>
                   (<FavoritesList city={city} offers={favoriteOffers} key={city} />))}
               </ul>
             </section>

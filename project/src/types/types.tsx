@@ -1,30 +1,22 @@
-export type Offers = {
-bedrooms: number,
-city: {
-  name: string,
-  // location: {
-  //   latitude: number,
-  //   longitude: number,
-  //   zoom: number,
-  // }
-}
-description: string,
-goods: string[],
-host: {
+type User = {
   isPro: boolean,
   avatarUrl: string,
   id: number,
   name: string,
 }
+
+export type Offers = {
+  bedrooms: number,
+  city: {
+  name: string
+}
+  description: string,
+  goods: string[],
+  host: User,
   id: number,
   images: string[],
   isPremium: boolean,
   isFavorite: boolean,
-  // location: {
-  //   latitude: number,
-  //   longitude: number,
-  //   zoom: number,
-  // }
   maxAdults: number,
   previewImage: string,
   price: number,
@@ -38,42 +30,28 @@ export type Reviews = {
   date: string,
   id: number,
   rating: number,
-  user: {
-    avatarUrl: string,
-    id: number,
-    isPro: boolean,
-    name: string,
-  }
+  user: User,
 }[];
+
+export type Review = {
+  comment: string,
+  date: string,
+  id: number,
+  rating: number,
+  user: User,
+}
 
 export type Offer = {
   offer: {
-bedrooms: number,
-city: {
-  name: string,
-  // location: {
-  //   latitude: number,
-  //   longitude: number,
-  //   zoom: number,
-  // }
-}
-description: string,
-goods: string[],
-host: {
-  isPro: boolean,
-  avatarUrl: string,
-  id: number,
-  name: string,
-}
+  bedrooms: number,
+  city: {name: string}
+  description: string,
+  goods: string[],
+  host: User,
   id: number,
   images: string[],
   isPremium: boolean,
   isFavorite: boolean,
-  // location: {
-  //   latitude: number,
-  //   longitude: number,
-  //   zoom: number,
-  // }
   maxAdults: number,
   previewImage: string,
   price: number,

@@ -10,7 +10,7 @@ type reviewProps = {
     id: number,
     isPro: boolean,
     name: string,
-  }
+ }
 }
 
 function Review({comment, date, id, rating, user}: reviewProps): JSX.Element {
@@ -40,4 +40,4 @@ function Review({comment, date, id, rating, user}: reviewProps): JSX.Element {
   );
 }
 
-export { Review };
+export {Review};

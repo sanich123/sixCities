@@ -1,9 +1,9 @@
-export const AppRoute = {
-  MAIN: '/',
-  SIGNIN: '/login',
-  FAVORITES: '/favorites',
-  ROOM: '/offer/:id',
-};
+export enum AppRoute {
+  Main = '/',
+  SignIn = '/login',
+  Favorites = '/favorites',
+  Room = '/offer/:id'
+}
 
 export enum AuthorizationStatus {
   AUTH,
@@ -19,9 +19,9 @@ export const Marks = {
   1: 'terribly',
 };
 
-export const Cities = ['Paris','Cologne','Brussels','Amsterdam','Hamburg','Dusseldorf'];
+export const dateFormatter = (date: string): string => {
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  return `${months[(new Date(date).getMonth())]} ${new Date(date).getFullYear()}`;
+};
 
-const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-export const dateFormatter = (date: string): string => `${months[(new Date(date).getMonth())]} ${new Date(date).getFullYear()}`;
 

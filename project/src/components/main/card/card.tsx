@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import {useState} from 'react';
+import {Link} from 'react-router-dom';
 
 type cardProps = {
   type: string,
@@ -13,7 +13,7 @@ type cardProps = {
   id: number,
 }
 
-function Card({type, title, price, rating, isPremium, isFavorite, previewImage, id }: cardProps): JSX.Element {
+function Card({type, title, price, rating, isPremium, isFavorite, previewImage, id}: cardProps): JSX.Element {
   const [cardId, setId] = useState('');
   console.log(cardId);
   return (
@@ -22,7 +22,7 @@ function Card({type, title, price, rating, isPremium, isFavorite, previewImage, 
       onMouseEnter={() => setId(id.toString())}
       onMouseLeave={() => setId('')}
     >
-      {isPremium ? <div className="place-card__mark"><span>Premium</span></div> : ''}
+      {isPremium && <div className="place-card__mark"><span>Premium</span></div>}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/:${id}`}>
           <img
@@ -49,7 +49,7 @@ function Card({type, title, price, rating, isPremium, isFavorite, previewImage, 
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: `${rating / 5 * 100}%` }}></span>
+            <span style={{width: `${rating / 5 * 100}%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
