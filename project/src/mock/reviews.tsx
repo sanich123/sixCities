@@ -1,7 +1,7 @@
-import {Reviews} from '../types/types';
+import {Review} from '../types/types';
 import fakerStatic from 'faker/locale/en_GB';
 
-export const mockReviews: Reviews = [
+export const mockReviews: Review[] = [
   {
     comment: fakerStatic.lorem.sentences(),
     date: '2019-05-08T14:13:56.569Z',

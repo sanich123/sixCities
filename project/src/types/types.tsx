@@ -1,4 +1,4 @@
-type User = {
+type Host = {
   isPro: boolean,
   avatarUrl: string,
   id: number,
@@ -10,7 +10,7 @@ export type Review = {
   date: string,
   id: number,
   rating: number,
-  user: User,
+  user: Host,
 }
 
 export type Offer = {
@@ -18,7 +18,7 @@ export type Offer = {
   city: {name: string}
   description: string,
   goods: string[],
-  host: User,
+  host: Host,
   id: number,
   images: string[],
   isPremium: boolean,

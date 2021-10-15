@@ -1,19 +1,9 @@
 /* eslint-disable no-console */
 import {useState} from 'react';
 import {Link} from 'react-router-dom';
+import {Offer} from '../../../types/types';
 
-type cardProps = {
-  type: string,
-  title: string,
-  price: number,
-  rating: number,
-  isPremium: boolean,
-  isFavorite: boolean,
-  previewImage: string,
-  id: number,
-}
-
-function Card({type, title, price, rating, isPremium, isFavorite, previewImage, id}: cardProps): JSX.Element {
+function Card({type, title, price, rating, isPremium, isFavorite, previewImage, id}: Offer): JSX.Element {
   const [cardId, setId] = useState('');
   console.log(cardId);
   return (
