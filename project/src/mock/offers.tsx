@@ -79,23 +79,23 @@ export const mockOffers: Offers = [
     city: {
       name: 'Amsterdam',
     },
-    description: 'В несколько раз более красивое описание',
+    description: fakerStatic.lorem.sentences(),
     goods: ['Wi-Fi', 'Kitchen', 'Fridge', 'Washing machine', 'Dishwasher'],
     host: {
       isPro: true,
-      avatarUrl: 'img/avatar-angelina.jpg',
+      avatarUrl: fakerStatic.image.avatar(),
       id: 4,
-      name: 'Василий',
+      name: fakerStatic.name.findName(),
     },
     id: 4,
     images: [fakerStatic.image.city(), fakerStatic.image.abstract(), fakerStatic.image.business(), fakerStatic.image.animals(), fakerStatic.image.food()],
     isPremium: true,
     isFavorite: false,
     maxAdults: 5,
-    previewImage: 'img/apartment-03.jpg',
+    previewImage: fakerStatic.image.image(),
     price: 78,
     rating: 4,
-    title: 'Очень классная комнатенка в Внуково',
+    title: fakerStatic.lorem.sentence(),
     type: 'Private room',
   }];
 
