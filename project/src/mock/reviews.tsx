@@ -1,16 +1,18 @@
 import { Review } from '../types/types';
 import fakerStatic from 'faker/locale/en_GB';
+// eslint-disable-next-line no-console
+console.log(fakerStatic);
 
 export const mockReviews: Review[] = [
   {
     comment: fakerStatic.lorem.sentences(),
-    date: '2019-05-08T14:13:56.569Z',
+    date: '2019-07-08T14:13:56.569Z',
     id: 1,
-    rating: 2,
+    rating: fakerStatic.datatype.number(),
     user: {
       avatarUrl: fakerStatic.image.avatar(),
       id: 1,
-      isPro: false,
+      isPro: fakerStatic.datatype.boolean(),
       name: fakerStatic.name.findName(),
     },
   }, {

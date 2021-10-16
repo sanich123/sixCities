@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
 type RatingProps = {
-  number: string,
+  mark: string,
   value: string,
  }
 
-function Rating({ number, value }: RatingProps):JSX.Element {
+function Rating({ mark, value }: RatingProps):JSX.Element {
   const [rating, setRating] = useState('');
 
   // eslint-disable-next-line no-console
@@ -15,13 +15,13 @@ function Rating({ number, value }: RatingProps):JSX.Element {
       <input
         className="form__rating-input visually-hidden"
         name="rating"
-        value={ number }
-        id={ `${ number }-stars` }
+        value={ mark }
+        id={ `${ mark }-stars` }
         type="radio"
         onChange={ (evt) => setRating(evt.target.value) }
       />
       <label
-        htmlFor={ `${ number }-stars` }
+        htmlFor={ `${ mark }-stars` }
         className="reviews__rating-label form__rating-label"
         title={ value }
       >

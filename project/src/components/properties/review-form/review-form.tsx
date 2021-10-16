@@ -13,8 +13,8 @@ function ReviewForm(): JSX.Element {
     >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
-        { Object.entries(Marks).reverse().map(([number, value]) => (
-          <Rating key={ value } value={ value } number={ number } />
+        { Object.entries(Marks).reverse().map(([mark, value]) => (
+          <Rating key={ value } value={ value } mark={ mark } />
         )) }
       </div>
 
