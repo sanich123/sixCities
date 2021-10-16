@@ -2,7 +2,7 @@ import 'leaflet/dist/leaflet.css';
 import { Offer } from '../../types/types';
 import { useEffect, useRef } from 'react';
 import  useMap from '../../hooks/useMap';
-import {  URL_MARKER_DEFAULT } from '../const';
+import {  LeafletUrls } from '../const';
 import leaflet, { Marker } from 'leaflet';
 
 type MapProps = {
@@ -15,15 +15,15 @@ function Map({ offers }: MapProps): JSX.Element {
   const map = useMap(mapRef, city);
 
   const defaultCustomIcon = leaflet.icon({
-    iconUrl: URL_MARKER_DEFAULT,
+    iconUrl: LeafletUrls.URL_MARKER_DEFAULT,
     iconSize: [26, 40],
     iconAnchor: [13, 40],
   });
 
   // const currentCustomIcon = leaflet.icon({
-  //   iconUrl: URL_MARKER_CURRENT,
-  //   iconSize: [40, 40],
-  //   iconAnchor: [20, 40],
+  //   iconUrl: LeafletUrls.URL_MARKER_CURRENT,
+  //   iconSize: [26, 40],
+  //   iconAnchor: [13, 40],
   // });
 
   useEffect(() => {
@@ -39,8 +39,8 @@ function Map({ offers }: MapProps): JSX.Element {
   }, [defaultCustomIcon, map, offers]);
   return (
     <div
-      style={{minHeight: '100%'}}
-      ref={mapRef}
+      style={ { minHeight: '100%' } }
+      ref={ mapRef }
     >
     </div>
   );
