@@ -4,6 +4,7 @@ import {ReviewForm} from './review-form/review-form';
 import {Review, Offer} from '../../types/types';
 import {Comments} from './review-form/comments';
 import {Link, useHistory} from 'react-router-dom';
+import { transformRating } from '../../utils/utils';
 
 type propertiesProps = {
   reviews: Review[],
@@ -61,7 +62,7 @@ function Properties({reviews, offers}: propertiesProps): JSX.Element {
                 </div>
                 <div className="property__rating rating">
                   <div className="property__stars rating__stars">
-                    <span style={{width: `${rating / 5 * 100}%`}}></span>
+                    <span style={{width: transformRating(rating)}}></span>
                     <span className="visually-hidden">Rating</span>
                   </div>
                   <span className="property__rating-value rating__value">{rating}</span>

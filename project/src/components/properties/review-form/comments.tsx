@@ -1,5 +1,6 @@
 import {dateFormatter} from '../../const';
 import {Review} from '../../../types/types';
+import { transformRating } from '../../../utils/utils';
 
 function Comments({comment, date, id, rating, user}: Review): JSX.Element {
   return (
@@ -15,7 +16,7 @@ function Comments({comment, date, id, rating, user}: Review): JSX.Element {
       <div className="reviews__info">
         <div className="reviews__rating rating">
           <div className="reviews__stars rating__stars">
-            <span style={{width: `${rating / 5 * 100}%`}}></span>
+            <span style={{width: transformRating(rating)}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

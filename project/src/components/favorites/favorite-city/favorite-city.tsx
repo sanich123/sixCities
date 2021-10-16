@@ -1,5 +1,6 @@
 import {Link} from 'react-router-dom';
 import {Offer} from '../../../types/types';
+import { transformRating } from '../../../utils/utils';
 
 function FavoriteCity({id, type, description, price, rating, isPremium, previewImage}: Offer): JSX.Element {
   return (
@@ -25,7 +26,7 @@ function FavoriteCity({id, type, description, price, rating, isPremium, previewI
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${rating / 5 * 100}%`}}></span>
+            <span style={{width: transformRating(rating)}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

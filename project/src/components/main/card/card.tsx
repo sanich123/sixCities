@@ -1,10 +1,12 @@
-/* eslint-disable no-console */
 import {useState} from 'react';
 import {Link} from 'react-router-dom';
 import {Offer} from '../../../types/types';
+import {transformRating} from '../../../utils/utils';
 
 function Card({type, title, price, rating, isPremium, isFavorite, previewImage, id}: Offer): JSX.Element {
   const [cardId, setId] = useState('');
+
+  // eslint-disable-next-line no-console
   console.log(cardId);
   return (
     <article
@@ -39,7 +41,7 @@ function Card({type, title, price, rating, isPremium, isFavorite, previewImage, 
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${rating / 5 * 100}%`}}></span>
+            <span style={{width: transformRating(rating)}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
