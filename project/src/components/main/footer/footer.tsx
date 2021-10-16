@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Footer(): JSX.Element {
   return (
@@ -14,6 +14,6 @@ function Footer(): JSX.Element {
       </Link>
     </footer>
   );
-}
+ }
 
 export default Footer;

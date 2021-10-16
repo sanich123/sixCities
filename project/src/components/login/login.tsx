@@ -54,6 +54,6 @@ function LogIn(): JSX.Element {
       </div>
     </>
   );
-}
+ }
 
 export default LogIn;

@@ -1,5 +1,5 @@
-import {useState} from 'react';
-import {Marks} from '../../const';
+import { useState } from 'react';
+import { Marks } from '../../const';
 import Rating from './rating';
 
 function ReviewForm(): JSX.Element {
@@ -9,13 +9,13 @@ function ReviewForm(): JSX.Element {
     <form className="reviews__form form"
       action="#"
       method="post"
-      onSubmit={(evt) => evt.preventDefault()}
+      onSubmit={ (evt) => evt.preventDefault() }
     >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
-        {Object.entries(Marks).reverse().map(([number, value]) => (
-          <Rating key={value} value={value} number={number} />
-        ))}
+        { Object.entries(Marks).reverse().map(([number, value]) => (
+          <Rating key={ value } value={ value } number={ number } />
+        )) }
       </div>
 
       <textarea
@@ -23,8 +23,8 @@ function ReviewForm(): JSX.Element {
         id="review"
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        value={text}
-        onChange={(evt) => setText(evt.target.value)}
+        value={ text }
+        onChange={ (evt) => setText(evt.target.value) }
       />
 
       <div className="reviews__button-wrapper">
@@ -42,4 +42,4 @@ function ReviewForm(): JSX.Element {
   );
 }
 
-export {ReviewForm};
+export { ReviewForm };

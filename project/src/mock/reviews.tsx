@@ -1,4 +1,4 @@
-import {Review} from '../types/types';
+import { Review } from '../types/types';
 import fakerStatic from 'faker/locale/en_GB';
 
 export const mockReviews: Review[] = [
@@ -12,8 +12,8 @@ export const mockReviews: Review[] = [
       id: 1,
       isPro: false,
       name: fakerStatic.name.findName(),
-    },
-  }, {
+     },
+   }, {
     comment: fakerStatic.lorem.sentences(),
     date: '2019-07-08T14:13:56.569Z',
     id: 2,
@@ -23,6 +23,6 @@ export const mockReviews: Review[] = [
       id: 2,
       isPro: true,
       name: fakerStatic.name.findName(),
-    },
-  },
+     },
+   },
 ];

@@ -1,12 +1,12 @@
-import {useState} from 'react';
+import { useState } from 'react';
 
 type RatingProps = {
   number: string,
   value: string,
-}
+ }
 
-function Rating({number, value}: RatingProps):JSX.Element {
-  const [rating, getRating] = useState('');
+function Rating({ number, value }: RatingProps):JSX.Element {
+  const [rating, setRating] = useState('');
 
   // eslint-disable-next-line no-console
   console.log(rating);
@@ -15,15 +15,15 @@ function Rating({number, value}: RatingProps):JSX.Element {
       <input
         className="form__rating-input visually-hidden"
         name="rating"
-        value={`${number}`}
-        id={`${number}-stars`}
+        value={ number }
+        id={ `${ number }-stars` }
         type="radio"
-        onChange={(evt) => getRating(evt.target.value)}
+        onChange={ (evt) => setRating(evt.target.value) }
       />
       <label
-        htmlFor={`${number}-stars`}
+        htmlFor={ `${ number }-stars` }
         className="reviews__rating-label form__rating-label"
-        title={`${value}`}
+        title={ value }
       >
         <svg
           className="form__star-image"

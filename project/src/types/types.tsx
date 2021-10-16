@@ -3,7 +3,7 @@ type Host = {
   avatarUrl: string,
   id: number,
   name: string,
-}
+ }
 
 export type Review = {
   comment: string,
@@ -11,11 +11,11 @@ export type Review = {
   id: number,
   rating: number,
   user: Host,
-}
+ }
 
 export type Offer = {
   bedrooms: number,
-  city: {name: string}
+  city: { name: string }
   description: string,
   goods: string[],
   host: Host,
@@ -29,6 +29,6 @@ export type Offer = {
   rating: number,
   title: string,
   type: string,
-}
+ }
 
 export type Strings = string[];

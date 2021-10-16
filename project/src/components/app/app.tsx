@@ -1,19 +1,19 @@
-import {BrowserRouter, Switch} from 'react-router-dom';
+import { BrowserRouter, Switch } from 'react-router-dom';
 import Favorites from '../favorites/favorites';
 import MainScreen from '../main/main';
 import LogIn from '../login/login';
 import Properties from '../properties/properties';
 import Page404 from '../page404/page404';
-import {mockOffers} from '../../mock/offers';
-import {mockReviews} from '../../mock/reviews';
-import {AppRoute} from '../const';
-import { generateRoutes } from '../../utils/utils';
+import { mockOffers } from '../../mock/offers';
+import { mockReviews } from '../../mock/reviews';
+import { AppRoute } from '../const';
+import {  generateRoutes  } from '../../utils/utils';
 
 const pages = [
   {
     component: () => (
       <MainScreen
-        offers={mockOffers}
+        offers={ mockOffers }
       />),
     isPrivate: false,
     route: AppRoute.Main,
@@ -24,12 +24,12 @@ const pages = [
     route: AppRoute.SignIn,
   },
   {
-    component: () => (<Favorites offers={mockOffers}/>),
+    component: () => (<Favorites offers={ mockOffers }/>),
     isPrivate: true,
     route: AppRoute.Favorites,
   },
   {
-    component: () => <Properties offers={mockOffers} reviews={mockReviews}/>,
+    component: () => <Properties offers={ mockOffers } reviews={ mockReviews }/>,
     isPrivate: false,
     route: AppRoute.Room,
   },
@@ -44,7 +44,7 @@ function App(): JSX.Element {
   return (
     <BrowserRouter>
       <Switch>
-        {pages.map(({component, route, isPrivate}) => generateRoutes({component, route, isPrivate}))}
+        { pages.map(({ component, route, isPrivate }) => generateRoutes({ component, route, isPrivate })) }
       </Switch>
     </BrowserRouter>
   );
