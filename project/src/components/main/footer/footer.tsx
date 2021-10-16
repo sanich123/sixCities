@@ -14,6 +14,6 @@ function Footer(): JSX.Element {
       </Link>
     </footer>
   );
- }
+}
 
 export default Footer;

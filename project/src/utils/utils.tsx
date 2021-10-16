@@ -17,7 +17,7 @@ export const generateRoutes = ({ route, component, isPrivate }: RoutesProps): JS
 const RatingToPercent = {
   DIVIDER: 5,
   MULTIPLIER: 100,
- };
+};
 
 export const transformRating = (rating: number): string => `${ rating / RatingToPercent.DIVIDER * RatingToPercent.MULTIPLIER }%`;
 

@@ -11,7 +11,7 @@ function Cards( { offers }: cardsProps): JSX.Element {
       { offers.map(({ id, ...rest }) => <Card id={ id } key={ id } { ...rest } />) }
     </div>
   );
- }
+}
 
 export default Cards;
 
