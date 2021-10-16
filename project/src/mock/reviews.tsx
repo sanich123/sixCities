@@ -1,7 +1,5 @@
 import { Review } from '../types/types';
 import fakerStatic from 'faker/locale/en_GB';
-// eslint-disable-next-line no-console
-console.log(fakerStatic);
 
 export const mockReviews: Review[] = [
   {
