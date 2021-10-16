@@ -8,7 +8,7 @@ export const mockOffers: Offer[] = [
       location: {
         latitude: 52.370216,
         longitude: 4.895168,
-        zoom: 10,
+        zoom: 12,
       },
       name: 'Amsterdam',
     },
@@ -24,7 +24,7 @@ export const mockOffers: Offer[] = [
     images: [fakerStatic.image.city(), fakerStatic.image.abstract(), fakerStatic.image.business(), fakerStatic.image.animals(), fakerStatic.image.food() ],
     isPremium: fakerStatic.datatype.boolean(),
     location: {
-      latitude: 52.3909553943508,
+      latitude: 52.4009553943508,
       longitude: 4.85309666406198,
       zoom: 10,
     },
