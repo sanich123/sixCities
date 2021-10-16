@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Offer } from '../../../types/types';
-import {  transformRating  } from '../../../utils/utils';
+import { transformRating } from '../../../utils/utils';
 
 function FavoriteCity({ id, type, description, price, rating, isPremium, previewImage }: Offer): JSX.Element {
   return (

@@ -1,6 +1,6 @@
 import { dateFormatter } from '../../const';
 import { Review } from '../../../types/types';
-import {  transformRating  } from '../../../utils/utils';
+import { transformRating } from '../../../utils/utils';
 
 function Comments({ comment, date, id, rating, user }: Review): JSX.Element {
   return (

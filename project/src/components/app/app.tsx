@@ -7,7 +7,7 @@ import Page404 from '../page404/page404';
 import { mockOffers } from '../../mock/offers';
 import { mockReviews } from '../../mock/reviews';
 import { AppRoute } from '../const';
-import {  generateRoutes  } from '../../utils/utils';
+import { generateRoutes } from '../../utils/utils';
 
 const pages = [
   {

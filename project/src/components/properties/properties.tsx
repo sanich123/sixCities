@@ -5,7 +5,7 @@ import { ReviewForm } from './review-form/review-form';
 import { Review, Offer } from '../../types/types';
 import { Comments } from './review-form/comments';
 import { useHistory } from 'react-router-dom';
-import {  transformRating  } from '../../utils/utils';
+import { transformRating } from '../../utils/utils';
 
 type propertiesProps = {
   reviews: Review[],
