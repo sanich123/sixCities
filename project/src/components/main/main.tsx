@@ -1,15 +1,15 @@
-import CardsList from '../cards/cards';
-import Header from '../header/header';
-import Sprite from '../sprite/sprite';
-import Sort from '../sort/sort';
-import Filter from '../filter/filter';
+import Cards from '../main/cards/cards';
+import Header from './header/header';
+import Sprite from './sprite/sprite';
+import Sort from './sort/sort';
+import Filter from './filter/filter';
+import { Offer } from '../../types/types';
 
 type MainProps = {
-  placesCount: number,
-  cards: number[]
-}
+  offers: Offer[],
+ }
 
-function Main({placesCount, cards}: MainProps): JSX.Element {
+function Main({ offers }: MainProps): JSX.Element {
   return (
     <>
 
@@ -27,11 +27,11 @@ function Main({placesCount, cards}: MainProps): JSX.Element {
             <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">{placesCount} places to stay in Amsterdam</b>
+                <b className="places__found">{ offers.length } places to stay in Amsterdam</b>
 
                 <Sort />
 
-                <CardsList cards={cards} />
+                <Cards offers={ offers } />
 
               </section>
               <div className="cities__right-section">
