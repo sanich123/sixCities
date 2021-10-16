@@ -5,6 +5,11 @@ export const mockOffers: Offer[] = [
   {
     bedrooms: fakerStatic.datatype.number(16),
     city: {
+      location: {
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10,
+      },
       name: 'Amsterdam',
     },
     description: fakerStatic.lorem.sentences(),
@@ -18,6 +23,11 @@ export const mockOffers: Offer[] = [
     id: 1,
     images: [fakerStatic.image.city(), fakerStatic.image.abstract(), fakerStatic.image.business(), fakerStatic.image.animals(), fakerStatic.image.food() ],
     isPremium: fakerStatic.datatype.boolean(),
+    location: {
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
+      zoom: 10,
+    },
     isFavorite: fakerStatic.datatype.boolean(),
     maxAdults: fakerStatic.datatype.number(10),
     previewImage: fakerStatic.image.image(),
@@ -29,7 +39,12 @@ export const mockOffers: Offer[] = [
   {
     bedrooms: fakerStatic.datatype.number(10),
     city: {
-      name: 'Cologne',
+      location: {
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10,
+      },
+      name: 'Amsterdam',
     },
     description: fakerStatic.lorem.sentences(),
     goods: [fakerStatic.datatype.string(7), fakerStatic.datatype.string(7), fakerStatic.datatype.string(7), fakerStatic.datatype.string(7), fakerStatic.datatype.string(7)],
@@ -42,6 +57,11 @@ export const mockOffers: Offer[] = [
     id: 2,
     images: [fakerStatic.image.city(), fakerStatic.image.abstract(), fakerStatic.image.business(), fakerStatic.image.animals(), fakerStatic.image.food()],
     isPremium: fakerStatic.datatype.boolean(),
+    location: {
+      latitude: 52.369553943508,
+      longitude: 4.85309666406198,
+      zoom: 10,
+    },
     isFavorite: fakerStatic.datatype.boolean(),
     maxAdults: fakerStatic.datatype.number(5),
     previewImage: fakerStatic.image.image(),
@@ -53,7 +73,12 @@ export const mockOffers: Offer[] = [
   {
     bedrooms: fakerStatic.datatype.number(10),
     city: {
-      name: 'Brussels',
+      location: {
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10,
+      },
+      name: 'Amsterdam',
     },
     description: fakerStatic.lorem.sentences(),
     goods: [fakerStatic.datatype.string(7), fakerStatic.datatype.string(7), fakerStatic.datatype.string(7), fakerStatic.datatype.string(7), fakerStatic.datatype.string(7)],
@@ -66,6 +91,11 @@ export const mockOffers: Offer[] = [
     id: 3,
     images: ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/studio-01.jpg'],
     isPremium: fakerStatic.datatype.boolean(),
+    location: {
+      latitude: 52.3909553943508,
+      longitude: 4.929309666406198,
+      zoom: 10,
+    },
     isFavorite: fakerStatic.datatype.boolean(),
     maxAdults: fakerStatic.datatype.number(10),
     previewImage: fakerStatic.image.image(),
@@ -77,6 +107,11 @@ export const mockOffers: Offer[] = [
   {
     bedrooms: fakerStatic.datatype.number(10),
     city: {
+      location: {
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10,
+      },
       name: 'Amsterdam',
     },
     description: fakerStatic.lorem.sentences(),
@@ -90,6 +125,11 @@ export const mockOffers: Offer[] = [
     id: 4,
     images: [fakerStatic.image.city(), fakerStatic.image.abstract(), fakerStatic.image.business(), fakerStatic.image.animals(), fakerStatic.image.food()],
     isPremium: fakerStatic.datatype.boolean(),
+    location: {
+      latitude: 52.3809553943508,
+      longitude: 4.939309666406198,
+      zoom: 10,
+    },
     isFavorite: fakerStatic.datatype.boolean(),
     maxAdults: fakerStatic.datatype.number(10),
     previewImage: fakerStatic.image.image(),
