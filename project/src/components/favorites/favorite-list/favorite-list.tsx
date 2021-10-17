@@ -1,6 +1,6 @@
 import { Offer } from '../../../types/types';
-// import Card from '../../main/card/card';
-import FavoriteCity from '../favorite-city/favorite-city';
+import { Modificator } from '../../const';
+import Card from '../../main/card/card';
 
 type FavoritesListProps = {
   city: string,
@@ -20,7 +20,7 @@ function FavoritesList(props: FavoritesListProps): JSX.Element {
         </div>
       </div>
       <div className="favorites__places">
-        { cityOffers.map(({ id, ...rest }) => <FavoriteCity id={ id } key={ id } { ...rest } />) }
+        { cityOffers.map(({ id, ...rest }) => (<Card id={ id } key={ id } { ...rest } modificator={ Modificator.FAVORITES } />)) }
       </div>
     </li>
   );

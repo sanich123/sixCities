@@ -1,32 +1,34 @@
 import { Link } from 'react-router-dom';
 import { Offer } from '../../../types/types';
 import { transformRating } from '../../../utils/utils';
+import { articleClass, imageWrapper, Modificator } from '../../const';
 
 
 type OnHover = {
-  onHover? : (id: number) => void
+  onHover? : (id: number) => void,
+  modificator: string,
 }
 
-function Card({ type, title, price, rating, isPremium, isFavorite, previewImage, id, onHover}: Offer & OnHover): JSX.Element {
+function Card({ type, title, price, rating, isPremium, isFavorite, previewImage, id, onHover, modificator }: Offer & OnHover): JSX.Element {
 
   return (
     <article
-      className="cities__place-card place-card"
+      className={ articleClass(modificator) }
       onMouseOver={ () => onHover ? onHover(id) : undefined }
     >
       { isPremium && <div className="place-card__mark"><span>Premium</span></div> }
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={ imageWrapper(modificator) }>
         <Link to={ `/offer/:${ id }` }>
           <img
             className="place-card__image"
             src={ previewImage }
-            width="260"
-            height="200"
+            width={ modificator === Modificator.FAVORITES ? '150' : '260' }
+            height={ modificator === Modificator.FAVORITES ? '110' : '200' }
             alt=""
           />
         </Link>
       </div>
-      <div className="place-card__info">
+      <div className={modificator === Modificator.FAVORITES ? 'favorites__card-info place-card__info' : 'place-card__info'}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{ price }</b>
