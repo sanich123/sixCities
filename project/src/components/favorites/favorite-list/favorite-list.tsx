@@ -1,6 +1,6 @@
+import Card from '../../main/card/card';
 import { Offer } from '../../../types/types';
 import { Modificator } from '../../const';
-import Card from '../../main/card/card';
 
 type FavoritesListProps = {
   city: string,
@@ -10,6 +10,7 @@ type FavoritesListProps = {
 function FavoritesList(props: FavoritesListProps): JSX.Element {
   const { city, offers } = props;
   const cityOffers = offers.filter((offer) => offer.city.name === city);
+
   return (
     <li className="favorites__locations-items">
       <div className="favorites__locations locations locations--current">

@@ -5,6 +5,7 @@ type HostessProps = {
 }
 function Hostess({ host, description }: HostessProps): JSX.Element {
   const { isPro, avatarUrl, name } = host;
+
   return (
     <div className="property__host">
       <h2 className="property__host-title">Meet the host</h2>

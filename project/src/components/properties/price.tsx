@@ -3,6 +3,7 @@ type PriceProps = {
 }
 
 function Price({ price }: PriceProps): JSX.Element {
+
   return (
     <div className="property__price">
       <b className="property__price-value">&euro;{ price }</b>

@@ -3,13 +3,12 @@ import { Offer } from '../../../types/types';
 import { transformRating } from '../../../utils/utils';
 import { articleClass, imageWrapper, Modificator } from '../../const';
 
-
-type OnHover = {
+type CardProps = {
   onHover? : (id: number) => void,
   modificator: string,
 }
 
-function Card({ type, title, price, rating, isPremium, isFavorite, previewImage, id, onHover, modificator }: Offer & OnHover): JSX.Element {
+function Card({ type, title, price, rating, isPremium, isFavorite, previewImage, id, onHover, modificator }: Offer & CardProps): JSX.Element {
 
   return (
     <article

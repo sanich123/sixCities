@@ -5,6 +5,7 @@ type FeaturesProps = {
 }
 
 function Features({ type, bedrooms, maxAdults }: FeaturesProps): JSX.Element {
+
   return (
     <ul className="property__features">
       <li className="property__feature property__feature--entire">

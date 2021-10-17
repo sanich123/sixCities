@@ -3,6 +3,7 @@ type PropertiesInsideProps = {
 }
 
 function PropertiesInside({ goods }: PropertiesInsideProps): JSX.Element {
+
   return (
     <div className="property__inside">
       <h2 className="property__inside-title">What&apos;s inside</h2>
