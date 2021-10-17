@@ -28,6 +28,7 @@ function useMap(mapRef: MutableRefObject<HTMLElement | null>, { location }: City
       setMap(instance);
     }
   }, [mapRef, map, location.latitude, location.longitude, location.zoom]);
+
   return map;
 }
 

@@ -22,8 +22,11 @@ const RatingToPercent = {
 
 export const transformRating = (rating: number): string => `${ rating / RatingToPercent.DIVIDER * RatingToPercent.MULTIPLIER }%`;
 
+const ICON_WIDTH = 40;
+const ICON_HEIGHT = 13;
+
 export const iconChanger = (change: string): Icon<IconOptions> | DivIcon => leaflet.icon({
   iconUrl: change,
-  iconSize: [26, 40],
-  iconAnchor: [13, 40],
+  iconSize: [ICON_HEIGHT * 2, ICON_WIDTH],
+  iconAnchor: [ICON_HEIGHT, ICON_WIDTH],
 });

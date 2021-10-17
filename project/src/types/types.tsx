@@ -4,6 +4,10 @@ type Host = {
   id: number,
   name: string,
  }
+export type City = {
+  location: Location,
+  name: string,
+}
 
 export type Location = {
     latitude: number,
@@ -21,10 +25,7 @@ export type Review = {
 
 export type Offer = {
   bedrooms: number,
-  city: {
-    location: Location,
-    name: string,
-  }
+  city: City,
   description: string,
   goods: string[],
   host: Host,
@@ -40,5 +41,3 @@ export type Offer = {
   title: string,
   type: string,
  }
-
-export type Strings = string[];
