@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Offer } from '../../../types/types';
-import { transformRating } from '../../../utils/utils';
-import { articleClass, imageWrapper, Modificator } from '../../const';
+import { articleClass, imageWrapper, transformRating } from '../../../utils/utils';
+import { Modificator } from '../../const';
 
 type CardProps = {
   onHover? : (id: number) => void,

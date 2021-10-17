@@ -36,22 +36,4 @@ export const Modificator = {
   FAVORITES: 'favorites',
 };
 
-export const articleClass = (parameter: string): string=> {
-  if (parameter === Modificator.PROPERTIES) {
-    return 'near-places__card place-card';
-  }
-  if (parameter === Modificator.FAVORITES) {
-    return 'favorites__card place-card';
-  }
-  return 'cities__place-card place-card';
-};
 
-export const imageWrapper = (parameter: string): string => {
-  if (parameter === Modificator.PROPERTIES) {
-    return 'near-places__image-wrapper place-card__image-wrapper';
-  }
-  if (parameter === Modificator.FAVORITES) {
-    return 'favorites__image-wrapper place-card__image-wrapper';
-  }
-  return 'cities__image-wrapper place-card__image-wrapper';
-};
