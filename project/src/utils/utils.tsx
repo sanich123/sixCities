@@ -3,6 +3,7 @@ import Favorites from '../components/favorites/favorites';
 import PrivateRoute from '../components/private-route';
 import { Route } from 'react-router';
 import { AuthorizationStatus } from '../components/const';
+import leaflet, { DivIcon, Icon, IconOptions } from 'leaflet';
 
 type RoutesProps = {
   route: string,
@@ -21,3 +22,8 @@ const RatingToPercent = {
 
 export const transformRating = (rating: number): string => `${ rating / RatingToPercent.DIVIDER * RatingToPercent.MULTIPLIER }%`;
 
+export const iconChanger = (change: string): Icon<IconOptions> | DivIcon => leaflet.icon({
+  iconUrl: change,
+  iconSize: [26, 40],
+  iconAnchor: [13, 40],
+});

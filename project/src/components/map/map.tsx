@@ -3,40 +3,30 @@ import { Offer } from '../../types/types';
 import { useEffect, useRef } from 'react';
 import  useMap from '../../hooks/useMap';
 import {  LeafletUrls } from '../const';
-import leaflet, { Marker } from 'leaflet';
+import { Marker } from 'leaflet';
+import { iconChanger } from '../../utils/utils';
 
 type MapProps = {
   offers: Offer[],
+  activeOffer: number | null,
 }
 
-function Map({ offers }: MapProps): JSX.Element {
+function Map({ offers, activeOffer }: MapProps): JSX.Element {
   const { city } = offers[0];
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
-  const defaultCustomIcon = leaflet.icon({
-    iconUrl: LeafletUrls.URL_MARKER_DEFAULT,
-    iconSize: [26, 40],
-    iconAnchor: [13, 40],
-  });
-
-  // const currentCustomIcon = leaflet.icon({
-  //   iconUrl: LeafletUrls.URL_MARKER_CURRENT,
-  //   iconSize: [26, 40],
-  //   iconAnchor: [13, 40],
-  // });
-
   useEffect(() => {
     if (map) {
-      offers.forEach(({ location }) => {
+      offers.forEach(({ location, id }) => {
         const marker = new Marker({
           lat: location.latitude,
           lng: location.longitude,
         });
-        marker.setIcon(defaultCustomIcon).addTo(map);
+        marker.setIcon(activeOffer !== null && activeOffer === id ? iconChanger(LeafletUrls.URL_MARKER_CURRENT) : iconChanger(LeafletUrls.URL_MARKER_DEFAULT)).addTo(map);
       });
     }
-  }, [defaultCustomIcon, map, offers]);
+  }, [activeOffer, map, offers]);
   return (
     <div
       style={ { minHeight: '100%' } }

@@ -5,12 +5,18 @@ import Sort from './sort/sort';
 import Filter from './filter/filter';
 import Map from '../map/map';
 import { Offer } from '../../types/types';
+import { useState } from 'react';
 
 type MainProps = {
   offers: Offer[],
  }
 
 function Main({ offers }: MainProps): JSX.Element {
+  const [activeOffer, setActiveOffer] = useState<number | null>(null);
+
+  const handleHover = (id: number | null) => {
+    setActiveOffer(id);
+  };
 
   return (
     <>
@@ -33,12 +39,12 @@ function Main({ offers }: MainProps): JSX.Element {
 
                 <Sort />
 
-                <Cards offers={ offers } />
+                <Cards offers={ offers } onHover={ handleHover } />
 
               </section>
               <div className="cities__right-section">
                 <section className="cities__map map">
-                  <Map offers={ offers } />
+                  <Map offers={ offers } activeOffer={ activeOffer } />
                 </section>
               </div>
             </div>
