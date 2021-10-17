@@ -14,7 +14,7 @@ type MainProps = {
 function Main({ offers }: MainProps): JSX.Element {
 
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
-  const handleHover = (id: number | null) => setActiveOffer(id);
+  const onHover = (id: number | null) => setActiveOffer(id);
 
   return (
     <>
@@ -37,7 +37,7 @@ function Main({ offers }: MainProps): JSX.Element {
 
                 <Sort />
 
-                <Cards offers={ offers } onHover={ handleHover } />
+                <Cards offers={ offers } onHover={ onHover } />
 
               </section>
               <div className="cities__right-section">

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Offer } from '../../../types/types';
 import { transformRating } from '../../../utils/utils';
 
+
 type OnHover = {
   onHover? : (id: number) => void
 }

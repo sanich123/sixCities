@@ -1,4 +1,5 @@
 import { Offer } from '../../../types/types';
+// import Card from '../../main/card/card';
 import FavoriteCity from '../favorite-city/favorite-city';
 
 type FavoritesListProps = {

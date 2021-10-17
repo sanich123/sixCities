@@ -1,12 +1,7 @@
 import Header from '../main/header/header';
 import Sprite from '../main/sprite/sprite';
-import Card from '../main/card/card';
 import Map from '../map/map';
-import { ReviewForm } from './review-form/review-form';
-import { Review, Offer } from '../../types/types';
-import { Comments } from './review-form/comments';
-import { useHistory } from 'react-router-dom';
-import { useState } from 'react';
+import ReviewForm from './review-form/review-form';
 import Hostess from './host';
 import Features from './features';
 import OfferRating from './rating';
@@ -14,6 +9,12 @@ import PropertiesInside from './properties-inside';
 import Price from './price';
 import PropertyName from './property-name';
 import Images from './images';
+import Reviews from './reviews';
+import { Review, Offer } from '../../types/types';
+import { useHistory } from 'react-router-dom';
+import { useState } from 'react';
+import NearPlaces from './near-places';
+
 
 type propertiesProps = {
   reviews: Review[],
@@ -28,7 +29,7 @@ function Properties({ reviews, offers }: propertiesProps): JSX.Element {
   const nearPlaces = offers.slice().filter(({ city, id }) => city.name === uniqOffer.city.name && id !== uniqOffer.id);
   const { images, isPremium, title, isFavorite, rating, type, bedrooms, maxAdults, price, goods, host, description } = uniqOffer;
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
-  const handleHover = (id: number | null) => setActiveOffer(id);
+  const onHover = (id: number | null) => setActiveOffer(id);
 
   return (
     <>
@@ -62,12 +63,8 @@ function Properties({ reviews, offers }: propertiesProps): JSX.Element {
                 <Hostess host={host} description={description} />
 
                 <section className="property__reviews reviews">
-                  <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{ reviews.length }</span></h2>
-                  <ul className="reviews__list">
-                    { reviews.map((review) => (
-                      <Comments key={ review.id } id={ review.id } comment={ review.comment } date={ review.date } rating={ review.rating } user={ review.user } />
-                    )) }
-                  </ul>
+
+                  <Reviews reviews={reviews} />
 
                   <ReviewForm />
 
@@ -82,13 +79,7 @@ function Properties({ reviews, offers }: propertiesProps): JSX.Element {
           </section>
           <div className="container">
             { nearPlaces.length &&
-              <section className="near-places places">
-                <h2 className="near-places__title">Other places in the neighbourhood</h2>
-                <div className="near-places__list places__list">
-                  { nearPlaces.map(({ id, ...rest }) =>
-                    <Card key={ id } id={ id } { ...rest } onHover= { handleHover }/>) }
-                </div>
-              </section> }
+              <NearPlaces nearPlaces={ nearPlaces } onHover={ onHover } /> }
           </div>
         </main>
       </div>
