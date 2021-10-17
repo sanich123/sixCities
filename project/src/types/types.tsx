@@ -5,6 +5,17 @@ type Host = {
   name: string,
  }
 
+export type City = {
+  location: Location,
+  name: string,
+}
+
+export type Location = {
+    latitude: number,
+    longitude: number,
+    zoom: number,
+}
+
 export type Review = {
   comment: string,
   date: string,
@@ -15,13 +26,14 @@ export type Review = {
 
 export type Offer = {
   bedrooms: number,
-  city: { name: string }
+  city: City,
   description: string,
   goods: string[],
   host: Host,
   id: number,
   images: string[],
   isPremium: boolean,
+  location: Location,
   isFavorite: boolean,
   maxAdults: number,
   previewImage: string,
@@ -30,5 +42,3 @@ export type Offer = {
   title: string,
   type: string,
  }
-
-export type Strings = string[];

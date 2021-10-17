@@ -6,10 +6,7 @@ type RatingProps = {
  }
 
 function Rating({ mark, value }: RatingProps):JSX.Element {
-  const [rating, setRating] = useState('');
-
-  // eslint-disable-next-line no-console
-  console.log(rating);
+  const [, setRating] = useState('');
   return (
     <>
       <input

@@ -5,10 +5,14 @@ type cardsProps = {
   offers: Offer[],
  }
 
-function Cards( { offers }: cardsProps): JSX.Element {
+type OnHover = {
+  onHover?: (id: number) => void
+}
+
+function Cards( { offers, onHover }: cardsProps & OnHover): JSX.Element {
   return (
     <div className="cities__places-list places__list tabs__content">
-      { offers.map(({ id, ...rest }) => <Card id={ id } key={ id } { ...rest } />) }
+      { offers.map(({ id, ...rest }) => <Card id={ id } key={ id } onHover={ onHover } { ...rest } />) }
     </div>
   );
 }

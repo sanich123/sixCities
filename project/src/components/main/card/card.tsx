@@ -1,18 +1,17 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Offer } from '../../../types/types';
 import { transformRating } from '../../../utils/utils';
 
-function Card({ type, title, price, rating, isPremium, isFavorite, previewImage, id }: Offer): JSX.Element {
-  const [cardId, setId] = useState('');
+type OnHover = {
+  onHover? : (id: number) => void
+}
 
-  // eslint-disable-next-line no-console
-  console.log(cardId);
+function Card({ type, title, price, rating, isPremium, isFavorite, previewImage, id, onHover}: Offer & OnHover): JSX.Element {
+
   return (
     <article
       className="cities__place-card place-card"
-      onMouseEnter={ () => setId(id.toString()) }
-      onMouseLeave={ () => setId('') }
+      onMouseOver={ () => onHover ? onHover(id) : undefined }
     >
       { isPremium && <div className="place-card__mark"><span>Premium</span></div> }
       <div className="cities__image-wrapper place-card__image-wrapper">
