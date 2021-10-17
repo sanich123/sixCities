@@ -31,8 +31,7 @@ function Map({ offers, activeOffer }: MapProps): JSX.Element {
     <div
       style={ { minHeight: '100%' } }
       ref={ mapRef }
-    >
-    </div>
+    />
   );
 }
 
