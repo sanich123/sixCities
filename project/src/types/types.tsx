@@ -4,6 +4,7 @@ type Host = {
   id: number,
   name: string,
  }
+
 export type City = {
   location: Location,
   name: string,
