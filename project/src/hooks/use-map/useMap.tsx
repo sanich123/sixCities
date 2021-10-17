@@ -1,7 +1,7 @@
 import { MutableRefObject, useEffect, useState } from 'react';
 import { Map, TileLayer } from 'leaflet';
-import { Location } from '../types/types';
-import { LeafletUrls } from '../components/const';
+import { Location } from '../../types/types';
+import { LeafletUrls } from '../../components/const';
 
 type City = {
   location: Location,

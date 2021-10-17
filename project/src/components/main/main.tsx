@@ -12,11 +12,9 @@ type MainProps = {
  }
 
 function Main({ offers }: MainProps): JSX.Element {
-  const [activeOffer, setActiveOffer] = useState<number | null>(null);
 
-  const handleHover = (id: number | null) => {
-    setActiveOffer(id);
-  };
+  const [activeOffer, setActiveOffer] = useState<number | null>(null);
+  const handleHover = (id: number | null) => setActiveOffer(id);
 
   return (
     <>
