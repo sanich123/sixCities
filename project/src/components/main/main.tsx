@@ -1,8 +1,8 @@
-import Cards from '../main/cards/cards';
-import Header from './header/header';
-import Sprite from './sprite/sprite';
-import Sort from './sort/sort';
-import Filter from './filter/filter';
+import Cards from './cards';
+import Header from './header';
+import Sprite from './sprite';
+import Sort from './sort';
+import Filter from './filter';
 import Map from '../map/map';
 import { Offer } from '../../types/types';
 import { useState } from 'react';
@@ -12,9 +12,8 @@ type MainProps = {
  }
 
 function Main({ offers }: MainProps): JSX.Element {
-
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
-  const handleHover = (id: number | null) => setActiveOffer(id);
+  const onHover = (id: number | null) => setActiveOffer(id);
 
   return (
     <>
@@ -37,7 +36,7 @@ function Main({ offers }: MainProps): JSX.Element {
 
                 <Sort />
 
-                <Cards offers={ offers } onHover={ handleHover } />
+                <Cards offers={ offers } onHover={ onHover } />
 
               </section>
               <div className="cities__right-section">

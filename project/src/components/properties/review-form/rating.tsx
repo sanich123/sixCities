@@ -7,6 +7,7 @@ type RatingProps = {
 
 function Rating({ mark, value }: RatingProps):JSX.Element {
   const [, setRating] = useState('');
+
   return (
     <>
       <input

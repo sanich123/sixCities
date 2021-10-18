@@ -42,4 +42,4 @@ function ReviewForm(): JSX.Element {
   );
 }
 
-export { ReviewForm };
+export default ReviewForm;

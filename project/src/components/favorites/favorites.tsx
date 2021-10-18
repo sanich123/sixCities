@@ -1,7 +1,7 @@
-import Sprite from '../main/sprite/sprite';
-import Header from '../main/header/header';
-import Footer from '../main/footer/footer';
-import FavoritesList from './favorite-list/favorite-list';
+import Sprite from '../main/sprite';
+import Header from '../main/header';
+import Footer from '../main/footer';
+import FavoritesList from './favorite-list';
 import { Offer } from '../../types/types';
 
 type favoriteProps = {
