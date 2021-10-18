@@ -6,7 +6,6 @@ import Hostess from './host';
 import Features from './features';
 import PropertiesInside from './properties-inside';
 import Price from '../common/price';
-import PropertyName from './property-name';
 import Images from './images';
 import Reviews from './reviews';
 import { Review, Offer } from '../../types/types';
@@ -15,6 +14,8 @@ import { useState } from 'react';
 import NearPlaces from './near-places';
 import Premium from '../common/premium';
 import Rating from '../common/rating';
+import Name from '../common/name';
+import FavoriteButton from '../common/is-favorite';
 
 
 type propertiesProps = {
@@ -42,18 +43,22 @@ function Properties({ reviews, offers }: propertiesProps): JSX.Element {
 
         <main className="page__main page__main--property">
           <section className="property">
-            <div className="property__gallery-container container">
 
-              <Images images={ images } />
+            <Images images={ images } />
 
-            </div>
             <div className="property__container container">
               <div className="property__wrapper">
                 { isPremium && <Premium uniqUrl={ uniqUrl } /> }
 
-                <PropertyName title={ title } isFavorite={ isFavorite } uniqUrl={uniqUrl} />
+                <div className="property__name-wrapper">
 
-                <Rating rating={ rating } uniqUrl={uniqUrl} />
+                  <Name title={title}/>
+
+                  <FavoriteButton isFavorite={ isFavorite } uniqUrl={ uniqUrl } />
+
+                </div>
+
+                <Rating rating={ rating } uniqUrl={ uniqUrl } />
 
                 <Features type={ type } bedrooms={ bedrooms } maxAdults={ maxAdults } />
 

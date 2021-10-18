@@ -6,7 +6,7 @@ uniqUrl?: number,
 function FavoriteButton({ isFavorite, uniqUrl }: FavoriteButtonProps): JSX.Element {
   return (
     <button
-      className={ isFavorite ? `${ uniqUrl ? 'property__bookmark-button button property' : 'place-card__bookmark-button button place-card'}__bookmark-button--active` : `${ uniqUrl ? 'property' : 'place-card'}__bookmark-button button` }
+      className={ isFavorite ? `${ uniqUrl ? 'property__bookmark-button property' : 'place-card__bookmark-button place-card'}__bookmark-button--active button` : `${ uniqUrl ? 'property' : 'place-card'}__bookmark-button button` }
       type="button"
     >
       <svg

@@ -29,7 +29,7 @@ function Card({ type, title, price, rating, isPremium, isFavorite, previewImage,
           />
         </Link>
       </div>
-      <div className={ modificator === Modificator.FAVORITES ? 'favorites__card-info place-card__info' : 'place-card__info' }>
+      <div className={ `${ modificator === Modificator.FAVORITES && 'favorites__card-info'}place-card__info` }>
         <div className="place-card__price-wrapper">
 
           <Price price={ price } />
