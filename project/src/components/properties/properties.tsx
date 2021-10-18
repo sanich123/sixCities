@@ -1,12 +1,11 @@
-import Header from '../main/header';
-import Sprite from '../main/sprite';
+import Header from '../common/header';
+import Sprite from '../common/sprite';
 import Map from '../map/map';
 import ReviewForm from './review-form/review-form';
 import Hostess from './host';
 import Features from './features';
-import OfferRating from './rating';
 import PropertiesInside from './properties-inside';
-import Price from './price';
+import Price from '../common/price';
 import PropertyName from './property-name';
 import Images from './images';
 import Reviews from './reviews';
@@ -14,6 +13,8 @@ import { Review, Offer } from '../../types/types';
 import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
 import NearPlaces from './near-places';
+import Premium from '../common/premium';
+import Rating from '../common/rating';
 
 
 type propertiesProps = {
@@ -43,28 +44,28 @@ function Properties({ reviews, offers }: propertiesProps): JSX.Element {
           <section className="property">
             <div className="property__gallery-container container">
 
-              <Images images={images} />
+              <Images images={ images } />
 
             </div>
             <div className="property__container container">
               <div className="property__wrapper">
-                { isPremium && <div className="property__mark"><span>Premium</span></div> }
+                { isPremium && <Premium uniqUrl={ uniqUrl } /> }
 
-                <PropertyName title={title} isFavorite={isFavorite} />
+                <PropertyName title={ title } isFavorite={ isFavorite } uniqUrl={uniqUrl} />
 
-                <OfferRating rating={rating} />
+                <Rating rating={ rating } uniqUrl={uniqUrl} />
 
-                <Features type={type} bedrooms={bedrooms} maxAdults={maxAdults} />
+                <Features type={ type } bedrooms={ bedrooms } maxAdults={ maxAdults } />
 
-                <Price price={price} />
+                <Price price={ price } uniqUrl={ uniqUrl } />
 
-                <PropertiesInside goods={goods}/>
+                <PropertiesInside goods={ goods }/>
 
-                <Hostess host={host} description={description} />
+                <Hostess host={ host } description={ description } />
 
                 <section className="property__reviews reviews">
 
-                  <Reviews reviews={reviews} />
+                  <Reviews reviews={ reviews } />
 
                   <ReviewForm />
 
@@ -73,7 +74,7 @@ function Properties({ reviews, offers }: propertiesProps): JSX.Element {
             </div>
             <section className="property__map map">
 
-              <Map offers={nearPlaces} activeOffer={activeOffer} />
+              <Map offers={ nearPlaces } activeOffer={ activeOffer } />
 
             </section>
           </section>

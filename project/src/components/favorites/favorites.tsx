@@ -1,5 +1,5 @@
-import Sprite from '../main/sprite';
-import Header from '../main/header';
+import Sprite from '../common/sprite';
+import Header from '../common/header';
 import Footer from '../main/footer';
 import FavoritesList from './favorite-list';
 import { Offer } from '../../types/types';

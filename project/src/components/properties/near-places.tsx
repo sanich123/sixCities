@@ -1,6 +1,6 @@
 import { Offer } from '../../types/types';
 import { Modificator } from '../const';
-import Card from '../main/card';
+import Card from '../common/card';
 
 type NearPlacesProps = {
   nearPlaces: Offer[],

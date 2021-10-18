@@ -1,4 +1,4 @@
-import Card from './card';
+import Card from '../common/card';
 import { Offer } from '../../types/types';
 import { Modificator } from '../const';
 

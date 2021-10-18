@@ -1,5 +1,5 @@
-import Sprite from '../main/sprite';
-import Logo from '../main/logo';
+import Sprite from '../common/sprite';
+import Logo from '../common/logo';
 
 function LogIn(): JSX.Element {
   return (
