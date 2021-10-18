@@ -66,7 +66,7 @@ function Properties({ reviews, offers }: propertiesProps): JSX.Element {
 
                 <PropertiesInside goods={ goods }/>
 
-                <Hostess host={ host } description={ description } />
+                <Hostess host={ host } description={ description } uniqUrl={uniqUrl} />
 
                 <section className="property__reviews reviews">
 
