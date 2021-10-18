@@ -1,5 +1,5 @@
-import Header from '../main/header/header';
-import Sprite from '../main/sprite/sprite';
+import Header from '../main/header';
+import Sprite from '../main/sprite';
 import Map from '../map/map';
 import ReviewForm from './review-form/review-form';
 import Hostess from './host';

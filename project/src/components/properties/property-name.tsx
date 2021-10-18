@@ -4,7 +4,6 @@ type PropertyNameProps = {
 }
 
 function PropertyName({ title, isFavorite }: PropertyNameProps): JSX.Element {
-
   return (
     <div className="property__name-wrapper">
       <h1 className="property__name">

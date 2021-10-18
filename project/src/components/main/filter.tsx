@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 
 function Filter(): JSX.Element {
-
   return (
     <>
       <h1 className="visually-hidden">Cities</h1>

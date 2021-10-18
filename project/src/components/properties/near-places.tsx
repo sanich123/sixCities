@@ -1,6 +1,6 @@
 import { Offer } from '../../types/types';
 import { Modificator } from '../const';
-import Card from '../main/card/card';
+import Card from '../main/card';
 
 type NearPlacesProps = {
   nearPlaces: Offer[],
@@ -8,7 +8,6 @@ type NearPlacesProps = {
 }
 
 function NearPlaces({ nearPlaces, onHover }: NearPlacesProps):JSX.Element {
-
   return (
     <section className="near-places places">
       <h2 className="near-places__title">Other places in the neighbourhood</h2>

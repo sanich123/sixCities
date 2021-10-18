@@ -5,7 +5,6 @@ type OfferRatingProps = {
 }
 
 function OfferRating({ rating }: OfferRatingProps): JSX.Element {
-
   return (
     <div className="property__rating rating">
       <div className="property__stars rating__stars">

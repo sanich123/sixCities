@@ -1,6 +1,6 @@
-import Card from '../../main/card/card';
-import { Offer } from '../../../types/types';
-import { Modificator } from '../../const';
+import Card from '../main/card';
+import { Offer } from '../../types/types';
+import { Modificator } from '../const';
 
 type FavoritesListProps = {
   city: string,

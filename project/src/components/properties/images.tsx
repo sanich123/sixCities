@@ -3,7 +3,6 @@ type ImagesProps = {
 }
 
 function Images({ images }: ImagesProps):JSX.Element {
-
   return (
     <div className="property__gallery">
       { images.map((image) => (

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import { Offer } from '../../../types/types';
-import { articleClass, imageWrapper, transformRating } from '../../../utils/utils';
-import { Modificator } from '../../const';
+import { Offer } from '../../types/types';
+import { articleClass, imageWrapper, transformRating } from '../../utils/utils';
+import { Modificator } from '../const';
 
 type CardProps = {
   onHover? : (id: number) => void,
@@ -9,7 +9,6 @@ type CardProps = {
 }
 
 function Card({ type, title, price, rating, isPremium, isFavorite, previewImage, id, onHover, modificator }: Offer & CardProps): JSX.Element {
-
   return (
     <article
       className={ articleClass(modificator) }
@@ -27,7 +26,7 @@ function Card({ type, title, price, rating, isPremium, isFavorite, previewImage,
           />
         </Link>
       </div>
-      <div className={modificator === Modificator.FAVORITES ? 'favorites__card-info place-card__info' : 'place-card__info'}>
+      <div className={ modificator === Modificator.FAVORITES ? 'favorites__card-info place-card__info' : 'place-card__info' }>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{ price }</b>
