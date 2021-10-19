@@ -52,7 +52,7 @@ function Properties({ reviews, offers }: propertiesProps): JSX.Element {
 
                 <div className="property__name-wrapper">
 
-                  <Name title={title}/>
+                  <Name title={ title }/>
 
                   <FavoriteButton isFavorite={ isFavorite } uniqUrl={ uniqUrl } />
 
