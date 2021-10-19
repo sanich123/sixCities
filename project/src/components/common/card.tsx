@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Offer } from '../../types/types';
-import { Modificator } from '../const';
+import { FAVORITES } from '../const';
 import FavoriteButton from './is-favorite';
 import Premium from './premium';
 import Price from './price';
@@ -14,22 +14,22 @@ type CardProps = {
 function Card({ type, title, price, rating, isPremium, isFavorite, previewImage, id, onHover, modificator }: Offer & CardProps): JSX.Element {
   return (
     <article
-      className={ modificator ? `${ modificator === Modificator.FAVORITES ? 'favorites' : 'near-places'}__card place-card` : 'cities__place-card place-card' }
+      className={ modificator ? `${ modificator === FAVORITES ? 'favorites' : 'near-places'}__card place-card` : 'cities__place-card place-card' }
       onMouseOver={ () => onHover ? onHover(id) : undefined }
     >
       { isPremium && <Premium /> }
-      <div className={ modificator ? `${ modificator === Modificator.FAVORITES ? 'favorites' : 'near-places'}__image-wrapper place-card__image-wrapper` : 'cities__image-wrapper place-card__image-wrapper' }>
+      <div className={ modificator ? `${ modificator === FAVORITES ? 'favorites' : 'near-places'}__image-wrapper place-card__image-wrapper` : 'cities__image-wrapper place-card__image-wrapper' }>
         <Link to={ `/offer/:${ id }` }>
           <img
             className="place-card__image"
             src={ previewImage }
-            width={ modificator === Modificator.FAVORITES ? '150' : '260' }
-            height={ modificator === Modificator.FAVORITES ? '110' : '200' }
+            width={ modificator === FAVORITES ? '150' : '260' }
+            height={ modificator === FAVORITES ? '110' : '200' }
             alt=""
           />
         </Link>
       </div>
-      <div className={ `${ modificator === Modificator.FAVORITES && 'favorites__card-info'}place-card__info` }>
+      <div className={ `${ modificator === FAVORITES && 'favorites__card-info'}place-card__info` }>
         <div className="place-card__price-wrapper">
 
           <Price price={ price } />
@@ -38,7 +38,7 @@ function Card({ type, title, price, rating, isPremium, isFavorite, previewImage,
 
         </div>
 
-        <Rating rating={rating} />
+        <Rating rating={ rating } />
 
         <h2 className="place-card__name">
           <Link to={ `/offer/:${ id }` }>{ title }</Link>

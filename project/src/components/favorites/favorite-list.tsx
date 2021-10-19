@@ -1,6 +1,6 @@
 import Card from '../common/card';
 import { Offer } from '../../types/types';
-import { Modificator } from '../const';
+import { FAVORITES } from '../const';
 
 type FavoritesListProps = {
   city: string,
@@ -21,7 +21,7 @@ function FavoritesList(props: FavoritesListProps): JSX.Element {
         </div>
       </div>
       <div className="favorites__places">
-        { cityOffers.map(({ id, ...rest }) => (<Card id={ id } key={ id } { ...rest } modificator={ Modificator.FAVORITES } />)) }
+        { cityOffers.map(({ id, ...rest }) => (<Card id={ id } key={ id } { ...rest } modificator={ FAVORITES } />)) }
       </div>
     </li>
   );
