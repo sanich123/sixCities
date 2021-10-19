@@ -4,7 +4,9 @@ type PremiumProps = {
 
 function Premium({ uniqUrl }: PremiumProps):JSX.Element {
   return (
-    <div className={`${ uniqUrl ? 'property' : 'place-card'}__mark`}><span>Premium</span></div>
+    <div className={ `${ uniqUrl ? 'property' : 'place-card'}__mark`}>
+      <span>Premium</span>
+    </div>
   );
 }
 

@@ -28,7 +28,7 @@ function Rating({ mark, value }: RatingProps):JSX.Element {
           width="37"
           height="33"
         >
-          <use xlinkHref="#icon-star"></use>
+          <use xlinkHref="#icon-star" />
         </svg>
       </label>
     </>

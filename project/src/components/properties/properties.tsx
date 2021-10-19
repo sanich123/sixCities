@@ -15,7 +15,7 @@ import NearPlaces from './near-places';
 import Premium from '../common/premium';
 import Rating from '../common/rating';
 import Name from '../common/name';
-import FavoriteButton from '../common/is-favorite';
+import FavoriteButton from '../common/favorite-button';
 
 
 type propertiesProps = {

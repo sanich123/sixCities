@@ -9,7 +9,7 @@ function Rating({ rating, uniqUrl }: RatingProps): JSX.Element {
   return (
     <div className={ `${ uniqUrl ? 'property' : 'place-card'}__rating rating` }>
       <div className={ `${ uniqUrl ? 'property' : 'place-card'}__stars rating__stars` }>
-        <span style={ { width: transformRating(rating) } }></span>
+        <span style={ { width: transformRating(rating) } } />
         <span className="visually-hidden">Rating</span>
       </div>
       { uniqUrl && <span className="property__rating-value rating__value">{ rating }</span> }

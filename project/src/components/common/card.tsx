@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Offer } from '../../types/types';
 import { FAVORITES } from '../const';
-import FavoriteButton from './is-favorite';
+import FavoriteButton from './favorite-button';
 import Premium from './premium';
 import Price from './price';
 import Rating from './rating';
