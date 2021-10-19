@@ -34,3 +34,7 @@ export const FAVORITES = 'favorites';
 export const PROPERTIES = 'properties';
 export const MAIN = 'main';
 
+export const ActionType = {
+  CHANGE_CITY: 'data/change-city',
+  SET_OFFERS: 'data/set-offers',
+};
