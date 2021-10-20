@@ -1,4 +1,5 @@
 import { ActionType } from '../components/const';
+import { mockOffers } from '../mock/offers';
 import { Offer } from '../types/types';
 
 type ReducerProps = {
@@ -11,10 +12,9 @@ export type ChangeCity = {
   payload: string,
 }
 
-
 const initialState = {
   city: 'Paris',
-  offers: [],
+  offers: mockOffers.slice().filter(({city}) => city.name === 'Amsterdam'),
 };
 
 const reducer = (state: ReducerProps = initialState, action: ChangeCity): ReducerProps => {
