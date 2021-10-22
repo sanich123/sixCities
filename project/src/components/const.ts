@@ -8,7 +8,8 @@ export enum AppRoute {
   Room = '/offer/:id'
  }
 
-export const DEFAULT_CITY = 'Amsterdam';
+export const DEFAULT_CITY = 'Paris';
+
 export enum AuthorizationStatus {
   AUTH,
   NO_AUTH,

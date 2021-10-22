@@ -3,13 +3,14 @@ import { Offer } from '../../types/types';
 import { useEffect, useRef } from 'react';
 import  useMap from '../../hooks/use-map/useMap';
 import {  LeafletUrls } from '../const';
-import { Marker } from 'leaflet';
+import L, { Marker } from 'leaflet';
 import { iconChanger } from '../../utils/utils';
 
 type MapProps = {
   offers: Offer[],
   activeOffer: number | null,
 }
+let markerGroup: L.LayerGroup;
 
 function Map({ offers, activeOffer }: MapProps): JSX.Element {
   const [{ city }] = offers;
@@ -18,12 +19,16 @@ function Map({ offers, activeOffer }: MapProps): JSX.Element {
 
   useEffect(() => {
     if (map) {
+      if(markerGroup) {
+        markerGroup.clearLayers();
+      }
+      markerGroup = L.layerGroup().addTo(map);
       offers.forEach(({ location, id }) => {
         const marker = new Marker({
           lat: location.latitude,
           lng: location.longitude,
         });
-        marker.setIcon(activeOffer !== null && activeOffer === id ? iconChanger(LeafletUrls.URL_MARKER_CURRENT) : iconChanger(LeafletUrls.URL_MARKER_DEFAULT)).addTo(map);
+        marker.setIcon(activeOffer !== null && activeOffer === id ? iconChanger(LeafletUrls.URL_MARKER_CURRENT) : iconChanger(LeafletUrls.URL_MARKER_DEFAULT)).addTo(markerGroup);
       });
     }
   }, [activeOffer, map, offers]);
