@@ -9,9 +9,10 @@ import { useState } from 'react';
 
 type MainProps = {
   offers: Offer[],
+  cities: string[]
  }
 
-function Main({ offers }: MainProps): JSX.Element {
+function Main({ offers, cities }: MainProps): JSX.Element {
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
   const onHover = (id: number | null) => setActiveOffer(id);
 

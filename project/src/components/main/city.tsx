@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 type CityProps = {
   town: string,
-  onClick?: (value: string) => void,
+  onClick: (value: string) => void,
   currentValue: string,
 }
 
@@ -12,7 +12,7 @@ function City({town, onClick, currentValue = 'Paris'}: CityProps): JSX.Element {
       <Link
         className={`locations__item-link tabs__item ${currentValue === town ? 'tabs__item--active' : ''}`}
         to="/"
-        onClick={ onClick ? () => onClick(town) : undefined}
+        onClick={() => onClick(town)}
       >
         <span>{town}</span>
       </Link>

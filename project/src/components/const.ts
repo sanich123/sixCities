@@ -6,7 +6,7 @@ export enum AppRoute {
   Favorites = '/favorites',
   Room = '/offer/:id'
  }
-
+export const DEFAULT_CITY = 'Paris';
 export enum AuthorizationStatus {
   AUTH,
   NO_AUTH,
@@ -34,7 +34,7 @@ export const FAVORITES = 'favorites';
 export const PROPERTIES = 'properties';
 export const MAIN = 'main';
 
-export const ActionType = {
-  CHANGE_CITY: 'data/change-city',
-  SET_OFFERS: 'data/set-offers',
-};
+export enum ActionType {
+  CHANGE_CITY = 'data/change-city',
+  SET_OFFERS = 'data/set-offers',
+}

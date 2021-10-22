@@ -1,14 +1,30 @@
-import { useState } from 'react';
-import { cities } from '../const';
+import { Dispatch } from 'react';
+import { Actions, State } from '../../types/reducer';
+import {connect, ConnectedProps} from 'react-redux';
 import City from './city';
-// import {bindActionCreators, Dispatch} from 'redux';
-// import {connect, ConnectedProps} from 'react-redux';
+import { changeCity } from '../../store/action';
+import { cities } from '../const';
 
+type FilterProps = {
+  city: string,
+}
+const mapStateToProps = ({city, offers}: State) => ({
+  city, offers,
+});
 
-function Filter(): JSX.Element {
-  const [currentValue, setValue] = useState('');
-  // eslint-disable-next-line no-console
-  console.log(currentValue);
+const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
+  onChangeCity(city: string) {
+    dispatch(changeCity(city));
+  },
+});
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+type ConnectedComponentProps = PropsFromRedux & FilterProps;
+
+function Filter({ city, onChangeCity }: ConnectedComponentProps): JSX.Element {
+
   return (
     <>
       <h1 className="visually-hidden">Cities</h1>
@@ -16,7 +32,7 @@ function Filter(): JSX.Element {
         <section className="locations container">
           <ul className="locations__list tabs__list">
 
-            {cities.map((town) => <City key={town} onClick={setValue} town={town} currentValue={currentValue} />)}
+            {cities.map((town) => <City key={town} onClick={onChangeCity} town={town} currentValue={city} />)}
 
           </ul>
         </section>
@@ -25,4 +41,5 @@ function Filter(): JSX.Element {
   );
 }
 
-export default Filter;
+export { Filter};
+export default connector (Filter);

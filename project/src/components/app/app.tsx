@@ -6,14 +6,14 @@ import Properties from '../properties/properties';
 import Page404 from '../page404/page404';
 import { mockOffers } from '../../mock/offers';
 import { mockReviews } from '../../mock/reviews';
-import { AppRoute } from '../const';
+import { AppRoute, cities } from '../const';
 import { generateRoutes } from '../../utils/utils';
 
 const pages = [
   {
     component: () => (
       <MainScreen
-        offers={ mockOffers }
+        offers={ mockOffers } cities={cities}
       />),
     isPrivate: false,
     route: AppRoute.Main,
