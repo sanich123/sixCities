@@ -6,41 +6,51 @@ import Properties from '../properties/properties';
 import Page404 from '../page404/page404';
 import { mockOffers } from '../../mock/offers';
 import { mockReviews } from '../../mock/reviews';
-import { AppRoute, cities } from '../const';
+import { AppRoute  } from '../const';
 import { generateRoutes } from '../../utils/utils';
+import { State } from '../../types/reducer';
+import { connect, ConnectedProps } from 'react-redux';
 
-const pages = [
-  {
-    component: () => (
-      <MainScreen
-        offers={ mockOffers } cities={cities}
-      />),
-    isPrivate: false,
-    route: AppRoute.Main,
-  },
-  {
-    component: () => <LogIn />,
-    isPrivate: false,
-    route: AppRoute.SignIn,
-  },
-  {
-    component: () => (<Favorites offers={ mockOffers }/>),
-    isPrivate: true,
-    route: AppRoute.Favorites,
-  },
-  {
-    component: () => <Properties offers={ mockOffers } reviews={ mockReviews }/>,
-    isPrivate: false,
-    route: AppRoute.Room,
-  },
-  {
-    component: () => <Page404 />,
-    isPrivate: false,
-    route: '',
-  },
-];
+const mapStateToProps = ({ city, offers }: State) => ({
+  city, offers,
+});
 
-function App(): JSX.Element {
+const connector = connect(mapStateToProps);
+type PropsFromRedux = ConnectedProps<typeof connector>;
+type ConnectedComponentProps = PropsFromRedux;
+
+function App({ city, offers }: ConnectedComponentProps): JSX.Element {
+  const filtredOffers = mockOffers.filter((offer) => offer.city.name === city);
+  const pages = [
+    {
+      component: () => (
+        <MainScreen
+          offers={ filtredOffers }
+        />),
+      isPrivate: false,
+      route: AppRoute.Main,
+    },
+    {
+      component: () => <LogIn />,
+      isPrivate: false,
+      route: AppRoute.SignIn,
+    },
+    {
+      component: () => (<Favorites offers={ mockOffers } />),
+      isPrivate: true,
+      route: AppRoute.Favorites,
+    },
+    {
+      component: () => <Properties offers={ mockOffers } reviews={ mockReviews }/>,
+      isPrivate: false,
+      route: AppRoute.Room,
+    },
+    {
+      component: () => <Page404 />,
+      isPrivate: false,
+      route: '',
+    },
+  ];
   return (
     <BrowserRouter>
       <Switch>
@@ -50,4 +60,5 @@ function App(): JSX.Element {
   );
 }
 
-export default App;
+export { App };
+export default connector(App);

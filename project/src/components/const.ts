@@ -1,12 +1,14 @@
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 export const cities = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
+
 export enum AppRoute {
   Main = '/',
   SignIn = '/login',
   Favorites = '/favorites',
   Room = '/offer/:id'
  }
-export const DEFAULT_CITY = 'Paris';
+
+export const DEFAULT_CITY = 'Amsterdam';
 export enum AuthorizationStatus {
   AUTH,
   NO_AUTH,

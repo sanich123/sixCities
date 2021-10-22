@@ -1,6 +1,6 @@
 import { Dispatch } from 'react';
 import { Actions, State } from '../../types/reducer';
-import {connect, ConnectedProps} from 'react-redux';
+import { connect, ConnectedProps } from 'react-redux';
 import City from './city';
 import { changeCity } from '../../store/action';
 import { cities } from '../const';
@@ -8,6 +8,7 @@ import { cities } from '../const';
 type FilterProps = {
   city: string,
 }
+
 const mapStateToProps = ({city, offers}: State) => ({
   city, offers,
 });
