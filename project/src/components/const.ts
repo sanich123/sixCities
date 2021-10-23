@@ -1,6 +1,12 @@
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 export const cities = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
+export const sortTypes = {
+  POPULAR: 'Popular',
+  PRICE_LOW: 'Price: low to high',
+  PRICE_HIGH: 'Price: high to low',
+  TOP_RATED: 'Top rated first',
+};
 export enum AppRoute {
   Main = '/',
   SignIn = '/login',

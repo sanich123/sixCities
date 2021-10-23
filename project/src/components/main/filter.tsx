@@ -33,7 +33,7 @@ function Filter({ city, onChangeCity }: ConnectedComponentProps): JSX.Element {
         <section className="locations container">
           <ul className="locations__list tabs__list">
 
-            {cities.map((town) => <City key={town} onClick={onChangeCity} town={town} currentValue={city} />)}
+            { cities.map((town) => <City key={ town } onClick={ onChangeCity } town={ town } currentValue={ city } />) }
 
           </ul>
         </section>
