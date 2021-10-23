@@ -21,7 +21,6 @@ type ConnectedComponentProps = ConnectedProps<typeof connector>;
 
 function App({ city }: ConnectedComponentProps): JSX.Element {
   const filtredOffers = mockOffers.filter((offer) => offer.city.name === city);
-  const [sortClick, setSortClick] = useState('');
   const [sortChange, setSortChange] = useState('Popular');
 
   switch(sortChange) {
@@ -38,9 +37,7 @@ function App({ city }: ConnectedComponentProps): JSX.Element {
       component: () => (
         <Main
           offers={ filtredOffers }
-          setSortClick={ setSortClick }
           setSortChange={ setSortChange }
-          sortClick={ sortClick }
           sortChange={ sortChange }
         />),
       isPrivate: false,

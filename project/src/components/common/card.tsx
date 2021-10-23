@@ -15,7 +15,7 @@ function Card({ type, title, price, rating, isPremium, isFavorite, previewImage,
   return (
     <article
       className={ modificator ? `${ modificator === FAVORITES ? 'favorites' : 'near-places'}__card place-card` : 'cities__place-card place-card' }
-      onMouseOver={ () => onHover ? onHover(id) : undefined }
+      onMouseEnter={ () => onHover ? onHover(id) : undefined }
     >
       { isPremium && <Premium /> }
       <div className={ modificator ? `${ modificator === FAVORITES ? 'favorites' : 'near-places'}__image-wrapper place-card__image-wrapper` : 'cities__image-wrapper place-card__image-wrapper' }>

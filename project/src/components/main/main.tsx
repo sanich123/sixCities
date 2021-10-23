@@ -11,9 +11,7 @@ import { Offer } from '../../types/types';
 
 type MainProps = {
   offers: Offer[],
-  setSortClick: (value: string) => void,
   setSortChange: (value: string) => void,
-  sortClick: string,
   sortChange: string,
 }
 
@@ -24,7 +22,7 @@ const mapStateToProps = ({ city }: State) => ({
 const connector = connect(mapStateToProps);
 type ConnectedComponentProps = ConnectedProps<typeof connector>;
 
-function Main({ offers, city, setSortClick, setSortChange, sortClick, sortChange }:
+function Main({ offers, city, setSortChange, sortChange }:
   ConnectedComponentProps &
   MainProps): JSX.Element {
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
@@ -51,12 +49,7 @@ function Main({ offers, city, setSortClick, setSortChange, sortClick, sortChange
                   <h2 className="visually-hidden">Places</h2>
                   <b className="places__found">{ offers.length } places to stay in { city }</b>
 
-                  <Sort
-                    setSortClick={ setSortClick }
-                    setSortChange={ setSortChange }
-                    sortClick={ sortClick }
-                    sortChange={ sortChange }
-                  />
+                  <Sort setSortChange={ setSortChange } sortChange={ sortChange } />
 
                   <Cards offers={ offers } onHover={ onHover } />
 
