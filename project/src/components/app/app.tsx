@@ -17,25 +17,21 @@ const mapStateToProps = ({ city }: State) => ({
 });
 
 const connector = connect(mapStateToProps);
-
 type ConnectedComponentProps = ConnectedProps<typeof connector>;
 
 function App({ city }: ConnectedComponentProps): JSX.Element {
   const filtredOffers = mockOffers.filter((offer) => offer.city.name === city);
   const [sortClick, setSortClick] = useState('');
   const [sortChange, setSortChange] = useState('Popular');
-  if (sortChange === sortTypes.PRICE_LOW) {
-    filtredOffers.sort((a, b) => a.price - b.price);
+
+  switch(sortChange) {
+    case sortTypes.PRICE_LOW:
+      filtredOffers.sort((a, b) => a.price - b.price);break;
+    case sortTypes.PRICE_HIGH:
+      filtredOffers.sort((a, b) => b.price - a.price);break;
+    case sortTypes.TOP_RATED:
+      filtredOffers.sort((a, b) => b.rating - a.rating);
   }
-  if (sortChange === sortTypes.PRICE_HIGH) {
-    filtredOffers.sort((a, b) => b.price - a.price);
-  }
-  if (sortChange === sortTypes.TOP_RATED) {
-    filtredOffers.sort((a, b) => b.rating - a.rating);
-  }
-  // if (sortChange === sortTypes.POPULAR) {
-  //   filtredOffers;
-  // }
 
   const pages = [
     {

@@ -29,7 +29,7 @@ function Map({ offers, activeOffer }: MapProps): JSX.Element {
           lat: location.latitude,
           lng: location.longitude,
         });
-        marker.setIcon(activeOffer !== null && activeOffer === id ? iconChanger(LeafletUrls.URL_MARKER_CURRENT) : iconChanger(LeafletUrls.URL_MARKER_DEFAULT)).addTo(markerGroup);
+        marker.setIcon(activeOffer === id ? iconChanger(LeafletUrls.URL_MARKER_CURRENT) : iconChanger(LeafletUrls.URL_MARKER_DEFAULT)).addTo(markerGroup);
       });
     }
   }, [activeOffer, map, offers]);

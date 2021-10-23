@@ -9,8 +9,8 @@ type FilterProps = {
   city: string,
 }
 
-const mapStateToProps = ({city, offers}: State) => ({
-  city, offers,
+const mapStateToProps = ({ city }: State) => ({
+  city,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
@@ -42,5 +42,5 @@ function Filter({ city, onChangeCity }: ConnectedComponentProps): JSX.Element {
   );
 }
 
-export { Filter};
+export { Filter };
 export default connector (Filter);

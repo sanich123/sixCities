@@ -12,12 +12,12 @@ function Sort({ setSortClick, setSortChange, sortClick, sortChange }: SortProps)
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by </span>
       <span className="places__sorting-type" tabIndex={ 0 } onClick={() => setSortClick(';')}>
-        {sortChange}
+        { sortChange }
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select" />
         </svg>
       </span>
-      <ul className={`places__options places__options--custom ${sortClick && 'places__options--opened'}`}>
+      <ul className={ `${ sortClick && 'places__options--opened'} places__options places__options--custom`}>
         { Object.values(sortTypes).map((sortType) => <SortItem key={ sortType } sortType={ sortType } setSortChange={ setSortChange } />)}
       </ul>
     </form>
