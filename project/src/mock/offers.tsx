@@ -44,7 +44,7 @@ export const mockOffers: Offer[] = [
         longitude: 4.895168,
         zoom: 10,
       },
-      name: 'Brussels',
+      name: 'Amsterdam',
     },
     description: fakerStatic.lorem.sentences(),
     goods: [fakerStatic.datatype.string(7), fakerStatic.datatype.string(7), fakerStatic.datatype.string(7), fakerStatic.datatype.string(7), fakerStatic.datatype.string(7)],
