@@ -11,21 +11,22 @@ import { generateRoutes } from '../../utils/utils';
 import { State } from '../../types/reducer';
 import { connect, ConnectedProps } from 'react-redux';
 
-const mapStateToProps = ({ city, offers }: State) => ({
-  city, offers,
+const mapStateToProps = ({ city }: State) => ({
+  city,
 });
 
 const connector = connect(mapStateToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 type ConnectedComponentProps = PropsFromRedux;
 
-function App({ city, offers }: ConnectedComponentProps): JSX.Element {
+function App({ city }: ConnectedComponentProps): JSX.Element {
   const filtredOffers = mockOffers.filter((offer) => offer.city.name === city);
+
   const pages = [
     {
       component: () => (
         <MainScreen
-          offers={ filtredOffers }
+          offers={filtredOffers}
         />),
       isPrivate: false,
       route: AppRoute.Main,

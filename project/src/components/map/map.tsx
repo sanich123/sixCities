@@ -10,6 +10,7 @@ type MapProps = {
   offers: Offer[],
   activeOffer: number | null,
 }
+
 let markerGroup: L.LayerGroup;
 
 function Map({ offers, activeOffer }: MapProps): JSX.Element {

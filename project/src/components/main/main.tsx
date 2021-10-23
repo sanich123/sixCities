@@ -6,12 +6,24 @@ import Filter from './filter';
 import Map from '../map/map';
 import { Offer } from '../../types/types';
 import { useState } from 'react';
+import { State } from '../../types/reducer';
+import { connect, ConnectedProps} from 'react-redux';
 
 type MainProps = {
   offers: Offer[],
- }
+}
 
-function Main({ offers }: MainProps): JSX.Element {
+const mapStateToProps = ({ city }: State) => ({
+  city,
+});
+
+const connector = connect(mapStateToProps);
+type PropsFromRedux = ConnectedProps<typeof connector>;
+type ConnectedComponentProps = PropsFromRedux;
+
+function Main({offers, city}:
+  ConnectedComponentProps &
+  MainProps): JSX.Element {
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
   const onHover = (id: number | null) => setActiveOffer(id);
 
@@ -24,25 +36,33 @@ function Main({ offers }: MainProps): JSX.Element {
 
         <Header />
 
-        <main className="page__main page__main--index">
+        <main className={`page__main page__main--index  ${ !offers.length && 'page__main--index-empty'}`}>
 
           <Filter />
 
           <div className="cities">
-            <div className="cities__places-container container">
-              <section className="cities__places places">
-                <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">{ offers.length } places to stay in Amsterdam</b>
+            <div className={`cities__places-container container ${!offers.length && 'cities__places-container--empty container'}`}>
+              { offers.length ?
+                <section className="cities__places places">
+                  <h2 className="visually-hidden">Places</h2>
+                  <b className="places__found">{ offers.length } places to stay in {city}</b>
 
-                <Sort />
+                  <Sort />
 
-                <Cards offers={ offers } onHover={ onHover } />
+                  <Cards offers={ offers } onHover={ onHover } />
 
-              </section>
+                </section> :
+                <section className="cities__no-places">
+                  <div className="cities__status-wrapper tabs__content">
+                    <b className="cities__status">No places to stay available</b>
+                    <p className="cities__status-description">We could not find any property available at the moment in {city}</p>
+                  </div>
+                </section>}
               <div className="cities__right-section">
-                <section className="cities__map map">
-                  <Map offers={ offers } activeOffer={ activeOffer } />
-                </section>
+                { offers.length &&
+                  <section className="cities__map map">
+                    <Map offers={ offers } activeOffer={ activeOffer } />
+                  </section>}
               </div>
             </div>
           </div>
@@ -52,4 +72,6 @@ function Main({ offers }: MainProps): JSX.Element {
   );
 }
 
-export default Main;
+export {Main};
+export default connector(Main);
+
