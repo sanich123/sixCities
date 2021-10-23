@@ -10,9 +10,9 @@ function City({ town, onClick, currentValue = 'Paris' }: CityProps): JSX.Element
   return (
     <li className="locations__item">
       <Link
-        className={ `locations__item-link tabs__item ${currentValue === town ? 'tabs__item--active' : ''}` }
+        className={ `locations__item-link tabs__item ${ currentValue === town && 'tabs__item--active'}` }
         to="/"
-        onClick={() => onClick(town)}
+        onClick={ () => onClick(town) }
       >
         <span>{ town }</span>
       </Link>

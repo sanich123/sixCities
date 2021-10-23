@@ -40,7 +40,7 @@ function Main({ offers, city, setSortClick, setSortChange, sortClick, sortChange
 
         <Header />
 
-        <main className={`page__main page__main--index  ${ !offers.length && 'page__main--index-empty'}` }>
+        <main className={`page__main page__main--index ${ !offers.length && 'page__main--index-empty'}` }>
 
           <Filter />
 
@@ -51,7 +51,12 @@ function Main({ offers, city, setSortClick, setSortChange, sortClick, sortChange
                   <h2 className="visually-hidden">Places</h2>
                   <b className="places__found">{ offers.length } places to stay in { city }</b>
 
-                  <Sort setSortClick={setSortClick} setSortChange={setSortChange} sortClick={sortClick} sortChange={sortChange} />
+                  <Sort
+                    setSortClick={ setSortClick }
+                    setSortChange={ setSortChange }
+                    sortClick={ sortClick }
+                    sortChange={ sortChange }
+                  />
 
                   <Cards offers={ offers } onHover={ onHover } />
 
@@ -61,12 +66,12 @@ function Main({ offers, city, setSortClick, setSortChange, sortClick, sortChange
                     <b className="cities__status">No places to stay available</b>
                     <p className="cities__status-description">We could not find any property available at the moment in { city }</p>
                   </div>
-                </section>}
+                </section> }
               <div className="cities__right-section">
                 { offers.length &&
                   <section className="cities__map map">
                     <Map offers={ offers } activeOffer={ activeOffer } />
-                  </section>}
+                  </section> }
               </div>
             </div>
           </div>

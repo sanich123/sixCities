@@ -11,7 +11,7 @@ function Sort({ setSortClick, setSortChange, sortClick, sortChange }: SortProps)
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by </span>
-      <span className="places__sorting-type" tabIndex={ 0 } onClick={() => setSortClick(';')}>
+      <span className="places__sorting-type" tabIndex={ 0 } onClick={() => setSortClick(';')} >
         { sortChange }
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select" />

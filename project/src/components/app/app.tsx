@@ -1,7 +1,8 @@
 import { BrowserRouter, Switch } from 'react-router-dom';
 import { connect, ConnectedProps } from 'react-redux';
+import { useState } from 'react';
 import Favorites from '../favorites/favorites';
-import MainScreen from '../main/main';
+import Main from '../main/main';
 import LogIn from '../login/login';
 import Properties from '../properties/properties';
 import Page404 from '../page404/page404';
@@ -10,7 +11,6 @@ import { mockReviews } from '../../mock/reviews';
 import { AppRoute, sortTypes  } from '../const';
 import { generateRoutes } from '../../utils/utils';
 import { State } from '../../types/reducer';
-import { useState } from 'react';
 
 const mapStateToProps = ({ city }: State) => ({
   city,
@@ -36,12 +36,12 @@ function App({ city }: ConnectedComponentProps): JSX.Element {
   const pages = [
     {
       component: () => (
-        <MainScreen
+        <Main
           offers={ filtredOffers }
-          setSortClick={setSortClick}
-          setSortChange={setSortChange}
-          sortClick={sortClick}
-          sortChange={sortChange}
+          setSortClick={ setSortClick }
+          setSortChange={ setSortChange }
+          sortClick={ sortClick }
+          sortChange={ sortChange }
         />),
       isPrivate: false,
       route: AppRoute.Main,
@@ -52,7 +52,7 @@ function App({ city }: ConnectedComponentProps): JSX.Element {
       route: AppRoute.SignIn,
     },
     {
-      component: () => (<Favorites offers={ mockOffers } />),
+      component: () => <Favorites offers={ mockOffers } />,
       isPrivate: true,
       route: AppRoute.Favorites,
     },
@@ -67,6 +67,7 @@ function App({ city }: ConnectedComponentProps): JSX.Element {
       route: '',
     },
   ];
+
   return (
     <BrowserRouter>
       <Switch>
