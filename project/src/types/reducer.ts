@@ -7,7 +7,7 @@ export const ActionType = {
 };
 
 export type Actions =
-|ReturnType <typeof changeCity>
+| ReturnType <typeof changeCity>
 | ReturnType <typeof setOffers>;
 
 export type State = {

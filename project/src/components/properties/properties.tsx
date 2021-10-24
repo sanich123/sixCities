@@ -77,14 +77,14 @@ function Properties({ reviews, offers }: propertiesProps): JSX.Element {
                 </section>
               </div>
             </div>
-            { nearPlaces.length &&
-            <section className="property__map map">
-              <Map offers={ nearPlaces } activeOffer={ activeOffer } />
-            </section> }
+            { nearPlaces.length ?
+              <section className="property__map map">
+                <Map offers={ nearPlaces } activeOffer={ activeOffer } />
+              </section> : ''}
           </section>
           <div className="container">
-            { nearPlaces.length &&
-              <NearPlaces nearPlaces={ nearPlaces } onHover={ onHover } /> }
+            { nearPlaces.length ?
+              <NearPlaces nearPlaces={ nearPlaces } onHover={ onHover } /> : '' }
           </div>
         </main>
       </div>
