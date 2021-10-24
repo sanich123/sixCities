@@ -1,50 +1,45 @@
 import { BrowserRouter, Switch } from 'react-router-dom';
 import { connect, ConnectedProps } from 'react-redux';
-import { useState } from 'react';
+import { Dispatch  } from 'react';
 import Favorites from '../favorites/favorites';
 import Main from '../main/main';
 import LogIn from '../login/login';
 import Properties from '../properties/properties';
 import Page404 from '../page404/page404';
 import { mockReviews } from '../../mock/reviews';
-import { AppRoute, sortByPriceHigh, sortByPriceLow, sortByRating, sortTypes  } from '../const';
+import {
+  AppRoute,
+  sortTypeChanger } from '../const';
 import { generateRoutes } from '../../utils/utils';
-import { State } from '../../types/reducer';
+import { Actions, State } from '../../types/reducer';
+import { sortOffers } from '../../store/action';
+import { Offer } from '../../types/types';
+// import { pages } from '../../utils/pages';
 
-const mapStateToProps = ({ city, offers }: State) => ({
-  city, offers,
+function mapStateToProps({ city, offers, sortName, reviews }: State) {
+  return ({
+    city, offers, sortName, reviews,
+  });
+}
+
+const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
+  onSortedOffers(offers: Offer[]) {
+    dispatch(sortOffers(offers));
+  },
 });
 
-const connector = connect(mapStateToProps);
+const connector = connect(mapStateToProps, mapDispatchToProps);
 type ConnectedComponentProps = ConnectedProps<typeof connector>;
 
-function App({ city, offers }: ConnectedComponentProps): JSX.Element {
+function App({ city, offers, onSortedOffers, sortName, reviews }: ConnectedComponentProps): JSX.Element {
   const filtredOffers = offers.filter((offer) => offer.city.name === city);
-  const [sortChange, setSortChange] = useState('Popular');
 
-  const sortTypeChanger = {
-    'Price: low to high': () => sortByPriceLow(filtredOffers),
-    'Price: high to low': () => sortByPriceHigh(filtredOffers),
-    'Top rated first': () => sortByRating(filtredOffers),
-  };
-
-  switch(sortChange) {
-    case sortTypes.PRICE_LOW:
-      sortTypeChanger['Price: low to high']();break;
-    case sortTypes.PRICE_HIGH:
-      sortTypeChanger['Price: high to low']();break;
-    case sortTypes.TOP_RATED:
-      sortTypeChanger['Top rated first']();
-  }
+  const sortedOffers = sortTypeChanger[sortName](filtredOffers);
+  onSortedOffers(sortedOffers);
 
   const pages = [
     {
-      component: () => (
-        <Main
-          offers={ filtredOffers }
-          setSortChange={ setSortChange }
-          sortChange={ sortChange }
-        />),
+      component: () => <Main offers={ sortedOffers } />,
       isPrivate: false,
       route: AppRoute.Main,
     },

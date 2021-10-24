@@ -1,20 +1,23 @@
-import { mockOffers  } from '../mock/offers';
+// import { mockOffers  } from '../mock/offers';
 import Favorites from '../components/favorites/favorites';
 import PrivateRoute from '../components/private-route';
 import { Route } from 'react-router';
 import { AuthorizationStatus } from '../components/const';
 import leaflet, { DivIcon, Icon, IconOptions } from 'leaflet';
+import { Offer, Review } from '../types/types';
+import { mockOffers } from '../mock/offers';
 
 
 type RoutesProps = {
   route: string,
   isPrivate: boolean,
-  component: () => JSX.Element,
+  component: (offers: Offer[], review: Review[]) => JSX.Element,
  }
 
-export const generateRoutes = ({ route, component, isPrivate }: RoutesProps): JSX.Element => isPrivate ?
-  <PrivateRoute exact path={ route } key={ route } authorizationStatus={ AuthorizationStatus.AUTH } render={ () => <Favorites offers={ mockOffers }/> } /> :
-  <Route exact path={ route } key={ route } component={ component } />;
+export const generateRoutes = ({ route, component, isPrivate }: RoutesProps): JSX.Element =>
+  isPrivate ?
+    <PrivateRoute exact path={ route } key={ route } authorizationStatus={ AuthorizationStatus.AUTH } render={ () => <Favorites offers={ mockOffers }/> } /> :
+    <Route exact path={ route } key={ route }>{ component }</Route>;
 
 const RatingToPercent = {
   DIVIDER: 5,

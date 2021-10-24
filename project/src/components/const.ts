@@ -1,8 +1,11 @@
 import { Offer } from '../types/types';
 
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
 export const cities = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
+export const DEFAULT_CITY = 'Paris';
+export const DEFAULT_SORT = 'Popular';
 
 export enum AppRoute {
   Main = '/',
@@ -10,8 +13,6 @@ export enum AppRoute {
   Favorites = '/favorites',
   Room = '/offer/:id'
  }
-
-export const DEFAULT_CITY = 'Paris';
 
 export enum AuthorizationStatus {
   AUTH,
@@ -40,11 +41,6 @@ export const FAVORITES = 'favorites';
 export const PROPERTIES = 'properties';
 export const MAIN = 'main';
 
-export enum ActionType {
-  CHANGE_CITY = 'data/change-city',
-  SET_OFFERS = 'data/set-offers',
-}
-
 export const sortTypes = {
   POPULAR: 'Popular',
   PRICE_LOW: 'Price: low to high',
@@ -52,8 +48,13 @@ export const sortTypes = {
   TOP_RATED: 'Top rated first',
 };
 
-
 export const sortByPriceLow = (array: Offer[]): Offer[] => array.sort((a, b) => a.price - b.price);
 export const sortByPriceHigh = (array: Offer[]): Offer[] => array.sort((a, b) => b.price - a.price);
 export const sortByRating = (array: Offer[]): Offer[] => array.sort((a, b) => b.rating - a.rating);
 
+export const sortTypeChanger = {
+  [sortTypes.PRICE_LOW]: (offers: Offer[]): Offer[] => sortByPriceLow(offers),
+  [sortTypes.PRICE_HIGH]: (offers: Offer[]): Offer[]  => sortByPriceHigh(offers),
+  [sortTypes.TOP_RATED]: (offers: Offer[]): Offer[]  => sortByRating(offers),
+  [sortTypes.POPULAR]: (offers: Offer[]): Offer[]  => offers,
+};
