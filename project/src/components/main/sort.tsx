@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import { sortTypes } from '../const';
-import SortItem from './sort-item';
 
 type SortProps = {
-
   setSortChange: (value: string) => void,
   sortChange: string,
 }
@@ -21,7 +19,8 @@ function Sort({ setSortChange, sortChange }: SortProps): JSX.Element {
         </svg>
       </span>
       <ul className={ `${ isOpen && 'places__options--opened'} places__options places__options--custom`}>
-        { Object.values(sortTypes).map((sortType) => <SortItem key={ sortType } sortType={ sortType } setSortChange={ setSortChange } />)}
+        { Object.values(sortTypes).map((sortType) =>
+          (<li className="places__option" key={sortType} onClick={ () => setSortChange(sortType) } tabIndex={ 0 }>{ sortType }</li>))}
       </ul>
     </form>
   );

@@ -6,7 +6,7 @@ import UserName from '../../common/user-name';
 
 function Comments({ comment, date, id, rating, user }: Review): JSX.Element {
   return (
-    <li key={ id } className="reviews__item">
+    <li className="reviews__item">
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
 

@@ -14,9 +14,7 @@ import { useState } from 'react';
 import NearPlaces from './near-places';
 import Premium from '../common/premium';
 import Rating from '../common/rating';
-import Name from '../common/name';
 import FavoriteButton from '../common/favorite-button';
-
 
 type propertiesProps = {
   reviews: Review[],
@@ -52,7 +50,9 @@ function Properties({ reviews, offers }: propertiesProps): JSX.Element {
 
                 <div className="property__name-wrapper">
 
-                  <Name title={ title }/>
+                  <h1 className="property__name">
+                    { title }
+                  </h1>
 
                   <FavoriteButton isFavorite={ isFavorite } uniqUrl={ uniqUrl } />
 

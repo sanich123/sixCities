@@ -6,30 +6,35 @@ import Main from '../main/main';
 import LogIn from '../login/login';
 import Properties from '../properties/properties';
 import Page404 from '../page404/page404';
-import { mockOffers } from '../../mock/offers';
 import { mockReviews } from '../../mock/reviews';
-import { AppRoute, sortTypes  } from '../const';
+import { AppRoute, sortByPriceHigh, sortByPriceLow, sortByRating, sortTypes  } from '../const';
 import { generateRoutes } from '../../utils/utils';
 import { State } from '../../types/reducer';
 
-const mapStateToProps = ({ city }: State) => ({
-  city,
+const mapStateToProps = ({ city, offers }: State) => ({
+  city, offers,
 });
 
 const connector = connect(mapStateToProps);
 type ConnectedComponentProps = ConnectedProps<typeof connector>;
 
-function App({ city }: ConnectedComponentProps): JSX.Element {
-  const filtredOffers = mockOffers.filter((offer) => offer.city.name === city);
+function App({ city, offers }: ConnectedComponentProps): JSX.Element {
+  const filtredOffers = offers.filter((offer) => offer.city.name === city);
   const [sortChange, setSortChange] = useState('Popular');
+
+  const sortTypeChanger = {
+    'Price: low to high': () => sortByPriceLow(filtredOffers),
+    'Price: high to low': () => sortByPriceHigh(filtredOffers),
+    'Top rated first': () => sortByRating(filtredOffers),
+  };
 
   switch(sortChange) {
     case sortTypes.PRICE_LOW:
-      filtredOffers.sort((a, b) => a.price - b.price);break;
+      sortTypeChanger['Price: low to high']();break;
     case sortTypes.PRICE_HIGH:
-      filtredOffers.sort((a, b) => b.price - a.price);break;
+      sortTypeChanger['Price: high to low']();break;
     case sortTypes.TOP_RATED:
-      filtredOffers.sort((a, b) => b.rating - a.rating);
+      sortTypeChanger['Top rated first']();
   }
 
   const pages = [
@@ -49,12 +54,12 @@ function App({ city }: ConnectedComponentProps): JSX.Element {
       route: AppRoute.SignIn,
     },
     {
-      component: () => <Favorites offers={ mockOffers } />,
+      component: () => <Favorites offers={ offers } />,
       isPrivate: true,
       route: AppRoute.Favorites,
     },
     {
-      component: () => <Properties offers={ mockOffers } reviews={ mockReviews }/>,
+      component: () => <Properties offers={ offers } reviews={ mockReviews }/>,
       isPrivate: false,
       route: AppRoute.Room,
     },

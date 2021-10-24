@@ -10,7 +10,7 @@ function Image({ avatarUrl, uniqUrl}: ImageProps): JSX.Element {
       src={ avatarUrl }
       width={uniqUrl ? '74' : '54'}
       height={uniqUrl ? '74' : '54' }
-      alt={uniqUrl ? 'Host ' : 'Reviews'}avatar}
+      alt={`${uniqUrl ? 'Host' : 'Reviews'}avatar`}
     />
   );
 }
