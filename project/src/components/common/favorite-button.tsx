@@ -16,7 +16,7 @@ function FavoriteButton({ isFavorite, uniqUrl }: FavoriteButtonProps): JSX.Eleme
       >
         <use xlinkHref="#icon-bookmark" />
       </svg>
-      <span className="visually-hidden">{ `${ isFavorite ? 'In' : 'To' }bookmarks` }</span>
+      <span className="visually-hidden">{ isFavorite ? 'In' : 'To' } bookmarks</span>
     </button>
   );
 }
