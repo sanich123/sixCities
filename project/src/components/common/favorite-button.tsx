@@ -1,6 +1,6 @@
 type FavoriteButtonProps = {
-isFavorite: boolean,
-uniqUrl?: number,
+  isFavorite: boolean,
+  uniqUrl?: number,
 }
 
 function FavoriteButton({ isFavorite, uniqUrl }: FavoriteButtonProps): JSX.Element {
