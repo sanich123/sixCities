@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Dispatch } from 'redux';
 import { changeCity } from '../../store/action';
 import { Actions, State } from '../../types/reducer';
-
+import cn from 'classnames';
 type CityProps = {
   town: string,
 }
@@ -24,10 +24,12 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 type ConnectedComponentProps = PropsFromRedux & CityProps;
 
 function City({ town, onChangeCity, city = 'Paris' }: ConnectedComponentProps): JSX.Element {
+  const activeCity = cn('locations__item-link tabs__item', { 'tabs__item--active': city === town });
+
   return (
     <li className="locations__item">
       <Link
-        className={ `locations__item-link tabs__item ${ city === town && 'tabs__item--active'}` }
+        className={ activeCity }
         to="/"
         onClick={ () => onChangeCity(town) }
       >
