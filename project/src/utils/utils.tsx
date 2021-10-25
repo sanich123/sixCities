@@ -11,7 +11,7 @@ import { mockOffers } from '../mock/offers';
 type RoutesProps = {
   route: string,
   isPrivate: boolean,
-  component: (offers: Offer[], review: Review[]) => JSX.Element,
+  component: (offers: Offer[], reviews: Review[]) => JSX.Element,
  }
 
 export const generateRoutes = ({ route, component, isPrivate }: RoutesProps): JSX.Element =>

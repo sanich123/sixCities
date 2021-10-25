@@ -71,7 +71,7 @@ function App({ city, offers, onSortedOffers, onFiltredOffers, sortName, reviews 
   return (
     <BrowserRouter>
       <Switch>
-        { pages.map(({ component, route, isPrivate }) => generateRoutes({ component, route, isPrivate })) }
+        { pages.map(({ component, route, isPrivate }) => generateRoutes({ isPrivate, component, route  })) }
       </Switch>
     </BrowserRouter>
   );
