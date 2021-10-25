@@ -1,13 +1,18 @@
+import cn from 'classnames';
 type FavoriteButtonProps = {
   isFavorite: boolean,
   uniqUrl?: number,
 }
 
 function FavoriteButton({ isFavorite, uniqUrl }: FavoriteButtonProps): JSX.Element {
+  const buttonClass = cn({'property__bookmark-button property__bookmark-button--active button' : isFavorite && uniqUrl },
+    {'place-card__bookmark-button place-card__bookmark-button--active button' : isFavorite},
+    {'property__bookmark-button button': uniqUrl},
+    'place-card__bookmark-button button');
+
   return (
     <button
-      className={ isFavorite ? `${ uniqUrl ? 'property__bookmark-button property' : 'place-card__bookmark-button place-card'}__bookmark-button--active button` : `${ uniqUrl ? 'property' : 'place-card'}__bookmark-button button` }
-      type="button"
+      className={ buttonClass }
     >
       <svg
         className={ `${ uniqUrl ? 'property' : 'place-card'}__bookmark-icon`}
