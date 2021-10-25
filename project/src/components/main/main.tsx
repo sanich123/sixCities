@@ -11,8 +11,6 @@ import { Offer } from '../../types/types';
 
 type MainProps = {
   offers: Offer[],
-  // setSortChange: (value: string) => void,
-  // sortChange: string,
 }
 
 const mapStateToProps = ({ city }: State) => ({
@@ -22,9 +20,7 @@ const mapStateToProps = ({ city }: State) => ({
 const connector = connect(mapStateToProps);
 type ConnectedComponentProps = ConnectedProps<typeof connector>;
 
-function Main({ offers, city,
-  // setSortChange, sortChange
-}:
+function Main({ offers, city }:
   ConnectedComponentProps &
   MainProps): JSX.Element {
   const [activeOffer, setActiveOffer] = useState<number | null>(null);

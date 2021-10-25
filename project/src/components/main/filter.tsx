@@ -1,30 +1,7 @@
-import { Dispatch } from 'react';
-import { Actions, State } from '../../types/reducer';
-import { connect, ConnectedProps } from 'react-redux';
 import City from './city';
-import { changeCity } from '../../store/action';
 import { cities } from '../const';
 
-type FilterProps = {
-  city: string,
-}
-
-const mapStateToProps = ({ city }: State) => ({
-  city,
-});
-
-const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
-  onChangeCity(city: string) {
-    dispatch(changeCity(city));
-  },
-});
-
-const connector = connect(mapStateToProps, mapDispatchToProps);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-type ConnectedComponentProps = PropsFromRedux & FilterProps;
-
-function Filter({ city, onChangeCity }: ConnectedComponentProps): JSX.Element {
+function Filter(): JSX.Element {
 
   return (
     <>
@@ -33,7 +10,7 @@ function Filter({ city, onChangeCity }: ConnectedComponentProps): JSX.Element {
         <section className="locations container">
           <ul className="locations__list tabs__list">
 
-            { cities.map((town) => <City key={ town } onClick={ onChangeCity } town={ town } currentValue={ city } />) }
+            { cities.map((town) => <City key={ town } town={ town } />) }
 
           </ul>
         </section>
@@ -42,5 +19,4 @@ function Filter({ city, onChangeCity }: ConnectedComponentProps): JSX.Element {
   );
 }
 
-export { Filter };
-export default connector (Filter);
+export default Filter;
