@@ -9,6 +9,7 @@ const initialState = {
   sortedOffers: mockOffers,
   sortName: DEFAULT_SORT,
   reviews: mockReviews,
+  filtredOffers: mockOffers,
 };
 
 const reducer = (state: State = initialState, action: Actions): State => {
@@ -21,6 +22,8 @@ const reducer = (state: State = initialState, action: Actions): State => {
       return {...state, sortedOffers: action.payload };
     case ActionType.CHANGE_SORT:
       return {...state, sortName: action.payload };
+    case ActionType.FILTER_OFFERS:
+      return {...state, filtredOffers: action.payload };
     default:
       return state;
   }

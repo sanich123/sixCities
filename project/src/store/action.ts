@@ -12,6 +12,11 @@ export const setOffers = (offers: Offer[]) => ({
 } as const);
 
 export const sortOffers = (offers: Offer[]) => ({
+  type: ActionType.FILTER_OFFERS,
+  payload: offers,
+} as const);
+
+export const filterOffers = (offers: Offer[]) => ({
   type: ActionType.SORT_OFFERS,
   payload: offers,
 } as const);

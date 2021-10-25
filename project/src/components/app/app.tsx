@@ -12,7 +12,7 @@ import {
   sortTypeChanger } from '../const';
 import { generateRoutes } from '../../utils/utils';
 import { Actions, State } from '../../types/reducer';
-import { sortOffers } from '../../store/action';
+import { sortOffers, filterOffers } from '../../store/action';
 import { Offer } from '../../types/types';
 // import { pages } from '../../utils/pages';
 
@@ -26,14 +26,17 @@ const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
   onSortedOffers(offers: Offer[]) {
     dispatch(sortOffers(offers));
   },
+  onFiltredOffers(offers: Offer[]) {
+    dispatch(filterOffers(offers));
+  },
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 type ConnectedComponentProps = ConnectedProps<typeof connector>;
 
-function App({ city, offers, onSortedOffers, sortName, reviews }: ConnectedComponentProps): JSX.Element {
+function App({ city, offers, onSortedOffers, onFiltredOffers, sortName, reviews }: ConnectedComponentProps): JSX.Element {
   const filtredOffers = offers.filter((offer) => offer.city.name === city);
-
+  onFiltredOffers(filtredOffers);
   const sortedOffers = sortTypeChanger[sortName](filtredOffers);
   onSortedOffers(sortedOffers);
 

@@ -49,7 +49,7 @@ function Main({ offers, city }:
 
                   <Sort />
 
-                  <Cards offers={ offers } onHover={ onHover } />
+                  <Cards onHover={ onHover } />
 
                 </section> :
                 <section className="cities__no-places">

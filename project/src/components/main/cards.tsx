@@ -1,19 +1,24 @@
 import Card from '../common/card';
-import { Offer } from '../../types/types';
 import { MAIN } from '../const';
+import { State } from '../../types/reducer';
+import { connect, ConnectedProps } from 'react-redux';
 
 type cardsProps = {
-  offers: Offer[],
+  onHover?: (id: number) => void,
  }
 
-type OnHover = {
-  onHover?: (id: number) => void
-}
+const mapStateToProps = ({ filtredOffers}: State) => ({
+  filtredOffers,
+});
 
-function Cards( { offers, onHover }: cardsProps & OnHover): JSX.Element {
+const connector = connect(mapStateToProps);
+type PropsFromRedux = ConnectedProps<typeof connector>;
+type ConnectedComponentProps = PropsFromRedux & cardsProps;
+
+function Cards( { filtredOffers, onHover }: ConnectedComponentProps): JSX.Element {
   return (
     <div className="cities__places-list places__list tabs__content">
-      { offers.map(({ id, ...rest }) => (
+      { filtredOffers.map(({ id, ...rest }) => (
         <Card
           id={ id }
           key={ id }
@@ -25,7 +30,7 @@ function Cards( { offers, onHover }: cardsProps & OnHover): JSX.Element {
     </div>
   );
 }
-
-export default Cards;
+export { Cards };
+export default connector(Cards);
 
 
