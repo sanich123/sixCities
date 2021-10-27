@@ -8,7 +8,6 @@ import { sortOffers, filterOffers } from '../../store/action';
 import { Offer } from '../../types/types';
 import { pages } from '../../utils/pages';
 
-
 function mapStateToProps({ city, offers, sortName }: State) {
   return ({
     city, offers, sortName,

@@ -38,5 +38,5 @@ function Sort({ sortName, setSortChange }: ConnectedComponentProps): JSX.Element
   );
 }
 
-export {Sort};
+export { Sort };
 export default connector(Sort);

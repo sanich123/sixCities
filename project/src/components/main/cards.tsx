@@ -7,7 +7,7 @@ type cardsProps = {
   onHover?: (id: number) => void,
  }
 
-const mapStateToProps = ({ filtredOffers}: State) => ({
+const mapStateToProps = ({ filtredOffers }: State) => ({
   filtredOffers,
 });
 
