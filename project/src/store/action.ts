@@ -1,5 +1,10 @@
 import { ActionType } from '../types/reducer';
-import { Offer } from '../types/types';
+import { Offer, Review } from '../types/types';
+
+export const initStore = (filtredOffers: Offer[], sortedOffers: Offer[], reviews: Review[]) => ({
+  type: ActionType.INIT,
+  payload: filtredOffers, sortedOffers, reviews,
+} as const);
 
 export const changeCity = (city: string) => ({
   type: ActionType.CHANGE_CITY,
