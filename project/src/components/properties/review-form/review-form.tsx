@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Marks } from '../../../utils/const';
+import { Marks } from '../../../const';
 import Rating from './rating';
 
 function ReviewForm(): JSX.Element {

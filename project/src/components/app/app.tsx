@@ -1,7 +1,7 @@
 import { BrowserRouter, Switch } from 'react-router-dom';
 import { connect, ConnectedProps } from 'react-redux';
 import { Dispatch  } from 'react';
-import { sortTypeChanger } from '../../utils/const';
+import { sortTypeChanger } from '../../const';
 import { generateRoutes } from '../../utils/utils';
 import { Actions, State } from '../../types/reducer';
 import { sortOffers, filterOffers } from '../../store/action';

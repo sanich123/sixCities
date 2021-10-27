@@ -1,10 +1,8 @@
-// import { mockOffers  } from '../mock/offers';
 import Favorites from '../components/favorites/favorites';
 import PrivateRoute from '../components/private-route';
 import { Route } from 'react-router';
-import { AuthorizationStatus } from './const';
+import { AuthorizationStatus } from '../const';
 import leaflet, { DivIcon, Icon, IconOptions } from 'leaflet';
-// import { Offer, Review } from '../types/types';
 
 type RoutesProps = {
   route: string,

@@ -1,5 +1,5 @@
 import Card from '../common/card';
-import { MAIN } from '../../utils/const';
+import { MAIN } from '../../const';
 import { State } from '../../types/reducer';
 import { connect, ConnectedProps } from 'react-redux';
 

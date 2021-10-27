@@ -3,7 +3,7 @@ import LogIn from '../components/login/login';
 import Main from '../components/main/main';
 import Page404 from '../components/page404/page404';
 import Properties from '../components/properties/properties';
-import { AppRoute } from '../utils/const';
+import { AppRoute } from '../const';
 
 export const pages = [
   {
