@@ -2,7 +2,7 @@ import { Dispatch, useState } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { changeSortName } from '../../store/action';
 import { State, Actions } from '../../types/reducer';
-import { sortTypes } from '../const';
+import { sortTypes } from '../../utils/const';
 
 const mapStateToProps = ({ sortName }: State) => ({
   sortName,

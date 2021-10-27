@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Offer } from '../../types/types';
-import { FAVORITES } from '../const';
+import { FAVORITES } from '../../utils/const';
 import FavoriteButton from './favorite-button';
 import Premium from './premium';
 import Price from './price';

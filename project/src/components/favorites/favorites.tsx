@@ -2,13 +2,17 @@ import Sprite from '../common/sprite';
 import Header from '../common/header';
 import Footer from '../main/footer';
 import FavoritesList from './favorite-list';
-import { Offer } from '../../types/types';
+import { connect, ConnectedProps } from 'react-redux';
+import { State } from '../../types/reducer';
 
-type favoriteProps = {
-  offers: Offer[];
- }
+const mapStateToProps = ({ offers }: State) => ({
+  offers,
+});
 
-function Favorites({ offers }: favoriteProps): JSX.Element {
+const connector = connect(mapStateToProps);
+type ConnectedComponentProps = ConnectedProps<typeof connector>;
+
+function Favorites({ offers }: ConnectedComponentProps): JSX.Element {
   const favoriteOffers = offers.filter((offer) => offer.isFavorite);
   const uniqueСities = Array.from(new Set(favoriteOffers.map(({ city }) => city.name)));
 
@@ -45,4 +49,5 @@ function Favorites({ offers }: favoriteProps): JSX.Element {
   );
 }
 
-export default Favorites;
+export { Favorites };
+export default connector(Favorites);

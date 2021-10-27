@@ -1,5 +1,5 @@
 import City from './city';
-import { cities } from '../const';
+import { cities } from '../../utils/const';
 
 function Filter(): JSX.Element {
 

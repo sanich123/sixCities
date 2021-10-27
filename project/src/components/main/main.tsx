@@ -7,22 +7,16 @@ import Sprite from '../common/sprite';
 import Sort from './sort';
 import Filter from './filter';
 import Map from '../map/map';
-import { Offer } from '../../types/types';
 
-type MainProps = {
-  offers: Offer[],
-}
-
-const mapStateToProps = ({ city }: State) => ({
-  city,
+const mapStateToProps = ({ city, sortedOffers }: State) => ({
+  city, sortedOffers,
 });
 
 const connector = connect(mapStateToProps);
 type ConnectedComponentProps = ConnectedProps<typeof connector>;
 
-function Main({ offers, city }:
-  ConnectedComponentProps &
-  MainProps): JSX.Element {
+function Main({ sortedOffers, city }:
+  ConnectedComponentProps): JSX.Element {
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
 
   const onHover = (id: number | null) => setActiveOffer(id);
@@ -36,16 +30,16 @@ function Main({ offers, city }:
 
         <Header />
 
-        <main className={`page__main page__main--index ${ !offers.length && 'page__main--index-empty'}` }>
+        <main className={`page__main page__main--index ${ !sortedOffers.length && 'page__main--index-empty'}` }>
 
           <Filter />
 
           <div className="cities">
-            <div className={`cities__places-container container ${ !offers.length && 'cities__places-container--empty container'}` }>
-              { offers.length ?
+            <div className={`cities__places-container container ${ !sortedOffers.length && 'cities__places-container--empty container'}` }>
+              { sortedOffers.length ?
                 <section className="cities__places places">
                   <h2 className="visually-hidden">Places</h2>
-                  <b className="places__found">{ offers.length } places to stay in { city }</b>
+                  <b className="places__found">{ sortedOffers.length } places to stay in { city }</b>
 
                   <Sort />
 
@@ -59,9 +53,9 @@ function Main({ offers, city }:
                   </div>
                 </section> }
               <div className="cities__right-section">
-                { offers.length &&
+                { sortedOffers.length &&
                   <section className="cities__map map">
-                    <Map offers={ offers } activeOffer={ activeOffer } />
+                    <Map offers={ sortedOffers } activeOffer={ activeOffer } />
                   </section> }
               </div>
             </div>

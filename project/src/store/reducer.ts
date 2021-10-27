@@ -1,4 +1,4 @@
-import {  DEFAULT_CITY, DEFAULT_SORT } from '../components/const';
+import {  DEFAULT_CITY, DEFAULT_SORT } from '../utils/const';
 import { mockOffers } from '../mock/offers';
 import { mockReviews } from '../mock/reviews';
 import { Actions, State, ActionType } from '../types/reducer';

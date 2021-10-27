@@ -58,3 +58,4 @@ export const sortTypeChanger = {
   [sortTypes.TOP_RATED]: (offers: Offer[]): Offer[]  => sortByRating(offers),
   [sortTypes.POPULAR]: (offers: Offer[]): Offer[]  => offers,
 };
+

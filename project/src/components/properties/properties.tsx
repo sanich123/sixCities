@@ -8,22 +8,26 @@ import PropertiesInside from './properties-inside';
 import Price from '../common/price';
 import Images from './images';
 import Reviews from './reviews';
-import { Review, Offer } from '../../types/types';
 import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
 import NearPlaces from './near-places';
 import Premium from '../common/premium';
 import Rating from '../common/rating';
 import FavoriteButton from '../common/favorite-button';
-
-type propertiesProps = {
-  reviews: Review[],
-  offers: Offer[],
- }
+import { connect, ConnectedProps } from 'react-redux';
+import { State } from '../../types/reducer';
 
 const NUMBER_OF_SLICING = 8;
 
-function Properties({ reviews, offers }: propertiesProps): JSX.Element {
+const mapStateToProps = ({ reviews, offers }: State) => ({
+  reviews, offers,
+});
+
+const connector = connect(mapStateToProps);
+type ConnectedComponentProps = ConnectedProps<typeof connector>;
+
+
+function Properties({ reviews, offers }: ConnectedComponentProps): JSX.Element {
   const uniqUrl = +useHistory().location.pathname.split('').slice(NUMBER_OF_SLICING).join('');
   const [uniqOffer] = offers.slice().filter(({ id }) => id === uniqUrl);
   const nearPlaces = offers.slice().filter(({ city, id }) => city.name === uniqOffer.city.name && id !== uniqOffer.id);
@@ -92,4 +96,7 @@ function Properties({ reviews, offers }: propertiesProps): JSX.Element {
   );
 }
 
-export default Properties;
+export { Properties };
+export default connector(Properties);
+
+

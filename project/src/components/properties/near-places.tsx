@@ -1,5 +1,5 @@
 import { Offer } from '../../types/types';
-import { PROPERTIES } from '../const';
+import { PROPERTIES } from '../../utils/const';
 import Card from '../common/card';
 
 type NearPlacesProps = {

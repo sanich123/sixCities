@@ -2,7 +2,7 @@ import 'leaflet/dist/leaflet.css';
 import { Offer } from '../../types/types';
 import { useEffect, useRef } from 'react';
 import  useMap from '../../hooks/use-map/useMap';
-import {  LeafletUrls } from '../const';
+import {  LeafletUrls } from '../../utils/const';
 import L, { Marker } from 'leaflet';
 import { iconChanger } from '../../utils/utils';
 

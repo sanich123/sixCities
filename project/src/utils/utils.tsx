@@ -2,21 +2,19 @@
 import Favorites from '../components/favorites/favorites';
 import PrivateRoute from '../components/private-route';
 import { Route } from 'react-router';
-import { AuthorizationStatus } from '../components/const';
+import { AuthorizationStatus } from './const';
 import leaflet, { DivIcon, Icon, IconOptions } from 'leaflet';
-import { Offer, Review } from '../types/types';
-import { mockOffers } from '../mock/offers';
-
+// import { Offer, Review } from '../types/types';
 
 type RoutesProps = {
   route: string,
   isPrivate: boolean,
-  component: (offers: Offer[], reviews: Review[]) => JSX.Element,
+  component: () => JSX.Element,
  }
 
 export const generateRoutes = ({ route, component, isPrivate }: RoutesProps): JSX.Element =>
   isPrivate ?
-    <PrivateRoute exact path={ route } key={ route } authorizationStatus={ AuthorizationStatus.AUTH } render={ () => <Favorites offers={ mockOffers }/> } /> :
+    <PrivateRoute exact path={ route } key={ route } authorizationStatus={ AuthorizationStatus.AUTH } render={ () => <Favorites /> } /> :
     <Route exact path={ route } key={ route }>{ component }</Route>;
 
 const RatingToPercent = {

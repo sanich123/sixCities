@@ -1,6 +1,6 @@
 import Card from '../common/card';
 import { Offer } from '../../types/types';
-import { FAVORITES } from '../const';
+import { FAVORITES } from '../../utils/const';
 
 type FavoritesListProps = {
   city: string,
