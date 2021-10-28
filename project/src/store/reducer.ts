@@ -1,6 +1,4 @@
 import {  DEFAULT_CITY, DEFAULT_SORT } from '../const';
-// import { mockOffers } from '../mock/offers';
-// import { mockReviews } from '../mock/reviews';
 import { Actions, State, ActionType } from '../types/reducer';
 
 const initialState = {

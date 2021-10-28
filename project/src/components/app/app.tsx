@@ -1,11 +1,9 @@
 import { BrowserRouter, Switch } from 'react-router-dom';
-import { connect, ConnectedProps } from 'react-redux';
-import { Dispatch  } from 'react';
+import { connect, ConnectedProps, useDispatch } from 'react-redux';
 import { sortTypeChanger } from '../../const';
 import { generateRoutes } from '../../utils/utils';
-import { Actions, State } from '../../types/reducer';
+import { State } from '../../types/reducer';
 import { sortOffers, filterOffers } from '../../store/action';
-import { Offer } from '../../types/types';
 import { pages } from '../../utils/pages';
 
 function mapStateToProps({ city, offers, sortName }: State) {
@@ -14,23 +12,15 @@ function mapStateToProps({ city, offers, sortName }: State) {
   });
 }
 
-const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
-  onSortedOffers(offers: Offer[]) {
-    dispatch(sortOffers(offers));
-  },
-  onFiltredOffers(offers: Offer[]) {
-    dispatch(filterOffers(offers));
-  },
-});
-
-const connector = connect(mapStateToProps, mapDispatchToProps);
+const connector = connect(mapStateToProps);
 type ConnectedComponentProps = ConnectedProps<typeof connector>;
 
-function App({ city, offers, onSortedOffers, onFiltredOffers, sortName }: ConnectedComponentProps): JSX.Element {
+function App({ city, offers, sortName }: ConnectedComponentProps): JSX.Element {
+  const dispatch = useDispatch();
   const filtredOffers = offers.filter((offer) => offer.city.name === city);
-  onFiltredOffers(filtredOffers);
+  dispatch(filterOffers(filtredOffers));
   const sortedOffers = sortTypeChanger[sortName](filtredOffers);
-  onSortedOffers(sortedOffers);
+  dispatch(sortOffers(sortedOffers));
 
   return (
     <BrowserRouter>
