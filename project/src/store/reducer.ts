@@ -18,8 +18,6 @@ const reducer = (state: State = initialState, action: Actions): State => {
       return { ...state, reviews: action.payload };
     case ActionType.CHANGE_CITY:
       return { ...state, city: action.payload };
-    case ActionType.SET_OFFERS:
-      return {...state, offers: action.payload };
     case ActionType.SORT_OFFERS:
       return {...state, sortedOffers: action.payload };
     case ActionType.CHANGE_SORT:

@@ -16,11 +16,6 @@ export const changeCity = (city: string) => ({
   payload: city,
 } as const);
 
-export const setOffers = (offers: Offer[]) => ({
-  type: ActionType.SET_OFFERS,
-  payload: offers,
-} as const);
-
 export const sortOffers = (offers: Offer[]) => ({
   type: ActionType.FILTER_OFFERS,
   payload: offers,
