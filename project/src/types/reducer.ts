@@ -1,8 +1,9 @@
-import { changeCity, setOffers, sortOffers, changeSortName, filterOffers, initStore } from '../store/action';
+import { changeCity, setOffers, sortOffers, changeSortName, filterOffers, initOffers, initReviews } from '../store/action';
 import { Offer, Review } from './types';
 
 export enum ActionType {
-  INIT = 'data/init-app',
+  INIT_OFFERS = 'data/init-offers',
+  INIT_REVIEWS = 'data/init-reviews',
   CHANGE_CITY = 'data/change-city',
   SET_OFFERS = 'data/set-offers',
   SORT_OFFERS = 'data/sort-offers',
@@ -16,7 +17,8 @@ export type Actions =
 | ReturnType <typeof sortOffers>
 | ReturnType <typeof changeSortName>
 | ReturnType <typeof filterOffers>
-| ReturnType <typeof initStore>
+| ReturnType <typeof initOffers>
+| ReturnType <typeof initReviews>
 
 
 export type State = {

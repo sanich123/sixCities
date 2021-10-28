@@ -1,21 +1,23 @@
 import {  DEFAULT_CITY, DEFAULT_SORT } from '../const';
-import { mockOffers } from '../mock/offers';
-import { mockReviews } from '../mock/reviews';
+// import { mockOffers } from '../mock/offers';
+// import { mockReviews } from '../mock/reviews';
 import { Actions, State, ActionType } from '../types/reducer';
 
 const initialState = {
   city: DEFAULT_CITY,
-  offers: mockOffers,
-  sortedOffers: mockOffers,
+  offers: [],
+  sortedOffers: [],
   sortName: DEFAULT_SORT,
-  reviews: mockReviews,
-  filtredOffers: mockOffers,
+  reviews: [],
+  filtredOffers: [],
 };
 
 const reducer = (state: State = initialState, action: Actions): State => {
   switch (action.type) {
-    case ActionType.INIT:
+    case ActionType.INIT_OFFERS:
       return { ...state, offers: action.payload };
+    case ActionType.INIT_REVIEWS:
+      return { ...state, reviews: action.payload };
     case ActionType.CHANGE_CITY:
       return { ...state, city: action.payload };
     case ActionType.SET_OFFERS:
