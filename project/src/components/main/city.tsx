@@ -1,9 +1,9 @@
-import { connect, ConnectedProps } from 'react-redux';
+import { connect, ConnectedProps, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Dispatch } from 'redux';
 import { changeCity } from '../../store/action';
-import { Actions, State } from '../../types/reducer';
+import { State } from '../../types/reducer';
 import cn from 'classnames';
+
 type CityProps = {
   town: string,
 }
@@ -12,26 +12,20 @@ const mapStateToProps = ({ city }: State) => ({
   city,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
-  onChangeCity(city: string) {
-    dispatch(changeCity(city));
-  },
-});
-
-const connector = connect(mapStateToProps, mapDispatchToProps);
+const connector = connect(mapStateToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 type ConnectedComponentProps = PropsFromRedux & CityProps;
 
-function City({ town, onChangeCity, city = 'Paris' }: ConnectedComponentProps): JSX.Element {
+function City({ town, city = 'Paris' }: ConnectedComponentProps): JSX.Element {
   const activeCity = cn('locations__item-link tabs__item', { 'tabs__item--active': city === town });
-
+  const dispatch = useDispatch();
   return (
     <li className="locations__item">
       <Link
         className={ activeCity }
         to="/"
-        onClick={ () => onChangeCity(town) }
+        onClick={ () => dispatch(changeCity(town)) }
       >
         <span>{ town }</span>
       </Link>
