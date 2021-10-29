@@ -14,20 +14,13 @@ import NearPlaces from './near-places';
 import Premium from '../common/premium';
 import Rating from '../common/rating';
 import FavoriteButton from '../common/favorite-button';
-import { connect, ConnectedProps } from 'react-redux';
-import { State } from '../../types/reducer';
+import { useSelector } from 'react-redux';
 
 const NUMBER_OF_SLICING = 8;
 
-const mapStateToProps = ({ reviews, offers }: State) => ({
-  reviews, offers,
-});
-
-const connector = connect(mapStateToProps);
-type ConnectedComponentProps = ConnectedProps<typeof connector>;
-
-
-function Properties({ reviews, offers }: ConnectedComponentProps): JSX.Element {
+function Properties(): JSX.Element {
+  const offers = useSelector((state) => state.offers);
+  const reviews = useSelector((state) => state.reviews);
   const uniqUrl = +useHistory().location.pathname.split('').slice(NUMBER_OF_SLICING).join('');
   const [uniqOffer] = offers.slice().filter(({ id }) => id === uniqUrl);
   const nearPlaces = offers.slice().filter(({ city, id }) => city.name === uniqOffer.city.name && id !== uniqOffer.id);
@@ -96,7 +89,6 @@ function Properties({ reviews, offers }: ConnectedComponentProps): JSX.Element {
   );
 }
 
-export { Properties };
-export default connector(Properties);
+export default Properties;
 
 

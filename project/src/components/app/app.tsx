@@ -1,21 +1,14 @@
 import { BrowserRouter, Switch } from 'react-router-dom';
-import { connect, ConnectedProps, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { sortTypeChanger } from '../../const';
 import { generateRoutes } from '../../utils/utils';
-import { State } from '../../types/reducer';
 import { sortOffers, filterOffers } from '../../store/action';
 import { pages } from '../../utils/pages';
 
-function mapStateToProps({ city, offers, sortName }: State) {
-  return ({
-    city, offers, sortName,
-  });
-}
-
-const connector = connect(mapStateToProps);
-type ConnectedComponentProps = ConnectedProps<typeof connector>;
-
-function App({ city, offers, sortName }: ConnectedComponentProps): JSX.Element {
+function App(): JSX.Element {
+  const offers = useSelector((state) => state.offers);
+  const sortName = useSelector((state) => state.sortName);
+  const city = useSelector((state) => state.city);
   const dispatch = useDispatch();
   const filtredOffers = offers.filter((offer) => offer.city.name === city);
   dispatch(filterOffers(filtredOffers));
@@ -31,5 +24,4 @@ function App({ city, offers, sortName }: ConnectedComponentProps): JSX.Element {
   );
 }
 
-export { App };
-export default connector(App);
+export default App;

@@ -10,7 +10,7 @@ function Filter(): JSX.Element {
         <section className="locations container">
           <ul className="locations__list tabs__list">
 
-            { cities.map((town) => <City key={ town } town={ town } />) }
+            { cities.map((town) => <City key={town} town={town} />) }
 
           </ul>
         </section>

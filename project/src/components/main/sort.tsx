@@ -1,18 +1,10 @@
 import { useState } from 'react';
-import { connect, ConnectedProps, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { changeSortName } from '../../store/action';
-import { State } from '../../types/reducer';
 import { sortTypes } from '../../const';
 
-const mapStateToProps = ({ sortName }: State) => ({
-  sortName,
-});
-
-const connector = connect(mapStateToProps);
-type PropsFromRedux = ConnectedProps<typeof connector>;
-type ConnectedComponentProps = PropsFromRedux;
-
-function Sort({ sortName }: ConnectedComponentProps): JSX.Element {
+function Sort(): JSX.Element {
+  const sortName = useSelector((state) => state.sortName);
   const [isOpen, sortChangeListener] = useState(false);
   const dispatch = useDispatch();
 
@@ -33,5 +25,4 @@ function Sort({ sortName }: ConnectedComponentProps): JSX.Element {
   );
 }
 
-export { Sort };
-export default connector(Sort);
+export default Sort;

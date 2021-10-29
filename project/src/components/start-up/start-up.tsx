@@ -11,7 +11,7 @@ function StartUp(): JSX.Element {
     dispatch(initOffers(mockOffers));
     dispatch(initReviews(mockReviews));
   }, [dispatch]);
-  return (<App />);
+  return <App />;
 }
 
 export default StartUp;

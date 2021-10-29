@@ -1,5 +1,4 @@
-import { connect, ConnectedProps} from 'react-redux';
-import { State } from '../../types/reducer';
+import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import Cards from './cards';
 import Header from '../common/header';
@@ -8,17 +7,10 @@ import Sort from './sort';
 import Filter from './filter';
 import Map from '../map/map';
 
-const mapStateToProps = ({ city, sortedOffers }: State) => ({
-  city, sortedOffers,
-});
-
-const connector = connect(mapStateToProps);
-type ConnectedComponentProps = ConnectedProps<typeof connector>;
-
-function Main({ sortedOffers, city }:
-  ConnectedComponentProps): JSX.Element {
+function Main(): JSX.Element {
+  const city = useSelector((state) => state.city);
+  const sortedOffers = useSelector((state) => state.sortedOffers);
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
-
   const onHover = (id: number | null) => setActiveOffer(id);
 
   return (
@@ -66,6 +58,5 @@ function Main({ sortedOffers, city }:
   );
 }
 
-export { Main };
-export default connector(Main);
+export default Main;
 

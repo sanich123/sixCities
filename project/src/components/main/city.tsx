@@ -1,23 +1,14 @@
-import { connect, ConnectedProps, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { changeCity } from '../../store/action';
-import { State } from '../../types/reducer';
 import cn from 'classnames';
 
 type CityProps = {
   town: string,
 }
 
-const mapStateToProps = ({ city }: State) => ({
-  city,
-});
-
-const connector = connect(mapStateToProps);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-type ConnectedComponentProps = PropsFromRedux & CityProps;
-
-function City({ town, city = 'Paris' }: ConnectedComponentProps): JSX.Element {
+function City({ town }: CityProps): JSX.Element {
+  const city = useSelector((store) => store.city);
   const activeCity = cn('locations__item-link tabs__item', { 'tabs__item--active': city === town });
   const dispatch = useDispatch();
   return (
@@ -33,5 +24,4 @@ function City({ town, city = 'Paris' }: ConnectedComponentProps): JSX.Element {
   );
 }
 
-export { City };
-export default connector(City);
+export default City;
