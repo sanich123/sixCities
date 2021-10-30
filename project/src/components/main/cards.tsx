@@ -1,23 +1,26 @@
-import Card from './card';
-import { Offer } from '../../types/types';
-import { Modificator } from '../const';
+import Card from '../common/card';
+import { MAIN } from '../../const';
+import { useSelector } from 'react-redux';
 
 type cardsProps = {
-  offers: Offer[],
+  onHover?: (id: number) => void,
  }
 
-type OnHover = {
-  onHover?: (id: number) => void
-}
-
-function Cards( { offers, onHover }: cardsProps & OnHover): JSX.Element {
+function Cards( { onHover }: cardsProps): JSX.Element {
+  const filtredOffers = useSelector((store) => store.filtredOffers);
   return (
     <div className="cities__places-list places__list tabs__content">
-      { offers.map(({ id, ...rest }) => <Card id={ id } key={ id } onHover={ onHover } { ...rest } modificator={ Modificator.MAIN } />) }
+      { filtredOffers.map(({ id, ...rest }) => (
+        <Card
+          id={ id }
+          key={ id }
+          onHover={ onHover }
+          { ...rest }
+          modificator={ MAIN }
+        />
+      ))}
     </div>
   );
 }
 
 export default Cards;
-
-

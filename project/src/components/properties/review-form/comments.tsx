@@ -1,17 +1,21 @@
-import { dateFormatter } from '../../const';
+import Image from '../../common/img-avatar';
+import { dateFormatter } from '../../../const';
 import { Review } from '../../../types/types';
 import { transformRating } from '../../../utils/utils';
+import UserName from '../../common/user-name';
 
-function Comments({ comment, date, id, rating, user }: Review): JSX.Element {
+function Comments({ comment, date, rating, user }: Review): JSX.Element {
   return (
-    <li key={ id } className="reviews__item">
+    <li className="reviews__item">
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
-          <img className="reviews__avatar user__avatar" src={ user.avatarUrl } width="54" height="54" alt="Reviews avatar" />
+
+          <Image avatarUrl={ user.avatarUrl } />
+
         </div>
-        <span className="reviews__user-name">
-          { user.name }
-        </span>
+
+        <UserName name={ user.name } />
+
       </div>
       <div className="reviews__info">
         <div className="reviews__rating rating">
