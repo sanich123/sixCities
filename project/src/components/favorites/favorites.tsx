@@ -5,8 +5,7 @@ import FavoritesList from './favorite-list';
 import { useSelector } from 'react-redux';
 
 function Favorites(): JSX.Element {
-  const offers = useSelector((state) => state.offers);
-  const favoriteOffers = offers.filter((offer) => offer.isFavorite);
+  const favoriteOffers = useSelector(({ offers }) => offers).filter((offer) => offer.isFavorite);
   const uniqueСities = Array.from(new Set(favoriteOffers.map(({ city }) => city.name)));
 
   return (

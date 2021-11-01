@@ -6,13 +6,13 @@ import { sortOffers, filterOffers } from '../../store/action';
 import { pages } from '../../utils/pages';
 
 function App(): JSX.Element {
-  const offers = useSelector((state) => state.offers);
-  const sortName = useSelector((state) => state.sortName);
-  const city = useSelector((state) => state.city);
+  const sortedName = useSelector(({ sortName }) => sortName);
+  const town = useSelector(({ city }) => city);
+  const filtredOffers = useSelector(({ offers }) => offers).filter(({ city }) => city.name === town);
+
   const dispatch = useDispatch();
-  const filtredOffers = offers.filter((offer) => offer.city.name === city);
   dispatch(filterOffers(filtredOffers));
-  const sortedOffers = sortTypeChanger[sortName](filtredOffers);
+  const sortedOffers = sortTypeChanger[sortedName](filtredOffers);
   dispatch(sortOffers(sortedOffers));
 
   return (

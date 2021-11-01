@@ -8,8 +8,8 @@ type CityProps = {
 }
 
 function City({ town }: CityProps): JSX.Element {
-  const city = useSelector((store) => store.city);
-  const activeCity = cn('locations__item-link tabs__item', { 'tabs__item--active': city === town });
+  const place = useSelector(({ city }) => city);
+  const activeCity = cn('locations__item-link tabs__item', { 'tabs__item--active': place === town });
   const dispatch = useDispatch();
   return (
     <li className="locations__item">
