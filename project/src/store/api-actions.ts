@@ -2,16 +2,10 @@ import { APIRoute, AuthorizationStatus } from '../const';
 import { dropToken, saveToken, Token } from '../services/token';
 import { ThunkActionResult } from '../types/reducer';
 import { AuthData, Offer, OfferFromServer } from '../types/types';
-import { loadOffers, requireAuthorization, requireLogout } from './action';
+import { loadHotels, requireAuthorization, requireLogout } from './actions';
 
 const adaptToClient = (data: OfferFromServer[]): Offer[] => data.map((offer: OfferFromServer) => {
-  const {
-    'is_favorite': swap1,
-    'is_premium': swap2,
-    'max_adults': swap3,
-    'preview_image': swap4,
-    ...adaptedOffers
-  } = {
+  const { ...adaptedOffers } = {
     ...offer,
     host: {
       ...offer.host,
@@ -23,17 +17,17 @@ const adaptToClient = (data: OfferFromServer[]): Offer[] => data.map((offer: Off
     maxAdults: offer['max_adults'],
     previewImage: offer['preview_image'],
   };
+
   return adaptedOffers;
 });
 
-
-export const fetchOffersAction = (): ThunkActionResult =>
+export const fetchHotels = (): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
-    const { data } = await api.get(APIRoute.Offers);
-    dispatch(loadOffers(adaptToClient(data)));
+    const { data } = await api.get(APIRoute.Hotels);
+    dispatch(loadHotels(adaptToClient(data)));
   };
 
-export const checkAuthAction = (): ThunkActionResult =>
+export const checkAuth = (): ThunkActionResult =>
   async (dispatch, _getState, api) => {
     await api.get(APIRoute.Login)
       .then(() => {

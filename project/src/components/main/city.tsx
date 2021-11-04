@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { changeCity } from '../../store/action';
+import { changeCity } from '../../store/actions';
 import cn from 'classnames';
 
 type CityProps = {

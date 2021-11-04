@@ -32,7 +32,7 @@ export const changeSortName = (name: string) => ({
   payload: name,
 } as const);
 
-export const loadOffers = (offers: Offer[]) => ({
+export const loadHotels = (offers: Offer[]) => ({
   type: ActionType.LOAD_OFFERS,
   payload: offers,
 } as const);

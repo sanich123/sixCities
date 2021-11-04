@@ -2,7 +2,7 @@ import { BrowserRouter, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { sortTypeChanger } from '../../const';
 import { generateRoutes } from '../../utils/utils';
-import { sortOffers, filterOffers } from '../../store/action';
+import { sortOffers, filterOffers } from '../../store/actions';
 import { pages } from '../../utils/pages';
 import LoadingScreen from '../loading-screen/loading-screen';
 import { isCheckedAuth } from '../../types/reducer';

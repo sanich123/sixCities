@@ -6,12 +6,12 @@ import { Provider } from 'react-redux';
 import { reducer } from '../src/store/reducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import StartUp from './components/start-up/start-up';
-import { requireAuthorization } from './store/action';
+import { requireAuthorization } from './store/actions';
 import { AuthorizationStatus } from './const';
 import { createApi } from './services/api';
 import { applyMiddleware } from '@reduxjs/toolkit';
 import { ThunkAppDispatch } from './types/reducer';
-import { checkAuthAction, fetchOffersAction } from './store/api-actions';
+import { checkAuth, fetchHotels } from './store/api-actions';
 
 const api = createApi(
   () => store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH)),
@@ -19,8 +19,8 @@ const api = createApi(
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api))));
 
-(store.dispatch as ThunkAppDispatch)(checkAuthAction());
-(store.dispatch as ThunkAppDispatch)(fetchOffersAction());
+(store.dispatch as ThunkAppDispatch)(checkAuth());
+(store.dispatch as ThunkAppDispatch)(fetchHotels());
 
 ReactDOM.render(
   <React.StrictMode>
