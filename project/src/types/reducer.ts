@@ -1,7 +1,11 @@
-import { changeCity, sortOffers, changeSortName, filterOffers, initOffers, initReviews } from '../store/action';
+import { AuthorizationStatus } from '../const';
+import { changeCity, sortOffers, changeSortName, filterOffers, initOffers, initReviews, loadOffers, requireAuthorization, requireLogout } from '../store/action';
 import { Offer, Review } from './types';
 
 export enum ActionType {
+  LOAD_OFFERS = 'data/downloading-offers',
+  REQUIRED_AUTHORIZATION = 'user/authorization-required',
+  REQUIRE_LOGOUT = 'user/logout-required',
   INIT_OFFERS = 'data/init-offers',
   INIT_REVIEWS = 'data/init-reviews',
   CHANGE_CITY = 'data/change-city',
@@ -17,7 +21,9 @@ export type Actions =
 | ReturnType <typeof filterOffers>
 | ReturnType <typeof initOffers>
 | ReturnType <typeof initReviews>
-
+| ReturnType <typeof loadOffers>
+| ReturnType <typeof requireAuthorization>
+| ReturnType <typeof requireLogout>
 
 export type State = {
   city: string,
@@ -26,4 +32,5 @@ export type State = {
   sortName: string,
   reviews: Review[],
   filtredOffers: Offer[],
+  authorizationStatus: AuthorizationStatus
 }

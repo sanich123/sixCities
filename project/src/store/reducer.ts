@@ -1,4 +1,4 @@
-import {  DEFAULT_CITY, DEFAULT_SORT } from '../const';
+import {  AuthorizationStatus, DEFAULT_CITY, DEFAULT_SORT } from '../const';
 import { Actions, State, ActionType } from '../types/reducer';
 
 const initialState = {
@@ -8,10 +8,17 @@ const initialState = {
   sortName: DEFAULT_SORT,
   reviews: [],
   filtredOffers: [],
+  authorizationStatus: AuthorizationStatus.UNKNOWN,
 };
 
 const reducer = (state: State = initialState, action: Actions): State => {
   switch (action.type) {
+    case ActionType.LOAD_OFFERS:
+      return { ...state, offers: action.payload };
+    case ActionType.REQUIRED_AUTHORIZATION:
+      return { ...state, authorizationStatus: action.payload };
+    case ActionType.REQUIRE_LOGOUT:
+      return { ...state, authorizationStatus: AuthorizationStatus.NO_AUTH };
     case ActionType.INIT_OFFERS:
       return { ...state, offers: action.payload };
     case ActionType.INIT_REVIEWS:
