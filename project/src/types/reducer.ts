@@ -39,8 +39,4 @@ export type State = {
 }
 
 export type ThunkActionResult<R = Promise<void>> = ThunkAction<R, State, AxiosInstance, Actions>;
-
 export type ThunkAppDispatch = ThunkDispatch<State, AxiosInstance, Actions>;
-
-export const isCheckedAuth = (authorizationStatus: AuthorizationStatus): boolean =>
-  authorizationStatus === AuthorizationStatus.UNKNOWN;

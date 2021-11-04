@@ -14,17 +14,17 @@ export enum AppRoute {
   Room = '/offer/:id'
  }
 
+export enum ApiRoute {
+  Hotels = '/hotels',
+  Login = '/login',
+  Logout = '/logout',
+}
+
 export enum AuthorizationStatus {
   AUTH,
   NO_AUTH,
   UNKNOWN,
  }
-
-export enum APIRoute {
-  Hotels = '/hotels',
-  Login = '/login',
-  Logout = '/logout',
-}
 
 export const Marks = {
   5: 'perfect',
