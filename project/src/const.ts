@@ -20,6 +20,12 @@ export enum AuthorizationStatus {
   UNKNOWN,
  }
 
+export enum APIRoute {
+  Offers = '/offers',
+  Login = '/login',
+  Logout = '/logout',
+}
+
 export const Marks = {
   5: 'perfect',
   4: 'good',

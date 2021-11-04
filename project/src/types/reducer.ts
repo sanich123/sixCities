@@ -1,3 +1,5 @@
+import { ThunkAction, ThunkDispatch } from 'redux-thunk';
+import { AxiosInstance } from 'axios';
 import { AuthorizationStatus } from '../const';
 import { changeCity, sortOffers, changeSortName, filterOffers, initOffers, initReviews, loadOffers, requireAuthorization, requireLogout } from '../store/action';
 import { Offer, Review } from './types';
@@ -34,3 +36,7 @@ export type State = {
   filtredOffers: Offer[],
   authorizationStatus: AuthorizationStatus
 }
+
+export type ThunkActionResult<R = Promise<void>> = ThunkAction<R, State, AxiosInstance, Actions>;
+
+export type ThunkAppDispatch = ThunkDispatch<State, AxiosInstance, Actions>;
