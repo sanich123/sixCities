@@ -9,6 +9,7 @@ const initialState = {
   reviews: [],
   filtredOffers: [],
   authorizationStatus: AuthorizationStatus.UNKNOWN,
+  isDataLoaded: false,
 };
 
 const reducer = (state: State = initialState, action: Actions): State => {

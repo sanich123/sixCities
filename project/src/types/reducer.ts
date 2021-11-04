@@ -34,7 +34,8 @@ export type State = {
   sortName: string,
   reviews: Review[],
   filtredOffers: Offer[],
-  authorizationStatus: AuthorizationStatus
+  authorizationStatus: AuthorizationStatus,
+  isDataLoaded: boolean,
 }
 
 export type ThunkActionResult<R = Promise<void>> = ThunkAction<R, State, AxiosInstance, Actions>;
