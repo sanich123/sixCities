@@ -12,7 +12,7 @@ type RoutesProps = {
 
 export const generateRoutes = ({ route, component, isPrivate }: RoutesProps): JSX.Element =>
   isPrivate ?
-    <PrivateRoute exact path={ route } key={ route } authorizationStatus={ AuthorizationStatus.AUTH } render={ () => <Favorites /> } /> :
+    <PrivateRoute exact path={ route } key={ route } authorizationStatus={ AuthorizationStatus.NO_AUTH } render={ () => <Favorites /> } /> :
     <Route exact path={ route } key={ route }>{ component }</Route>;
 
 const RatingToPercent = {

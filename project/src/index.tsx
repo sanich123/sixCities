@@ -24,7 +24,7 @@ const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk.wit
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store} >
+    <Provider store={ store } >
       <StartUp />
     </Provider>
   </React.StrictMode>,
