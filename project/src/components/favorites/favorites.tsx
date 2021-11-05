@@ -19,8 +19,8 @@ function Favorites(): JSX.Element {
         <main className={ `${!favoriteOffers.length && 'page__main--favorites-empty'} page__main page__main--favorites`}>
           <div className="page__favorites-container container">
             <section className={ `favorites${ !favoriteOffers.length && '--empty'}`}>
-              <h1 className={ favoriteOffers.length ? 'favorites__title' : 'visually-hidden'}>{ favoriteOffers.length ? 'Saved listing' : 'Favorites (empty)'}</h1>
-              { favoriteOffers.length ?
+              <h1 className={ favoriteOffers.length ? 'favorites__title' : 'visually-hidden'}>{ favoriteOffers.length > 0 ? 'Saved listing' : 'Favorites (empty)'}</h1>
+              { favoriteOffers.length > 0 ?
                 <ul className="favorites__list">
                   { uniqueСities.map((city) =>
                     (<FavoritesList city={ city } offers={ favoriteOffers } key={ city } />)) }

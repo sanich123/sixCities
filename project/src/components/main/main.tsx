@@ -28,7 +28,7 @@ function Main(): JSX.Element {
 
           <div className="cities">
             <div className={`cities__places-container container ${ !sortOffers.length && 'cities__places-container--empty container'}` }>
-              { sortOffers.length ?
+              { sortOffers.length > 0 ?
                 <section className="cities__places places">
                   <h2 className="visually-hidden">Places</h2>
                   <b className="places__found">{ sortOffers.length } places to stay in { town }</b>
@@ -45,7 +45,7 @@ function Main(): JSX.Element {
                   </div>
                 </section> }
               <div className="cities__right-section">
-                { sortOffers.length &&
+                { sortOffers.length > 0 &&
                   <section className="cities__map map">
                     <Map offers={ sortOffers } activeOffer={ activeOffer } />
                   </section> }
