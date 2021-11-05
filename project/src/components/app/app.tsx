@@ -19,9 +19,7 @@ function App(): JSX.Element {
   dispatch(sortOffers(sortedOffers));
 
   if (authStatus === AuthorizationStatus.UNKNOWN || !isLoaded) {
-    return (
-      <LoadingScreen />
-    );
+    return <LoadingScreen />;
   }
 
   return (
