@@ -11,6 +11,7 @@ function City({ town }: CityProps): JSX.Element {
   const place = useSelector(({ city }) => city);
   const activeCity = cn('locations__item-link tabs__item', { 'tabs__item--active': place === town });
   const dispatch = useDispatch();
+
   return (
     <li className="locations__item">
       <Link

@@ -1,10 +1,11 @@
 import { ApiRoute, AuthorizationStatus } from '../const';
 import { dropToken, saveToken, Token } from '../services/token';
 import { ThunkActionResult } from '../types/reducer';
-import { AuthData, Offer, OfferFromServer } from '../types/types';
+import { AuthData, Offer, OfferDTO } from '../types/types';
 import { loadHotels, requireAuthorization, requireLogout } from './actions';
 
-const adaptToClient = (data: OfferFromServer[]): Offer[] => data.map((offer: OfferFromServer) => ({
+const adaptToClient = (data: OfferDTO[]): Offer[] =>
+  data.map((offer: OfferDTO) => ({
     ...offer,
     host: {
       ...offer.host,
@@ -15,7 +16,7 @@ const adaptToClient = (data: OfferFromServer[]): Offer[] => data.map((offer: Off
     isPremium: offer['is_premium'],
     maxAdults: offer['max_adults'],
     previewImage: offer['preview_image'],
-  });
+  }));
 
 export const fetchHotels = (): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
