@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeSortName } from '../../store/action';
+import { changeSortName } from '../../store/actions';
 import { sortTypes } from '../../const';
 
 function Sort(): JSX.Element {

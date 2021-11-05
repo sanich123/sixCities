@@ -8,8 +8,8 @@ import Filter from './filter';
 import Map from '../map/map';
 
 function Main(): JSX.Element {
-  const city = useSelector((state) => state.city);
-  const sortedOffers = useSelector((state) => state.sortedOffers);
+  const town = useSelector(({ city }) => city);
+  const sortOffers = useSelector(({ sortedOffers }) => sortedOffers);
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
   const onHover = (id: number | null) => setActiveOffer(id);
 
@@ -22,16 +22,16 @@ function Main(): JSX.Element {
 
         <Header />
 
-        <main className={`page__main page__main--index ${ !sortedOffers.length && 'page__main--index-empty'}` }>
+        <main className={`page__main page__main--index ${ !sortOffers.length && 'page__main--index-empty'}` }>
 
           <Filter />
 
           <div className="cities">
-            <div className={`cities__places-container container ${ !sortedOffers.length && 'cities__places-container--empty container'}` }>
-              { sortedOffers.length ?
+            <div className={`cities__places-container container ${ !sortOffers.length && 'cities__places-container--empty container'}` }>
+              { sortOffers.length > 0 ?
                 <section className="cities__places places">
                   <h2 className="visually-hidden">Places</h2>
-                  <b className="places__found">{ sortedOffers.length } places to stay in { city }</b>
+                  <b className="places__found">{ sortOffers.length } places to stay in { town }</b>
 
                   <Sort />
 
@@ -41,13 +41,13 @@ function Main(): JSX.Element {
                 <section className="cities__no-places">
                   <div className="cities__status-wrapper tabs__content">
                     <b className="cities__status">No places to stay available</b>
-                    <p className="cities__status-description">We could not find any property available at the moment in { city }</p>
+                    <p className="cities__status-description">We could not find any property available at the moment in { town }</p>
                   </div>
                 </section> }
               <div className="cities__right-section">
-                { sortedOffers.length &&
+                { sortOffers.length > 0 &&
                   <section className="cities__map map">
-                    <Map offers={ sortedOffers } activeOffer={ activeOffer } />
+                    <Map offers={ sortOffers } activeOffer={ activeOffer } />
                   </section> }
               </div>
             </div>

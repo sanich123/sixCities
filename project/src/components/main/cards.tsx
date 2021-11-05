@@ -7,10 +7,11 @@ type cardsProps = {
  }
 
 function Cards( { onHover }: cardsProps): JSX.Element {
-  const filtredOffers = useSelector((store) => store.filtredOffers);
+  const offersFiltred = useSelector(({ filtredOffers }) => filtredOffers);
+
   return (
     <div className="cities__places-list places__list tabs__content">
-      { filtredOffers.map(({ id, ...rest }) => (
+      { offersFiltred.map(({ id, ...rest }) => (
         <Card
           id={ id }
           key={ id }

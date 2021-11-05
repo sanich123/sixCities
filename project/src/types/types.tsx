@@ -42,3 +42,34 @@ export type Offer = {
   title: string,
   type: string,
  }
+
+export type HostAdapted = {
+  ['avatar_url']: string,
+  id: number,
+  ['is_pro']: boolean,
+  name: string,
+}
+
+export type OfferDTO = {
+  bedrooms: number,
+  city: City,
+  description: string,
+  goods: string[],
+  host: HostAdapted,
+  id: number,
+  images: string[],
+  ['is_premium']: boolean,
+  location: Location,
+  ['is_favorite']: boolean,
+  ['max_adults']: number,
+  ['preview_image']: string,
+  price: number,
+  rating: number,
+  title: string,
+  type: string,
+ }
+
+export type AuthData = {
+  login: string;
+  password: string;
+};

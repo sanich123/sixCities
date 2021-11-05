@@ -1,19 +1,28 @@
 import { BrowserRouter, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { sortTypeChanger } from '../../const';
+import { AuthorizationStatus, sortTypeChanger } from '../../const';
 import { generateRoutes } from '../../utils/utils';
-import { sortOffers, filterOffers } from '../../store/action';
+import { sortOffers, filterOffers } from '../../store/actions';
 import { pages } from '../../utils/pages';
+import LoadingScreen from '../loading-screen/loading-screen';
 
 function App(): JSX.Element {
-  const offers = useSelector((state) => state.offers);
-  const sortName = useSelector((state) => state.sortName);
-  const city = useSelector((state) => state.city);
+  const authStatus = useSelector(({ authorizationStatus }) => authorizationStatus);
+  const isLoaded = useSelector(({ isDataLoaded }) => isDataLoaded);
+  const sortedName = useSelector(({ sortName }) => sortName);
+  const town = useSelector(({ city }) => city);
+  const filtredOffers = useSelector(({ offers }) => offers).filter(({ city }) => city.name === town);
+
   const dispatch = useDispatch();
-  const filtredOffers = offers.filter((offer) => offer.city.name === city);
   dispatch(filterOffers(filtredOffers));
-  const sortedOffers = sortTypeChanger[sortName](filtredOffers);
+  const sortedOffers = sortTypeChanger[sortedName](filtredOffers);
   dispatch(sortOffers(sortedOffers));
+
+  if (authStatus === AuthorizationStatus.UNKNOWN || !isLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
 
   return (
     <BrowserRouter>

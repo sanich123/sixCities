@@ -1,3 +1,4 @@
+import { AuthorizationStatus } from '../const';
 import { ActionType } from '../types/reducer';
 import { Offer, Review } from '../types/types';
 
@@ -29,4 +30,18 @@ export const filterOffers = (offers: Offer[]) => ({
 export const changeSortName = (name: string) => ({
   type: ActionType.CHANGE_SORT,
   payload: name,
+} as const);
+
+export const loadHotels = (offers: Offer[]) => ({
+  type: ActionType.LOAD_OFFERS,
+  payload: offers,
+} as const);
+
+export const requireAuthorization = (authStatus: AuthorizationStatus) => ({
+  type: ActionType.REQUIRED_AUTHORIZATION,
+  payload: authStatus,
+} as const);
+
+export const requireLogout = () => ({
+  type: ActionType.REQUIRE_LOGOUT,
 } as const);

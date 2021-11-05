@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { changeCity } from '../../store/action';
+import { changeCity } from '../../store/actions';
 import cn from 'classnames';
 
 type CityProps = {
@@ -8,9 +8,10 @@ type CityProps = {
 }
 
 function City({ town }: CityProps): JSX.Element {
-  const city = useSelector((store) => store.city);
-  const activeCity = cn('locations__item-link tabs__item', { 'tabs__item--active': city === town });
+  const place = useSelector(({ city }) => city);
+  const activeCity = cn('locations__item-link tabs__item', { 'tabs__item--active': place === town });
   const dispatch = useDispatch();
+
   return (
     <li className="locations__item">
       <Link
