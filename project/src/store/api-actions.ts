@@ -4,8 +4,7 @@ import { ThunkActionResult } from '../types/reducer';
 import { AuthData, Offer, OfferFromServer } from '../types/types';
 import { loadHotels, requireAuthorization, requireLogout } from './actions';
 
-const adaptToClient = (data: OfferFromServer[]): Offer[] => data.map((offer: OfferFromServer) => {
-  const { ...adaptedOffers } = {
+const adaptToClient = (data: OfferFromServer[]): Offer[] => data.map((offer: OfferFromServer) => ({
     ...offer,
     host: {
       ...offer.host,
@@ -16,10 +15,7 @@ const adaptToClient = (data: OfferFromServer[]): Offer[] => data.map((offer: Off
     isPremium: offer['is_premium'],
     maxAdults: offer['max_adults'],
     previewImage: offer['preview_image'],
-  };
-
-  return adaptedOffers;
-});
+  });
 
 export const fetchHotels = (): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
