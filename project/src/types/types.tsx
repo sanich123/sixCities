@@ -50,7 +50,7 @@ export type HostAdapted = {
   name: string,
 }
 
-export type OfferFromServer = {
+export type OfferDTO = {
   bedrooms: number,
   city: City,
   description: string,
