@@ -35,6 +35,7 @@ export type State = {
   reviews: Review[],
   filtredOffers: Offer[],
   authorizationStatus: AuthorizationStatus,
+  authorizationEmail?: string | undefined | null,
   isDataLoaded: boolean,
 }
 

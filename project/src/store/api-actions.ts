@@ -26,10 +26,8 @@ export const fetchHotels = (): ThunkActionResult =>
 
 export const checkAuth = (): ThunkActionResult =>
   async (dispatch, _getState, api) => {
-    await api.get(ApiRoute.Login)
-      .then(() => {
-        dispatch(requireAuthorization(AuthorizationStatus.AUTH));
-      });
+    const { data: { email }} = await api.get(ApiRoute.Login);
+    dispatch(requireAuthorization(AuthorizationStatus.AUTH, email));
   };
 
 export const loginAction = ({ login: email, password }: AuthData): ThunkActionResult =>

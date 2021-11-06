@@ -9,15 +9,22 @@ const initialState = {
   reviews: [],
   filtredOffers: [],
   authorizationStatus: AuthorizationStatus.UNKNOWN,
+  authorizationEmail: null,
   isDataLoaded: false,
 };
 
 const reducer = (state: State = initialState, action: Actions): State => {
   switch (action.type) {
     case ActionType.LOAD_OFFERS:
-      return { ...state, offers: action.payload };
-    case ActionType.REQUIRED_AUTHORIZATION:
-      return { ...state, authorizationStatus: action.payload, isDataLoaded: true };
+      return { ...state, offers: action.payload, isDataLoaded: true };
+    case ActionType.REQUIRED_AUTHORIZATION: {
+      const { authStatus, authEmail } = action.payload;
+      return {
+        ...state,
+        authorizationStatus: authStatus,
+        authorizationEmail: authEmail,
+      };
+    }
     case ActionType.REQUIRE_LOGOUT:
       return { ...state, authorizationStatus: AuthorizationStatus.NO_AUTH };
     case ActionType.INIT_OFFERS:
