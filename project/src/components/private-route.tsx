@@ -10,6 +10,8 @@ type PrivateRouteProps = RouteProps & {
 function PrivateRoute(props: PrivateRouteProps): JSX.Element {
   const { exact, path, render } = props;
   const authStatus = useSelector(({ authorizationStatus }) => authorizationStatus);
+  // eslint-disable-next-line no-console
+  console.log(authStatus);
   return (
     <Route
       exact={ exact }

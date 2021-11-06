@@ -47,4 +47,5 @@ export const requireAuthorization = (authStatus: AuthorizationStatus, authEmail?
 
 export const requireLogout = () => ({
   type: ActionType.REQUIRE_LOGOUT,
+  payload: AuthorizationStatus.NO_AUTH,
 } as const);
