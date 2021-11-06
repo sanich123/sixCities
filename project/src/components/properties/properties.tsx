@@ -15,15 +15,17 @@ import Premium from '../common/premium';
 import Rating from '../common/rating';
 import FavoriteButton from '../common/favorite-button';
 import { useSelector } from 'react-redux';
+import { AuthorizationStatus } from '../../const';
 
 const NUMBER_OF_SLICING = 8;
 
 function Properties(): JSX.Element {
   const offers = useSelector((state) => state.offers);
   const reviews = useSelector((state) => state.reviews);
+  const authStatus = useSelector(({ authorizationStatus }) => authorizationStatus);
   const uniqUrl = +useHistory().location.pathname.split('').slice(NUMBER_OF_SLICING).join('');
-  const [uniqOffer] = offers.slice().filter(({ id }) => id === uniqUrl);
-  const nearPlaces = offers.slice().filter(({ city, id }) => city.name === uniqOffer.city.name && id !== uniqOffer.id);
+  const [uniqOffer] = offers.filter(({ id }) => id === uniqUrl);
+  const nearPlaces = offers.filter(({ city, id }) => city.name === uniqOffer.city.name && id !== uniqOffer.id);
   const { images, isPremium, title, isFavorite, rating, type, bedrooms, maxAdults, price, goods, host, description } = uniqOffer;
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
   const onHover = (id: number | null) => setActiveOffer(id);
@@ -69,7 +71,7 @@ function Properties(): JSX.Element {
 
                   <Reviews reviews={ reviews } />
 
-                  <ReviewForm />
+                  { authStatus === AuthorizationStatus.AUTH && <ReviewForm /> }
 
                 </section>
               </div>
