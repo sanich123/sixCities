@@ -37,9 +37,9 @@ export const loadUniqHotelComments = (comments: Review[]) => ({
   payload: comments,
 } as const);
 
-export const loadNearBy = (comments: Offer[]) => ({
+export const loadNearBy = (hotels: Offer[]) => ({
   type: ActionType.LOAD_NEARBY,
-  payload: comments,
+  payload: hotels,
 } as const);
 
 export const requireAuthorization = (authStatus: AuthorizationStatus, authEmail?: string | null | undefined) => ({

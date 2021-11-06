@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoutes, AuthorizationStatus } from '../../const';
 import { logoutAction } from '../../store/api-actions';
 
 
@@ -23,7 +23,7 @@ function UserMenu(): JSX.Element {
             <li className="header__nav-item">
               <Link
                 className="header__nav-link"
-                to={ AppRoute.Main }
+                to={ AppRoutes.Main }
                 onClick={() => dispatch(logoutAction())}
               >
                 <span className="header__signout">Sign out</span>
@@ -32,7 +32,7 @@ function UserMenu(): JSX.Element {
           </>
           :
           <li className="header__nav-item user">
-            <Link className="header__nav-link header__nav-link--profile" to={ AppRoute.SignIn }>
+            <Link className="header__nav-link header__nav-link--profile" to={ AppRoutes.SignIn }>
               <div className="header__avatar-wrapper user__avatar-wrapper">
               </div>
               <span className="header__login">Sign in</span>

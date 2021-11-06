@@ -3,7 +3,7 @@ import Logo from '../common/logo';
 import { FormEvent, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginAction } from '../../store/api-actions';
-import { AppRoute } from '../../const';
+import { AppRoutes } from '../../const';
 import { useHistory } from 'react-router';
 
 function LogIn(): JSX.Element {
@@ -21,7 +21,7 @@ function LogIn(): JSX.Element {
         login: loginRef.current.value,
         password: passwordRef.current.value,
       }));
-      history.push(AppRoute.Main);
+      history.push(AppRoutes.Main);
     }
   };
 

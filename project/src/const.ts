@@ -7,14 +7,14 @@ export const cities = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', '
 export const DEFAULT_CITY = 'Paris';
 export const DEFAULT_SORT = 'Popular';
 
-export enum AppRoute {
+export enum AppRoutes {
   Main = '/',
   SignIn = '/login',
   Favorites = '/favorites',
   Room = '/offer/:id'
  }
 
-export enum ApiRoute {
+export enum ApiRoutes {
   Hotels = '/hotels',
   Login = '/login',
   Logout = '/logout',

@@ -1,4 +1,4 @@
-import { ApiRoute, AuthorizationStatus } from '../const';
+import { ApiRoutes, AuthorizationStatus } from '../const';
 import { dropToken, saveToken } from '../services/token';
 import { ThunkActionResult } from '../types/reducer';
 import { AuthData, Offer, OfferDTO, Review, ReviewDTO } from '../types/types';
@@ -35,25 +35,25 @@ const adaptComments = (comments: ReviewDTO[]): Review[] =>
 
 export const fetchHotels = (): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
-    const { data } = await api.get(ApiRoute.Hotels);
+    const { data } = await api.get(ApiRoutes.Hotels);
     dispatch(loadHotels(adaptOffers(data)));
   };
 
 export const fetchUniqHotel = (id: number): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
-    const { data } = await api.get(`${ApiRoute.Hotels}/${id}`);
+    const { data } = await api.get(`${ApiRoutes.Hotels}/${id}`);
     dispatch(loadUniqHotel(adaptOffer(data)));
   };
 
 export const fetchComments = (id: number): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
-    const { data } = await api.get(`${ApiRoute.Comments}/${id}`);
+    const { data } = await api.get(`${ApiRoutes.Comments}/${id}`);
     dispatch(loadUniqHotelComments(adaptComments(data)));
   };
 
 export const fetchNearBy = (id: number): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
-    const { data } = await api.get(`${ApiRoute.Hotels}/${id}${ApiRoute.NearBy}`);
+    const { data } = await api.get(`${ApiRoutes.Hotels}/${id}${ApiRoutes.NearBy}`);
     dispatch(loadNearBy(adaptOffers(data)));
   };
 
@@ -61,7 +61,7 @@ export const fetchNearBy = (id: number): ThunkActionResult =>
 export const checkAuth = (): ThunkActionResult =>
   async (dispatch, _getState, api) => {
     try {
-      const { data: { email }} = await api.get(ApiRoute.Login);
+      const { data: { email }} = await api.get(ApiRoutes.Login);
       dispatch(requireAuthorization(AuthorizationStatus.AUTH, email));
     }
     catch {
@@ -71,7 +71,7 @@ export const checkAuth = (): ThunkActionResult =>
 
 export const loginAction = ({ login: email, password }: AuthData): ThunkActionResult =>
   async (dispatch, _getState, api) => {
-    const { data } = await api.post(ApiRoute.Login, { email, password });
+    const { data } = await api.post(ApiRoutes.Login, { email, password });
     const { email: emailAuth, token } = data;
     saveToken(token);
     dispatch(requireAuthorization(AuthorizationStatus.AUTH, emailAuth));
@@ -79,7 +79,7 @@ export const loginAction = ({ login: email, password }: AuthData): ThunkActionRe
 
 export const logoutAction = (): ThunkActionResult =>
   async (dispatch, _getState, api) => {
-    api.delete(ApiRoute.Logout);
+    api.delete(ApiRoutes.Logout);
     dropToken();
     dispatch(requireLogout());
   };

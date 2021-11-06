@@ -4,6 +4,7 @@ import Rating from './rating';
 
 function ReviewForm(): JSX.Element {
   const [text, setText] = useState('');
+  const [, setRating] = useState('');
 
   return (
     <form className="reviews__form form"
@@ -14,7 +15,7 @@ function ReviewForm(): JSX.Element {
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         { Object.entries(Marks).reverse().map(([mark, value]) => (
-          <Rating key={ value } value={ value } mark={ mark } />
+          <Rating key={ value } value={ value } mark={ mark } setRating={setRating} />
         )) }
       </div>
 
