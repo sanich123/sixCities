@@ -1,5 +1,5 @@
 import { ApiRoute, AuthorizationStatus } from '../const';
-import { dropToken, saveToken, Token } from '../services/token';
+import { dropToken, saveToken } from '../services/token';
 import { ThunkActionResult } from '../types/reducer';
 import { AuthData, Offer, OfferDTO } from '../types/types';
 import { loadHotels, requireAuthorization, requireLogout } from './actions';
@@ -32,9 +32,10 @@ export const checkAuth = (): ThunkActionResult =>
 
 export const loginAction = ({ login: email, password }: AuthData): ThunkActionResult =>
   async (dispatch, _getState, api) => {
-    const { data: { token }} = await api.post<{token: Token}>(ApiRoute.Login, { email, password });
+    const { data } = await api.post(ApiRoute.Login, { email, password });
+    const { email: emailAuth, token } = data;
     saveToken(token);
-    dispatch(requireAuthorization(AuthorizationStatus.AUTH));
+    dispatch(requireAuthorization(AuthorizationStatus.AUTH, emailAuth));
   };
 
 export const logoutAction = (): ThunkActionResult =>

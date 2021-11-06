@@ -11,7 +11,7 @@ import { AuthorizationStatus } from './const';
 import { createApi } from './services/api';
 import { applyMiddleware } from '@reduxjs/toolkit';
 import { ThunkAppDispatch } from './types/reducer';
-import { checkAuth, fetchHotels } from './store/api-actions';
+import { fetchHotels } from './store/api-actions';
 
 const api = createApi(
   () => store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH)),
@@ -19,7 +19,6 @@ const api = createApi(
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api))));
 
-(store.dispatch as ThunkAppDispatch)(checkAuth());
 (store.dispatch as ThunkAppDispatch)(fetchHotels());
 
 ReactDOM.render(
