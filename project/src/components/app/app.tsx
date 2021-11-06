@@ -7,6 +7,7 @@ import { pages } from '../../utils/pages';
 import LoadingScreen from '../loading-screen/loading-screen';
 import { State } from '../../types/reducer';
 
+
 function App(): JSX.Element {
   const isLoaded = useSelector(({ isDataLoaded }: State) => isDataLoaded);
   const sortedName = useSelector(({ sortName }: State) => sortName);

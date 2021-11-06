@@ -6,6 +6,7 @@ import { loadHotels, loadNearBy, loadUniqHotel, loadUniqHotelComments, requireAu
 import { toast } from 'react-toastify';
 
 const AUTH_FAIL_MESSAGE = 'Не забудьте авторизоваться!';
+
 const adaptOffers = (data: OfferDTO[]): Offer[] =>
   data.map((offer: OfferDTO) => ({
     ...offer,

@@ -12,6 +12,8 @@ import { applyMiddleware } from '@reduxjs/toolkit';
 import { ThunkAppDispatch } from './types/reducer';
 import { checkAuth, fetchHotels } from './store/api-actions';
 import App from './components/app/app';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const api = createApi(
   () => store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH)),
@@ -25,6 +27,7 @@ const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk.wit
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={ store } >
+      <ToastContainer />
       <App />
     </Provider>
   </React.StrictMode>,
