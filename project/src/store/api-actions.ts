@@ -3,7 +3,9 @@ import { dropToken, saveToken } from '../services/token';
 import { ThunkActionResult } from '../types/reducer';
 import { AuthData, Offer, OfferDTO } from '../types/types';
 import { loadHotels, requireAuthorization, requireLogout } from './actions';
+import { toast } from 'react-toastify';
 
+const AUTH_FAIL_MESSAGE = 'Не забудьте авторизоваться!';
 const adaptToClient = (data: OfferDTO[]): Offer[] =>
   data.map((offer: OfferDTO) => ({
     ...offer,
@@ -26,8 +28,13 @@ export const fetchHotels = (): ThunkActionResult =>
 
 export const checkAuth = (): ThunkActionResult =>
   async (dispatch, _getState, api) => {
-    const { data: { email }} = await api.get(ApiRoute.Login);
-    dispatch(requireAuthorization(AuthorizationStatus.AUTH, email));
+    try {
+      const { data: { email }} = await api.get(ApiRoute.Login);
+      dispatch(requireAuthorization(AuthorizationStatus.AUTH, email));
+    }
+    catch {
+      toast.warn(AUTH_FAIL_MESSAGE);
+    }
   };
 
 export const loginAction = ({ login: email, password }: AuthData): ThunkActionResult =>
