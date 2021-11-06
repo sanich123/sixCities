@@ -2,11 +2,11 @@ import { ApiRoute, AuthorizationStatus } from '../const';
 import { dropToken, saveToken } from '../services/token';
 import { ThunkActionResult } from '../types/reducer';
 import { AuthData, Offer, OfferDTO, Review, ReviewDTO } from '../types/types';
-import { loadHotels, loadUniqHotel, loadUniqHotelComments, requireAuthorization, requireLogout } from './actions';
+import { loadHotels, loadNearBy, loadUniqHotel, loadUniqHotelComments, requireAuthorization, requireLogout } from './actions';
 import { toast } from 'react-toastify';
 
 const AUTH_FAIL_MESSAGE = 'Не забудьте авторизоваться!';
-const adaptToClient = (data: OfferDTO[]): Offer[] =>
+const adaptOffers = (data: OfferDTO[]): Offer[] =>
   data.map((offer: OfferDTO) => ({
     ...offer,
     host: {
@@ -20,7 +20,7 @@ const adaptToClient = (data: OfferDTO[]): Offer[] =>
     previewImage: offer['preview_image'],
   }));
 
-const adaptToClientOffer = (offer: OfferDTO): Offer => ({
+const adaptOffer = (offer: OfferDTO): Offer => ({
   ...offer,
   host: {
     ...offer.host,
@@ -33,7 +33,7 @@ const adaptToClientOffer = (offer: OfferDTO): Offer => ({
   previewImage: offer['preview_image'],
 });
 
-const adaptedComments = (comments: ReviewDTO[]): Review[] =>
+const adaptComments = (comments: ReviewDTO[]): Review[] =>
   comments.map((comment: ReviewDTO) => ({
     ...comment,
     user: {
@@ -47,20 +47,27 @@ const adaptedComments = (comments: ReviewDTO[]): Review[] =>
 export const fetchHotels = (): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
     const { data } = await api.get(ApiRoute.Hotels);
-    dispatch(loadHotels(adaptToClient(data)));
+    dispatch(loadHotels(adaptOffers(data)));
   };
 
 export const fetchUniqHotel = (id: number): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
     const { data } = await api.get(`${ApiRoute.Hotels}/${id}`);
-    dispatch(loadUniqHotel(adaptToClientOffer(data)));
+    dispatch(loadUniqHotel(adaptOffer(data)));
   };
 
 export const fetchComments = (id: number): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
     const { data } = await api.get(`${ApiRoute.Comments}/${id}`);
-    dispatch(loadUniqHotelComments(adaptedComments(data)));
+    dispatch(loadUniqHotelComments(adaptComments(data)));
   };
+
+export const fetchNearBy = (id: number): ThunkActionResult =>
+  async (dispatch, _getState, api): Promise<void> => {
+    const { data } = await api.get(`${ApiRoute.Hotels}/${id}${ApiRoute.NearBy}`);
+    dispatch(loadNearBy(adaptOffers(data)));
+  };
+
 
 export const checkAuth = (): ThunkActionResult =>
   async (dispatch, _getState, api) => {

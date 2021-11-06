@@ -16,21 +16,20 @@ import Rating from '../common/rating';
 import FavoriteButton from '../common/favorite-button';
 import { useDispatch, useSelector } from 'react-redux';
 import { AuthorizationStatus } from '../../const';
-import { fetchComments, fetchUniqHotel } from '../../store/api-actions';
+import { fetchComments, fetchNearBy, fetchUniqHotel } from '../../store/api-actions';
 import { State } from '../../types/reducer';
 import { Offer } from '../../types/types';
-import Page404 from '../page404/page404';
+import LoadingScreen from '../loading-screen/loading-screen';
 
 const NUMBER_OF_SLICING = 8;
 
 function Properties(): JSX.Element {
   const dispatch = useDispatch();
-
-  const offers = useSelector((state) => state.offers);
-  // const reviews = useSelector((state) => state.reviews);
   const comments = useSelector((state: State) => state.comments);
-  const authStatus = useSelector(({ authorizationStatus }) => authorizationStatus);
+  const nearByOffers = useSelector((state: State) => state.nearByOffers);
+  const authStatus = useSelector(({ authorizationStatus }: State) => authorizationStatus);
   const uniqUrl = +useHistory().location.pathname.split('').slice(NUMBER_OF_SLICING).join('');
+  const uniqOffer = useSelector((state: State): Offer | null => state.uniqOffer);
 
   useEffect(() => {
     dispatch(fetchUniqHotel(uniqUrl));
@@ -40,14 +39,17 @@ function Properties(): JSX.Element {
     dispatch(fetchComments(uniqUrl));
   }, [dispatch, uniqUrl]);
 
+  useEffect(() => {
+    dispatch(fetchNearBy(uniqUrl));
+  }, [dispatch, uniqUrl]);
+
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
   const onHover = (id: number | null) => setActiveOffer(id);
-  const uniqOffer = useSelector((state: State): Offer | null => state.uniqOffer);
+
 
   if (uniqOffer) {
     const { images, isPremium, title, isFavorite, rating, type, bedrooms, maxAdults, price, goods, host, description } = uniqOffer;
-
-    const nearPlaces = offers.filter(({ city, id }) => city.name === uniqOffer.city.name && id !== uniqOffer.id);
+    const nearPlaces = [uniqOffer, ...nearByOffers];
 
     return (
       <>
@@ -109,7 +111,7 @@ function Properties(): JSX.Element {
       </>
     );
   }
-  return <Page404 />;
+  return <LoadingScreen />;
 }
 
 export default Properties;

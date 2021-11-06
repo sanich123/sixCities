@@ -10,6 +10,7 @@ const initialState = {
   sortName: DEFAULT_SORT,
   reviews: [],
   filtredOffers: [],
+  nearByOffers: [],
   authorizationStatus: AuthorizationStatus.UNKNOWN,
   authorizationEmail: null,
   isDataLoaded: false,
@@ -23,6 +24,8 @@ const reducer = (state: State = initialState, action: Actions): State => {
       return { ...state, uniqOffer: action.payload };
     case ActionType.LOAD_COMMENTS:
       return { ...state, comments: action.payload };
+    case ActionType.LOAD_NEARBY:
+      return { ...state, nearByOffers: action.payload };
     case ActionType.REQUIRE_AUTHORIZATION: {
       const { authStatus, authEmail } = action.payload;
       return {
