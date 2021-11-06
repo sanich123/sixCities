@@ -17,7 +17,7 @@ const reducer = (state: State = initialState, action: Actions): State => {
   switch (action.type) {
     case ActionType.LOAD_OFFERS:
       return { ...state, offers: action.payload, isDataLoaded: true };
-    case ActionType.REQUIRED_AUTHORIZATION: {
+    case ActionType.REQUIRE_AUTHORIZATION: {
       const { authStatus, authEmail } = action.payload;
       return {
         ...state,

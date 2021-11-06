@@ -38,7 +38,7 @@ export const loadHotels = (offers: Offer[]) => ({
 } as const);
 
 export const requireAuthorization = (authStatus: AuthorizationStatus, authEmail?: string | null | undefined) => ({
-  type: ActionType.REQUIRED_AUTHORIZATION,
+  type: ActionType.REQUIRE_AUTHORIZATION,
   payload: {
     authStatus,
     authEmail,

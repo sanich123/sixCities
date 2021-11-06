@@ -6,7 +6,7 @@ import { Offer, Review } from './types';
 
 export enum ActionType {
   LOAD_OFFERS = 'data/downloading-offers',
-  REQUIRED_AUTHORIZATION = 'user/authorization-required',
+  REQUIRE_AUTHORIZATION = 'user/authorization-required',
   REQUIRE_LOGOUT = 'user/logout-required',
   INIT_OFFERS = 'data/init-offers',
   INIT_REVIEWS = 'data/init-reviews',
