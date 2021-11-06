@@ -42,6 +42,11 @@ export const loadUniqHotel = (offer: Offer) => ({
   payload: offer,
 } as const);
 
+export const loadUniqHotelComments = (comments: Review[]) => ({
+  type: ActionType.LOAD_COMMENTS,
+  payload: comments,
+} as const);
+
 export const requireAuthorization = (authStatus: AuthorizationStatus, authEmail?: string | null | undefined) => ({
   type: ActionType.REQUIRE_AUTHORIZATION,
   payload: {

@@ -5,6 +5,7 @@ const initialState = {
   city: DEFAULT_CITY,
   offers: [],
   uniqOffer: null,
+  comments: null,
   sortedOffers: [],
   sortName: DEFAULT_SORT,
   reviews: [],
@@ -20,6 +21,8 @@ const reducer = (state: State = initialState, action: Actions): State => {
       return { ...state, offers: action.payload, isDataLoaded: true };
     case ActionType.LOAD_OFFER:
       return { ...state, uniqOffer: action.payload };
+    case ActionType.LOAD_COMMENTS:
+      return { ...state, comments: action.payload };
     case ActionType.REQUIRE_AUTHORIZATION: {
       const { authStatus, authEmail } = action.payload;
       return {

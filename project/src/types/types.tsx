@@ -24,6 +24,14 @@ export type Review = {
   user: Host,
  }
 
+export type ReviewDTO = {
+  comment: string,
+  date: string,
+  id: number,
+  rating: number,
+  user: HostAdapted,
+ }
+
 export type Offer = {
   bedrooms: number,
   city: City,

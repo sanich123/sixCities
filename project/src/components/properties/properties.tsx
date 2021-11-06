@@ -16,9 +16,10 @@ import Rating from '../common/rating';
 import FavoriteButton from '../common/favorite-button';
 import { useDispatch, useSelector } from 'react-redux';
 import { AuthorizationStatus } from '../../const';
-import { fetchUniqHotel } from '../../store/api-actions';
+import { fetchComments, fetchUniqHotel } from '../../store/api-actions';
 import { State } from '../../types/reducer';
 import { Offer } from '../../types/types';
+import Page404 from '../page404/page404';
 
 const NUMBER_OF_SLICING = 8;
 
@@ -26,26 +27,27 @@ function Properties(): JSX.Element {
   const dispatch = useDispatch();
 
   const offers = useSelector((state) => state.offers);
-  const reviews = useSelector((state) => state.reviews);
+  // const reviews = useSelector((state) => state.reviews);
+  const comments = useSelector((state: State) => state.comments);
   const authStatus = useSelector(({ authorizationStatus }) => authorizationStatus);
   const uniqUrl = +useHistory().location.pathname.split('').slice(NUMBER_OF_SLICING).join('');
-  const uniqUrl2 = uniqUrl.toString();
+
   useEffect(() => {
-    dispatch(fetchUniqHotel(uniqUrl2));
-  }, [dispatch, uniqUrl2]);
+    dispatch(fetchUniqHotel(uniqUrl));
+  }, [dispatch, uniqUrl]);
+
+  useEffect(() => {
+    dispatch(fetchComments(uniqUrl));
+  }, [dispatch, uniqUrl]);
+
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
   const onHover = (id: number | null) => setActiveOffer(id);
-  const uniqOffer2 = useSelector((state: State): Offer | null => state.uniqOffer);
-  // eslint-disable-next-line no-console
-  if (uniqOffer2) {
-    const { images, isPremium, title, isFavorite, rating, type, bedrooms, maxAdults, price, goods, host, description } = uniqOffer2;
+  const uniqOffer = useSelector((state: State): Offer | null => state.uniqOffer);
 
+  if (uniqOffer) {
+    const { images, isPremium, title, isFavorite, rating, type, bedrooms, maxAdults, price, goods, host, description } = uniqOffer;
 
-    // const [uniqOffer] = offers.filter(({ id }) => id === uniqUrl);
-    const nearPlaces = offers.filter(({ city, id }) => city.name === uniqOffer2.city.name && id !== uniqOffer2.id);
-
-    // const { images, isPremium, title, isFavorite, rating, type, bedrooms, maxAdults, price, goods, host, description } = uniqOffer;
-
+    const nearPlaces = offers.filter(({ city, id }) => city.name === uniqOffer.city.name && id !== uniqOffer.id);
 
     return (
       <>
@@ -86,7 +88,7 @@ function Properties(): JSX.Element {
 
                   <section className="property__reviews reviews">
 
-                    <Reviews reviews={ reviews } />
+                    { comments && <Reviews reviews={ comments } /> }
 
                     { authStatus === AuthorizationStatus.AUTH && <ReviewForm /> }
 
@@ -106,9 +108,8 @@ function Properties(): JSX.Element {
         </div>
       </>
     );
-  } else {
-    return <div></div>;
   }
+  return <Page404 />;
 }
 
 export default Properties;
