@@ -4,6 +4,7 @@ import { Actions, State, ActionType } from '../types/reducer';
 const initialState = {
   city: DEFAULT_CITY,
   offers: [],
+  uniqOffer: null,
   sortedOffers: [],
   sortName: DEFAULT_SORT,
   reviews: [],
@@ -17,6 +18,8 @@ const reducer = (state: State = initialState, action: Actions): State => {
   switch (action.type) {
     case ActionType.LOAD_OFFERS:
       return { ...state, offers: action.payload, isDataLoaded: true };
+    case ActionType.LOAD_OFFER:
+      return { ...state, uniqOffer: action.payload };
     case ActionType.REQUIRE_AUTHORIZATION: {
       const { authStatus, authEmail } = action.payload;
       return {

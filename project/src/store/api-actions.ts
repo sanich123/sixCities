@@ -2,7 +2,7 @@ import { ApiRoute, AuthorizationStatus } from '../const';
 import { dropToken, saveToken } from '../services/token';
 import { ThunkActionResult } from '../types/reducer';
 import { AuthData, Offer, OfferDTO } from '../types/types';
-import { loadHotels, requireAuthorization, requireLogout } from './actions';
+import { loadHotels, loadUniqHotel, requireAuthorization, requireLogout } from './actions';
 import { toast } from 'react-toastify';
 
 const AUTH_FAIL_MESSAGE = 'Не забудьте авторизоваться!';
@@ -20,10 +20,29 @@ const adaptToClient = (data: OfferDTO[]): Offer[] =>
     previewImage: offer['preview_image'],
   }));
 
+const adaptToClientOffer = (offer: OfferDTO): Offer => ({
+  ...offer,
+  host: {
+    ...offer.host,
+    isPro: offer.host['is_pro'],
+    avatarUrl: offer.host['avatar_url'],
+  },
+  isFavorite: offer['is_favorite'],
+  isPremium: offer['is_premium'],
+  maxAdults: offer['max_adults'],
+  previewImage: offer['preview_image'],
+});
+
 export const fetchHotels = (): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
     const { data } = await api.get(ApiRoute.Hotels);
     dispatch(loadHotels(adaptToClient(data)));
+  };
+
+export const fetchUniqHotel = (id: string): ThunkActionResult =>
+  async (dispatch, _getState, api): Promise<void> => {
+    const { data } = await api.get(`${ApiRoute.Hotels}/${id}`);
+    dispatch(loadUniqHotel(adaptToClientOffer(data)));
   };
 
 export const checkAuth = (): ThunkActionResult =>
