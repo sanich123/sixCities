@@ -15,7 +15,7 @@ function ReviewForm(): JSX.Element {
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         { Object.entries(Marks).reverse().map(([mark, value]) => (
-          <Rating key={ value } value={ value } mark={ mark } setRating={setRating} />
+          <Rating key={ value } value={ value } mark={ mark } setRating={ setRating } />
         )) }
       </div>
 
@@ -34,9 +34,7 @@ function ReviewForm(): JSX.Element {
           and describe your stay with at least
           <b className="reviews__text-amount"> 50 characters</b>.
         </p>
-        <button
-          className="reviews__submit form__submit button" type="submit" disabled={ !text }
-        >Submit
+        <button className="reviews__submit form__submit button" type="submit" disabled={ !text }>Submit
         </button>
       </div>
     </form>

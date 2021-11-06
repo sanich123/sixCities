@@ -25,11 +25,11 @@ const NUMBER_OF_SLICING = 8;
 
 function Properties(): JSX.Element {
   const dispatch = useDispatch();
-  const comments = useSelector((state: State) => state.comments);
-  const nearByOffers = useSelector((state: State) => state.nearByOffers);
+  const offerComments = useSelector(({ comments }: State) => comments);
+  const nearOffers = useSelector(({ nearByOffers }: State) => nearByOffers);
   const authStatus = useSelector(({ authorizationStatus }: State) => authorizationStatus);
   const uniqUrl = +useHistory().location.pathname.split('').slice(NUMBER_OF_SLICING).join('');
-  const uniqOffer = useSelector((state: State): Offer | null => state.uniqOffer);
+  const selectedOffer = useSelector(({ uniqOffer }: State): Offer | null => uniqOffer);
 
   useEffect(() => {
     dispatch(fetchUniqHotel(uniqUrl));
@@ -47,9 +47,9 @@ function Properties(): JSX.Element {
   const onHover = (id: number | null) => setActiveOffer(id);
 
 
-  if (uniqOffer) {
-    const { images, isPremium, title, isFavorite, rating, type, bedrooms, maxAdults, price, goods, host, description } = uniqOffer;
-    const nearPlaces = [uniqOffer, ...nearByOffers];
+  if (selectedOffer) {
+    const { images, isPremium, title, isFavorite, rating, type, bedrooms, maxAdults, price, goods, host, description } = selectedOffer;
+    const nearPlaces = [selectedOffer, ...nearOffers];
 
     return (
       <>
@@ -90,7 +90,7 @@ function Properties(): JSX.Element {
 
                   <section className="property__reviews reviews">
 
-                    { comments && <Reviews reviews={ comments } /> }
+                    { offerComments && <Reviews reviews={ offerComments } /> }
 
                     { authStatus === AuthorizationStatus.AUTH && <ReviewForm /> }
 

@@ -3,9 +3,10 @@ import Header from '../common/header';
 import Footer from '../main/footer';
 import FavoritesList from './favorite-list';
 import { useSelector } from 'react-redux';
+import { State } from '../../types/reducer';
 
 function Favorites(): JSX.Element {
-  const favoriteOffers = useSelector(({ offers }) => offers).filter((offer) => offer.isFavorite);
+  const favoriteOffers = useSelector(({ offers }: State) => offers).filter((offer) => offer.isFavorite);
   const uniqueСities = Array.from(new Set(favoriteOffers.map(({ city }) => city.name)));
 
   return (

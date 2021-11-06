@@ -2,11 +2,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { AppRoutes, AuthorizationStatus } from '../../const';
 import { logoutAction } from '../../store/api-actions';
+import { State } from '../../types/reducer';
 
 
 function UserMenu(): JSX.Element {
-  const authStatus = useSelector(({ authorizationStatus }) => authorizationStatus);
-  const authEmail = useSelector(({ authorizationEmail }) => authorizationEmail);
+  const authStatus = useSelector(({ authorizationStatus }: State) => authorizationStatus);
+  const authEmail = useSelector(({ authorizationEmail }: State) => authorizationEmail);
   const dispatch = useDispatch();
   return (
     <nav className="header__nav">
