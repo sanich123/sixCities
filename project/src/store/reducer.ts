@@ -36,10 +36,6 @@ const reducer = (state: State = initialState, action: Actions): State => {
     }
     case ActionType.REQUIRE_LOGOUT:
       return { ...state, authorizationStatus: AuthorizationStatus.NO_AUTH };
-    case ActionType.INIT_OFFERS:
-      return { ...state, offers: action.payload };
-    case ActionType.INIT_REVIEWS:
-      return { ...state, reviews: action.payload };
     case ActionType.CHANGE_CITY:
       return { ...state, city: action.payload };
     case ActionType.SORT_OFFERS:

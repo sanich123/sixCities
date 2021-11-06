@@ -1,7 +1,7 @@
 import { ThunkAction, ThunkDispatch } from 'redux-thunk';
 import { AxiosInstance } from 'axios';
 import { AuthorizationStatus } from '../const';
-import { changeCity, sortOffers, changeSortName, filterOffers, initOffers, initReviews, requireAuthorization, requireLogout, loadHotels, loadUniqHotel, loadUniqHotelComments, loadNearBy } from '../store/actions';
+import { changeCity, sortOffers, changeSortName, filterOffers, requireAuthorization, requireLogout, loadHotels, loadUniqHotel, loadUniqHotelComments, loadNearBy } from '../store/actions';
 import { Offer, Review } from './types';
 
 export enum ActionType {
@@ -24,8 +24,6 @@ export type Actions =
 | ReturnType <typeof sortOffers>
 | ReturnType <typeof changeSortName>
 | ReturnType <typeof filterOffers>
-| ReturnType <typeof initOffers>
-| ReturnType <typeof initReviews>
 | ReturnType <typeof loadHotels>
 | ReturnType <typeof loadUniqHotel>
 | ReturnType <typeof requireAuthorization>

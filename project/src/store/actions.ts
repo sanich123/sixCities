@@ -2,16 +2,6 @@ import { AuthorizationStatus } from '../const';
 import { ActionType } from '../types/reducer';
 import { Offer, Review } from '../types/types';
 
-export const initOffers = (offers: Offer[]) => ({
-  type: ActionType.INIT_OFFERS,
-  payload: offers,
-} as const);
-
-export const initReviews = (reviews: Review[]) => ({
-  type: ActionType.INIT_REVIEWS,
-  payload: reviews,
-} as const);
-
 export const changeCity = (city: string) => ({
   type: ActionType.CHANGE_CITY,
   payload: city,
