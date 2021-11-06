@@ -7,20 +7,6 @@ import { toast } from 'react-toastify';
 
 const AUTH_FAIL_MESSAGE = 'Не забудьте авторизоваться!';
 
-const adaptOffers = (data: OfferDTO[]): Offer[] =>
-  data.map((offer: OfferDTO) => ({
-    ...offer,
-    host: {
-      ...offer.host,
-      isPro: offer.host['is_pro'],
-      avatarUrl: offer.host['avatar_url'],
-    },
-    isFavorite: offer['is_favorite'],
-    isPremium: offer['is_premium'],
-    maxAdults: offer['max_adults'],
-    previewImage: offer['preview_image'],
-  }));
-
 const adaptOffer = (offer: OfferDTO): Offer => ({
   ...offer,
   host: {
@@ -34,6 +20,9 @@ const adaptOffer = (offer: OfferDTO): Offer => ({
   previewImage: offer['preview_image'],
 });
 
+const adaptOffers = (data: OfferDTO[]): Offer[] =>
+  data.map((offer) => adaptOffer(offer));
+
 const adaptComments = (comments: ReviewDTO[]): Review[] =>
   comments.map((comment: ReviewDTO) => ({
     ...comment,
@@ -43,7 +32,6 @@ const adaptComments = (comments: ReviewDTO[]): Review[] =>
       avatarUrl: comment.user['avatar_url'],
     },
   }));
-
 
 export const fetchHotels = (): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {

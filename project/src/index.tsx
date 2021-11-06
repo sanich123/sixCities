@@ -27,7 +27,17 @@ const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk.wit
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={ store } >
-      <ToastContainer />
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <App />
     </Provider>
   </React.StrictMode>,
