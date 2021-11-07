@@ -1,12 +1,10 @@
-import { useState } from 'react';
-
 type RatingProps = {
   mark: string,
   value: string,
+  setRating: (evt: string) => void,
  }
 
-function Rating({ mark, value }: RatingProps):JSX.Element {
-  const [, setRating] = useState('');
+function Rating({ mark, value, setRating }: RatingProps):JSX.Element {
 
   return (
     <>

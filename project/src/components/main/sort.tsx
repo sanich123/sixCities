@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeSortName } from '../../store/actions';
 import { sortTypes } from '../../const';
+import { State } from '../../types/reducer';
 
 function Sort(): JSX.Element {
-  const sortName = useSelector((state) => state.sortName);
+  const sortName = useSelector((state: State) => state.sortName);
   const [isOpen, sortChangeListener] = useState(false);
   const dispatch = useDispatch();
 

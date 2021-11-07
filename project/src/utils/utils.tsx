@@ -1,7 +1,6 @@
 import Favorites from '../components/favorites/favorites';
 import PrivateRoute from '../components/private-route';
 import { Route } from 'react-router';
-import { AuthorizationStatus } from '../const';
 import leaflet, { DivIcon, Icon, IconOptions } from 'leaflet';
 
 type RoutesProps = {
@@ -12,7 +11,7 @@ type RoutesProps = {
 
 export const generateRoutes = ({ route, component, isPrivate }: RoutesProps): JSX.Element =>
   isPrivate ?
-    <PrivateRoute exact path={ route } key={ route } authorizationStatus={ AuthorizationStatus.NO_AUTH } render={ () => <Favorites /> } /> :
+    <PrivateRoute exact path={ route } key={ route } render={ () => <Favorites /> } /> :
     <Route exact path={ route } key={ route }>{ component }</Route>;
 
 const RatingToPercent = {

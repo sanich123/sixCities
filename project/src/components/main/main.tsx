@@ -6,10 +6,11 @@ import Sprite from '../common/sprite';
 import Sort from './sort';
 import Filter from './filter';
 import Map from '../map/map';
+import { State } from '../../types/reducer';
 
 function Main(): JSX.Element {
-  const town = useSelector(({ city }) => city);
-  const sortOffers = useSelector(({ sortedOffers }) => sortedOffers);
+  const town = useSelector(({ city }: State) => city);
+  const sortOffers = useSelector(({ sortedOffers }: State) => sortedOffers);
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
   const onHover = (id: number | null) => setActiveOffer(id);
 

@@ -3,28 +3,28 @@ import LogIn from '../components/login/login';
 import Main from '../components/main/main';
 import Page404 from '../components/page404/page404';
 import Properties from '../components/properties/properties';
-import { AppRoute } from '../const';
+import { AppRoutes } from '../const';
 
 export const pages = [
   {
     component: (): JSX.Element => <Main />,
     isPrivate: false,
-    route: AppRoute.Main,
+    route: AppRoutes.Main,
   },
   {
     component: (): JSX.Element => <LogIn />,
     isPrivate: false,
-    route: AppRoute.SignIn,
+    route: AppRoutes.SignIn,
   },
   {
     component: (): JSX.Element => <Favorites />,
     isPrivate: true,
-    route: AppRoute.Favorites,
+    route: AppRoutes.Favorites,
   },
   {
     component: (): JSX.Element => <Properties />,
     isPrivate: false,
-    route: AppRoute.Room,
+    route: AppRoutes.Room,
   },
   {
     component: (): JSX.Element => <Page404 />,
