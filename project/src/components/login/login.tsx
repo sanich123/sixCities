@@ -1,14 +1,17 @@
 import Sprite from '../common/sprite';
 import Logo from '../common/logo';
 import { FormEvent, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginAction } from '../../store/api-actions';
 import { AppRoutes } from '../../const';
 import { useHistory } from 'react-router';
+import { State } from '../../types/reducer';
+import { Link } from 'react-router-dom';
 
 function LogIn(): JSX.Element {
   const history = useHistory();
   const dispatch = useDispatch();
+  const currentCity = useSelector(({ city }: State) => city);
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
@@ -79,11 +82,11 @@ function LogIn(): JSX.Element {
               </form>
             </section>
             <section className="locations locations--login locations--current">
-              {/* <div className="locations__item">
-                <a className="locations__item-link" href="/">
-                  <span>Amsterdam</span>
-                </a>
-              </div> */}
+              <div className="locations__item">
+                <Link className="locations__item-link" to="/">
+                  <span>{ currentCity }</span>
+                </Link>
+              </div>
             </section>
           </div>
         </main>
