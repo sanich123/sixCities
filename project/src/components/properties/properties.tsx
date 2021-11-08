@@ -92,7 +92,7 @@ function Properties(): JSX.Element {
 
                     { offerComments && <Reviews reviews={ offerComments } /> }
 
-                    { authStatus === AuthorizationStatus.AUTH && <ReviewForm /> }
+                    { authStatus === AuthorizationStatus.AUTH && <ReviewForm uniqUrl={ uniqUrl } /> }
 
                   </section>
                 </div>

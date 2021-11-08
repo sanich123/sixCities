@@ -1,7 +1,7 @@
 import { ApiRoutes, AuthorizationStatus } from '../const';
 import { dropToken, saveToken } from '../services/token';
 import { ThunkActionResult } from '../types/reducer';
-import { AuthData, Offer, OfferDTO, Review, ReviewDTO } from '../types/types';
+import { AuthData, Offer, OfferDTO, PostComment, Review, ReviewDTO } from '../types/types';
 import { loadHotels, loadNearBy, loadUniqHotel, loadUniqHotelComments, requireAuthorization, requireLogout } from './actions';
 import { toast } from 'react-toastify';
 
@@ -77,6 +77,18 @@ export const loginAction = ({ login: email, password }: AuthData): ThunkActionRe
       const { email: emailAuth, token } = data;
       saveToken(token);
       dispatch(requireAuthorization(AuthorizationStatus.AUTH, emailAuth));
+    }
+    catch {
+      toast.warn(AUTH_FAIL_REQUEST);
+    }
+  };
+
+export const commentAction = ({ id, rating, comment }: PostComment): ThunkActionResult =>
+  async (dispatch, _getState, api) => {
+    try {
+      const { data } = await api.post(`${ApiRoutes.Comments}/${id}`, { rating, comment });
+      // eslint-disable-next-line no-console
+      console.log(data);
     }
     catch {
       toast.warn(AUTH_FAIL_REQUEST);

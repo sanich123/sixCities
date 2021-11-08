@@ -1,16 +1,32 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Marks } from '../../../const';
+import { commentAction } from '../../../store/api-actions';
 import Rating from './rating';
 
-function ReviewForm(): JSX.Element {
+type ReviewFormProps = {
+  uniqUrl: number,
+}
+
+function ReviewForm({ uniqUrl }: ReviewFormProps): JSX.Element {
+  const dispatch = useDispatch();
   const [text, setText] = useState('');
-  const [, setRating] = useState('');
+  const [rating, setRating] = useState('');
+
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    dispatch(commentAction({
+      id: uniqUrl,
+      comment: text,
+      rating: rating,
+    }));
+  };
 
   return (
     <form className="reviews__form form"
       action="#"
       method="post"
-      onSubmit={ (evt) => evt.preventDefault() }
+      onSubmit={ handleSubmit }
     >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
