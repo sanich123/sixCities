@@ -2,9 +2,10 @@ type RatingProps = {
   mark: string,
   value: string,
   setRating: (evt: string) => void,
+  disabled: boolean,
  }
 
-function Rating({ mark, value, setRating }: RatingProps):JSX.Element {
+function Rating({ mark, value, setRating, disabled }: RatingProps):JSX.Element {
 
   return (
     <>
