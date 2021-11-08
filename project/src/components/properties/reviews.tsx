@@ -6,13 +6,15 @@ type ReviewsProps = {
 }
 
 function Reviews({ reviews }: ReviewsProps): JSX.Element {
+
   return (
     <>
-      <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
+      <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{ reviews.length }</span></h2>
       <ul className="reviews__list">
-        {reviews.map(({ id, comment, date, rating, user }) => (
-          <Comments key={ id } id={ id } comment={ comment } date={ date } rating={ rating } user={ user } />
-        ))}
+        {reviews.slice(0, 10)
+          .map(({ id, comment, date, rating, user }) => (
+            <Comments key={ id } id={ id } comment={ comment } date={ date } rating={ rating } user={ user } />
+          ))}
       </ul>
     </>
   );
