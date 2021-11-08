@@ -6,6 +6,7 @@ import { loadHotels, loadNearBy, loadUniqHotel, loadUniqHotelComments, requireAu
 import { toast } from 'react-toastify';
 
 const AUTH_FAIL_MESSAGE = 'Не забудьте авторизоваться!';
+const AUTH_FAIL_REQUEST = 'Не удалось отправить логин и пароль на сервер';
 
 const adaptOffer = (offer: OfferDTO): Offer => ({
   ...offer,
@@ -71,10 +72,15 @@ export const checkAuth = (): ThunkActionResult =>
 
 export const loginAction = ({ login: email, password }: AuthData): ThunkActionResult =>
   async (dispatch, _getState, api) => {
-    const { data } = await api.post(ApiRoutes.Login, { email, password });
-    const { email: emailAuth, token } = data;
-    saveToken(token);
-    dispatch(requireAuthorization(AuthorizationStatus.AUTH, emailAuth));
+    try {
+      const { data } = await api.post(ApiRoutes.Login, { email, password });
+      const { email: emailAuth, token } = data;
+      saveToken(token);
+      dispatch(requireAuthorization(AuthorizationStatus.AUTH, emailAuth));
+    }
+    catch {
+      toast.warn(AUTH_FAIL_REQUEST);
+    }
   };
 
 export const logoutAction = (): ThunkActionResult =>
