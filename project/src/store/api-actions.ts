@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 
 const AUTH_FAIL_MESSAGE = 'Не забудьте авторизоваться!';
 const AUTH_FAIL_REQUEST = 'Не удалось отправить логин и пароль на сервер';
+const COMMENT_POST_ERROR = 'Не удалось отправить комментарий';
 
 const adaptOffer = (offer: OfferDTO): Offer => ({
   ...offer,
@@ -86,12 +87,11 @@ export const loginAction = ({ login: email, password }: AuthData): ThunkActionRe
 export const commentAction = ({ id, rating, comment }: PostComment): ThunkActionResult =>
   async (dispatch, _getState, api) => {
     try {
-      const { data } = await api.post(`${ApiRoutes.Comments}/${id}`, { rating, comment });
-      // eslint-disable-next-line no-console
-      console.log(data);
+      const { data } = await api.post(`${ ApiRoutes.Comments }/${ id }`, { rating, comment });
+      dispatch(loadUniqHotelComments(adaptComments(data)));
     }
     catch {
-      toast.warn(AUTH_FAIL_REQUEST);
+      toast.warn(COMMENT_POST_ERROR);
     }
   };
 
