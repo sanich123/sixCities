@@ -2,10 +2,10 @@ type RatingProps = {
   mark: string,
   value: string,
   setRating: (evt: string) => void,
-  disabled: boolean,
+  isFormDisabled: boolean,
  }
 
-function Rating({ mark, value, setRating, disabled }: RatingProps):JSX.Element {
+function Rating({ mark, value, setRating, isFormDisabled }: RatingProps):JSX.Element {
 
   return (
     <>
@@ -16,6 +16,7 @@ function Rating({ mark, value, setRating, disabled }: RatingProps):JSX.Element {
         id={ `${ mark }-stars` }
         type="radio"
         onChange={ (evt) => setRating(evt.target.value) }
+        disabled={ isFormDisabled }
       />
       <label
         htmlFor={ `${ mark }-stars` }
