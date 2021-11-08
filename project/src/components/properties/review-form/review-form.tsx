@@ -14,9 +14,8 @@ function ReviewForm({ uniqUrl }: ReviewFormProps): JSX.Element {
   const [rating, setRating] = useState('');
   let isFormDisabled = false;
   let isDisabled = true;
-  const valueOfText = Array.from(text.split('').join(''));
 
-  if (valueOfText.length > 50 && valueOfText.length < 300 && rating !== '') {
+  if (text.length > 50 && text.length < 300 && rating !== '') {
     isDisabled = false;
   }
 
