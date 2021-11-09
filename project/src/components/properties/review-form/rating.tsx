@@ -17,6 +17,7 @@ function Rating({ mark, value, setRating, isFormDisabled }: RatingProps):JSX.Ele
         type="radio"
         onChange={ (evt) => setRating(evt.target.value) }
         disabled={ isFormDisabled }
+        checked={ false }
       />
       <label
         htmlFor={ `${ mark }-stars` }

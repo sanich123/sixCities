@@ -35,6 +35,12 @@ export const loadUniqHotel = (offer: Offer) => ({
 export const loadUniqHotelComments = (comments: Review[]) => ({
   type: ActionType.LOAD_COMMENTS,
   payload: comments,
+  isCommentPosted: false,
+} as const);
+
+export const commentRequest = () => ({
+  type: ActionType.POST_COMMENT,
+  isCommentPosted: true,
 } as const);
 
 export const loadNearBy = (hotels: Offer[]) => ({

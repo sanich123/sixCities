@@ -1,7 +1,8 @@
 import { FormEvent, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Marks } from '../../../const';
 import { commentAction } from '../../../store/api-actions';
+import { State } from '../../../types/reducer';
 import Rating from './rating';
 
 type ReviewFormProps = {
@@ -12,29 +13,27 @@ function ReviewForm({ uniqUrl }: ReviewFormProps): JSX.Element {
   const dispatch = useDispatch();
   const [text, setText] = useState('');
   const [rating, setRating] = useState('');
+  const commentPost = useSelector(({ isCommentPosted }: State) => isCommentPosted);
 
   const clearState = () => {
     setText('');
     setRating('');
   };
 
-  let isFormDisabled = false;
   let isBtnDisabled = true;
 
-  if (text.length > 50 && text.length < 300 && rating !== '') {
+  if (text.length > 5 && text.length < 300 && rating !== '') {
     isBtnDisabled = false;
   }
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    isFormDisabled = true;
     dispatch(commentAction({
       id: uniqUrl,
       comment: text,
       rating: rating,
     }));
     clearState();
-    isFormDisabled = false;
   };
 
   return (
@@ -46,7 +45,7 @@ function ReviewForm({ uniqUrl }: ReviewFormProps): JSX.Element {
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         { Object.entries(Marks).reverse().map(([mark, value]) => (
-          <Rating key={ value } value={ value } mark={ mark } setRating={ setRating } isFormDisabled={ isFormDisabled } />
+          <Rating key={ value } value={ value } mark={ mark } setRating={ setRating } isFormDisabled={ commentPost } />
         )) }
       </div>
 
@@ -57,7 +56,7 @@ function ReviewForm({ uniqUrl }: ReviewFormProps): JSX.Element {
         placeholder="Tell how was your stay, what you like and what can be improved"
         value={ text }
         onChange={ (evt) => setText(evt.target.value) }
-        disabled={ isFormDisabled }
+        disabled={ commentPost }
       />
 
       <div className="reviews__button-wrapper">

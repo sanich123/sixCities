@@ -14,6 +14,7 @@ const initialState = {
   authorizationStatus: AuthorizationStatus.UNKNOWN,
   authorizationEmail: null,
   isDataLoaded: false,
+  isCommentPosted: false,
 };
 
 const reducer = (state: State = initialState, action: Actions): State => {
@@ -23,7 +24,9 @@ const reducer = (state: State = initialState, action: Actions): State => {
     case ActionType.LOAD_OFFER:
       return { ...state, uniqOffer: action.payload };
     case ActionType.LOAD_COMMENTS:
-      return { ...state, comments: action.payload };
+      return { ...state, comments: action.payload, isCommentPosted: false };
+    case ActionType.POST_COMMENT:
+      return { ...state, isCommentPosted: true };
     case ActionType.LOAD_NEARBY:
       return { ...state, nearByOffers: action.payload };
     case ActionType.REQUIRE_AUTHORIZATION: {

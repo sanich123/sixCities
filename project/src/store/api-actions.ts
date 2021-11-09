@@ -2,7 +2,7 @@ import { ApiRoutes, AuthorizationStatus } from '../const';
 import { dropToken, saveToken } from '../services/token';
 import { ThunkActionResult } from '../types/reducer';
 import { AuthData, Offer, OfferDTO, PostComment, Review, ReviewDTO } from '../types/types';
-import { loadHotels, loadNearBy, loadUniqHotel, loadUniqHotelComments, requireAuthorization, requireLogout } from './actions';
+import { commentRequest, loadHotels, loadNearBy, loadUniqHotel, loadUniqHotelComments, requireAuthorization, requireLogout } from './actions';
 import { toast } from 'react-toastify';
 
 const AUTH_FAIL_MESSAGE = 'Не забудьте авторизоваться!';
@@ -86,6 +86,7 @@ export const loginAction = ({ login: email, password }: AuthData): ThunkActionRe
 
 export const commentAction = ({ id, rating, comment }: PostComment): ThunkActionResult =>
   async (dispatch, _getState, api) => {
+    dispatch(commentRequest());
     try {
       const { data } = await api.post(`${ ApiRoutes.Comments }/${ id }`, { rating, comment });
       dispatch(loadUniqHotelComments(adaptComments(data)));
