@@ -2,12 +2,12 @@ import { ApiRoutes, AuthorizationStatus } from '../const';
 import { dropToken, saveToken } from '../services/token';
 import { ThunkActionResult } from '../types/reducer';
 import { AuthData, Offer, OfferDTO, PostComment, Review, ReviewDTO } from '../types/types';
-import { commentRequest, loadHotels, loadNearBy, loadUniqHotel, loadUniqHotelComments, requireAuthorization, requireLogout } from './actions';
+import { commentRequest, commentRequestFail, loadHotels, loadNearBy, loadUniqHotel, loadUniqHotelComments, requireAuthorization, requireLogout } from './actions';
 import { toast } from 'react-toastify';
 
 const AUTH_FAIL_MESSAGE = 'Не забудьте авторизоваться!';
 const AUTH_FAIL_REQUEST = 'Не удалось отправить логин и пароль на сервер';
-const COMMENT_POST_ERROR = 'Не удалось отправить комментарий';
+const COMMENT_POST_ERROR = 'Не удалось отправить комментарий, неполадки с сетью';
 
 const adaptOffer = (offer: OfferDTO): Offer => ({
   ...offer,
@@ -92,6 +92,7 @@ export const postComment = ({ id, rating, comment }: PostComment): ThunkActionRe
       dispatch(loadUniqHotelComments(adaptComments(data)));
     }
     catch {
+      dispatch(commentRequestFail());
       toast.warn(COMMENT_POST_ERROR);
     }
   };

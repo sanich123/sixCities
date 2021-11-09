@@ -27,6 +27,8 @@ const reducer = (state: State = initialState, action: Actions): State => {
       return { ...state, comments: action.payload, isCommentPosted: false };
     case ActionType.POST_COMMENT:
       return { ...state, isCommentPosted: true };
+    case ActionType.POST_COMMENT_FAIL:
+      return { ...state, isCommentPosted: false };
     case ActionType.LOAD_NEARBY:
       return { ...state, nearByOffers: action.payload };
     case ActionType.REQUIRE_AUTHORIZATION: {

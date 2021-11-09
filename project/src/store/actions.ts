@@ -43,6 +43,11 @@ export const commentRequest = () => ({
   isCommentPosted: true,
 } as const);
 
+export const commentRequestFail = () => ({
+  type: ActionType.POST_COMMENT_FAIL,
+  isCommentPosted: false,
+} as const);
+
 export const loadNearBy = (hotels: Offer[]) => ({
   type: ActionType.LOAD_NEARBY,
   payload: hotels,
