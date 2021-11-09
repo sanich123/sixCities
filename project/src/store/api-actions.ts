@@ -84,7 +84,7 @@ export const loginAction = ({ login: email, password }: AuthData): ThunkActionRe
     }
   };
 
-export const commentAction = ({ id, rating, comment }: PostComment): ThunkActionResult =>
+export const postComment = ({ id, rating, comment }: PostComment): ThunkActionResult =>
   async (dispatch, _getState, api) => {
     dispatch(commentRequest());
     try {

@@ -1,7 +1,7 @@
 import { FormEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Marks } from '../../../const';
-import { commentAction } from '../../../store/api-actions';
+import { postComment } from '../../../store/api-actions';
 import { State } from '../../../types/reducer';
 import Rating from './rating';
 
@@ -28,7 +28,7 @@ function ReviewForm({ uniqUrl }: ReviewFormProps): JSX.Element {
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    dispatch(commentAction({
+    dispatch(postComment({
       id: uniqUrl,
       comment: text,
       rating: rating,
