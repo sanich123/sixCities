@@ -113,6 +113,7 @@ export const changeFavorite = (id: number | undefined, isFavorite: number): Thun
     try {
       await api.post(`${ ApiRoutes.Favorites}/${id}/${isFavorite}`);
       dispatch(fetchHotels());
+      dispatch(fetchFavorites());
     }
     catch {
       toast.warn('Не удалось добавить в избранное');
