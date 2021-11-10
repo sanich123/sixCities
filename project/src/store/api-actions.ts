@@ -1,26 +1,10 @@
-import { ApiRoutes, AuthorizationStatus } from '../const';
+import { ApiRoutes, AuthorizationStatus, AUTH_FAIL_MESSAGE, AUTH_FAIL_REQUEST, COMMENT_POST_ERROR  } from '../const';
 import { dropToken, saveToken } from '../services/token';
 import { ThunkActionResult } from '../types/reducer';
 import { AuthData, Offer, OfferDTO, PostComment, Review, ReviewDTO } from '../types/types';
 import { commentRequest, commentRequestFail, loadFavorites, loadHotels, loadNearBy, loadUniqHotel, loadUniqHotelComments, requireAuthorization, requireLogout } from './actions';
 import { toast } from 'react-toastify';
-
-const AUTH_FAIL_MESSAGE = 'Не забудьте авторизоваться!';
-const AUTH_FAIL_REQUEST = 'Не удалось отправить логин и пароль на сервер, отсутствует соединение с интернет';
-const COMMENT_POST_ERROR = 'Не удалось отправить комментарий, неполадки с сетью';
-
-const adaptOffer = (offer: OfferDTO): Offer => ({
-  ...offer,
-  host: {
-    ...offer.host,
-    isPro: offer.host['is_pro'],
-    avatarUrl: offer.host['avatar_url'],
-  },
-  isFavorite: offer['is_favorite'],
-  isPremium: offer['is_premium'],
-  maxAdults: offer['max_adults'],
-  previewImage: offer['preview_image'],
-});
+import { adaptOffer } from '../utils/utils';
 
 const adaptOffers = (data: OfferDTO[]): Offer[] =>
   data.map((offer) => adaptOffer(offer));
@@ -41,7 +25,7 @@ export const fetchHotels = (): ThunkActionResult =>
     dispatch(loadHotels(adaptOffers(data)));
   };
 
-export const fetchUniqHotel = (id: number): ThunkActionResult =>
+export const fetchUniqHotel = (id: number | undefined): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
     const { data } = await api.get(`${ApiRoutes.Hotels}/${id}`);
     dispatch(loadUniqHotel(adaptOffer(data)));
@@ -58,7 +42,6 @@ export const fetchNearBy = (id: number): ThunkActionResult =>
     const { data } = await api.get(`${ApiRoutes.Hotels}/${id}${ApiRoutes.NearBy}`);
     dispatch(loadNearBy(adaptOffers(data)));
   };
-
 
 export const checkAuth = (): ThunkActionResult =>
   async (dispatch, _getState, api) => {
@@ -103,8 +86,8 @@ export const fetchFavorites = (): ThunkActionResult =>
       const { data } = await api.get(ApiRoutes.Favorites);
       dispatch(loadFavorites(adaptOffers(data)));
     }
-    catch {
-      toast.warn('Не удалось загрузить предложения из-за неполадок с сетью');
+    catch (error: any) {
+      toast.warn(error.toString());
     }
   };
 
@@ -113,10 +96,13 @@ export const changeFavorite = (id: number | undefined, isFavorite: number): Thun
     try {
       await api.post(`${ ApiRoutes.Favorites}/${id}/${isFavorite}`);
       dispatch(fetchHotels());
+      if (id) {
+        dispatch(fetchUniqHotel(id));
+      }
       dispatch(fetchFavorites());
     }
-    catch {
-      toast.warn('Не удалось добавить в избранное');
+    catch (error: any) {
+      toast.warn(error.toString());
     }
   };
 

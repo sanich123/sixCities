@@ -2,6 +2,7 @@ import Favorites from '../components/favorites/favorites';
 import PrivateRoute from '../components/private-route';
 import { Route } from 'react-router';
 import leaflet, { DivIcon, Icon, IconOptions } from 'leaflet';
+import { Offer, OfferDTO } from '../types/types';
 
 type RoutesProps = {
   route: string,
@@ -29,4 +30,17 @@ export const iconChanger = (change: string): Icon<IconOptions> | DivIcon => leaf
   iconUrl: change,
   iconSize: [ICON_HEIGHT2, ICON_WIDTH],
   iconAnchor: [ICON_HEIGHT, ICON_WIDTH],
+});
+
+export const adaptOffer = (offer: OfferDTO): Offer => ({
+  ...offer,
+  host: {
+    ...offer.host,
+    isPro: offer.host['is_pro'],
+    avatarUrl: offer.host['avatar_url'],
+  },
+  isFavorite: offer['is_favorite'],
+  isPremium: offer['is_premium'],
+  maxAdults: offer['max_adults'],
+  previewImage: offer['preview_image'],
 });

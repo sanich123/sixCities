@@ -6,6 +6,11 @@ export const cities = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', '
 
 export const DEFAULT_CITY = 'Paris';
 export const DEFAULT_SORT = 'Popular';
+export const AUTH_FAIL_MESSAGE = 'Не забудьте авторизоваться!';
+export const AUTH_FAIL_REQUEST = 'Не удалось отправить логин и пароль на сервер, отсутствует соединение с интернет';
+export const COMMENT_POST_ERROR = 'Не удалось отправить комментарий, неполадки с сетью';
+export const FAVORITES_GET_ERROR = 'Не удалось загрузить предложения из-за неполадок с сетью';
+export const FAVORITES_POST_ERROR = 'Добавлять в избранное могут только авторизованные пользователи. Авторизуйтесь пожалуйста!';
 
 export enum AppRoutes {
   Main = '/',
