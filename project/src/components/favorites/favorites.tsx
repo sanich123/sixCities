@@ -2,29 +2,36 @@ import Sprite from '../common/sprite';
 import Header from '../common/header';
 import Footer from '../main/footer';
 import FavoritesList from './favorite-list';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { State } from '../../types/reducer';
+import { useEffect } from 'react';
+import { fetchFavorites } from '../../store/api-actions';
 
 function Favorites(): JSX.Element {
-  const favoriteOffers = useSelector(({ offers }: State) => offers).filter((offer) => offer.isFavorite);
-  const uniqueСities = Array.from(new Set(favoriteOffers.map(({ city }) => city.name)));
+  const dispatch = useDispatch();
+  const favoriteHotels = useSelector(({ favoriteOffers }: State) => favoriteOffers);
+  const uniqueСities = Array.from(new Set(favoriteHotels.map(({ city }) => city.name)));
+
+  useEffect(() => {
+    dispatch(fetchFavorites());
+  }, [dispatch]);
 
   return (
     <>
       <Sprite />
 
-      <div className={ `${!favoriteOffers.length && 'page--favorites-empty'} page`}>
+      <div className={ `${!favoriteHotels.length && 'page--favorites-empty'} page`}>
 
         <Header />
 
-        <main className={ `${!favoriteOffers.length && 'page__main--favorites-empty'} page__main page__main--favorites`}>
+        <main className={ `${!favoriteHotels.length && 'page__main--favorites-empty'} page__main page__main--favorites`}>
           <div className="page__favorites-container container">
-            <section className={ `favorites${ !favoriteOffers.length && '--empty'}`}>
-              <h1 className={ favoriteOffers.length ? 'favorites__title' : 'visually-hidden'}>{ favoriteOffers.length > 0 ? 'Saved listing' : 'Favorites (empty)'}</h1>
-              { favoriteOffers.length > 0 ?
+            <section className={ `favorites${ !favoriteHotels.length && '--empty'}`}>
+              <h1 className={ favoriteHotels.length ? 'favorites__title' : 'visually-hidden'}>{ favoriteHotels.length > 0 ? 'Saved listing' : 'Favorites (empty)'}</h1>
+              { favoriteHotels.length > 0 ?
                 <ul className="favorites__list">
                   { uniqueСities.map((city) =>
-                    (<FavoritesList city={ city } offers={ favoriteOffers } key={ city } />)) }
+                    (<FavoritesList city={ city } offers={ favoriteHotels } key={ city } />)) }
                 </ul>
                 :
                 <div className="favorites__status-wrapper">

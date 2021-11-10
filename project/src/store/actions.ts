@@ -27,6 +27,11 @@ export const loadHotels = (offers: Offer[]) => ({
   payload: offers,
 } as const);
 
+export const loadFavorites = (favoriteOffers: Offer[]) => ({
+  type: ActionType.LOAD_FAVORITES,
+  payload: favoriteOffers,
+} as const);
+
 export const loadUniqHotel = (offer: Offer) => ({
   type: ActionType.LOAD_OFFER,
   payload: offer,

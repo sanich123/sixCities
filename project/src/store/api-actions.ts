@@ -2,7 +2,7 @@ import { ApiRoutes, AuthorizationStatus } from '../const';
 import { dropToken, saveToken } from '../services/token';
 import { ThunkActionResult } from '../types/reducer';
 import { AuthData, Offer, OfferDTO, PostComment, Review, ReviewDTO } from '../types/types';
-import { commentRequest, commentRequestFail, loadHotels, loadNearBy, loadUniqHotel, loadUniqHotelComments, requireAuthorization, requireLogout } from './actions';
+import { commentRequest, commentRequestFail, loadFavorites, loadHotels, loadNearBy, loadUniqHotel, loadUniqHotelComments, requireAuthorization, requireLogout } from './actions';
 import { toast } from 'react-toastify';
 
 const AUTH_FAIL_MESSAGE = 'Не забудьте авторизоваться!';
@@ -97,10 +97,22 @@ export const postComment = ({ id, rating, comment }: PostComment): ThunkActionRe
     }
   };
 
-export const changeFavorite = (id: number | undefined): ThunkActionResult =>
+export const fetchFavorites = (): ThunkActionResult =>
+  async (dispatch, _getState, api): Promise<void> => {
+    try {
+      const { data } = await api.get(ApiRoutes.Favorites);
+      dispatch(loadFavorites(adaptOffers(data)));
+    }
+    catch {
+      toast.warn('Не удалось загрузить предложения из-за неполадок с сетью');
+    }
+  };
+
+export const changeFavorite = (id: number | undefined, isFavorite: number): ThunkActionResult =>
   async (dispatch, _getState, api) => {
     try {
-      await api.post(`${ ApiRoutes.Favorites}/${id}/1`);
+      await api.post(`${ ApiRoutes.Favorites}/${id}/${isFavorite}`);
+      dispatch(fetchHotels());
     }
     catch {
       toast.warn('Не удалось добавить в избранное');

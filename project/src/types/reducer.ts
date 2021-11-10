@@ -1,11 +1,12 @@
 import { ThunkAction, ThunkDispatch } from 'redux-thunk';
 import { AxiosInstance } from 'axios';
 import { AuthorizationStatus } from '../const';
-import { changeCity, sortOffers, changeSortName, filterOffers, requireAuthorization, requireLogout, loadHotels, loadUniqHotel, loadUniqHotelComments, loadNearBy, commentRequest, commentRequestFail } from '../store/actions';
+import { changeCity, sortOffers, changeSortName, filterOffers, requireAuthorization, requireLogout, loadHotels, loadUniqHotel, loadUniqHotelComments, loadNearBy, commentRequest, commentRequestFail, loadFavorites } from '../store/actions';
 import { Offer, Review } from './types';
 
 export enum ActionType {
   LOAD_OFFERS = 'data/downloading-offers',
+  LOAD_FAVORITES = 'data/downloading-favorite-offers',
   LOAD_OFFER = 'data/downloading-offer',
   LOAD_COMMENTS = 'data/downloading-comments',
   POST_COMMENT = 'data/post-comment',
@@ -13,8 +14,6 @@ export enum ActionType {
   LOAD_NEARBY = 'data/downloading-nearby-hotels',
   REQUIRE_AUTHORIZATION = 'user/authorization-required',
   REQUIRE_LOGOUT = 'user/logout-required',
-  INIT_OFFERS = 'data/init-offers',
-  INIT_REVIEWS = 'data/init-reviews',
   CHANGE_CITY = 'data/change-city',
   SORT_OFFERS = 'data/sort-offers',
   FILTER_OFFERS = 'data/filter-offers',
@@ -34,10 +33,12 @@ export type Actions =
 | ReturnType <typeof loadNearBy>
 | ReturnType <typeof commentRequest>
 | ReturnType <typeof commentRequestFail>
+| ReturnType <typeof loadFavorites>
 
 export type State = {
   city: string,
   offers: Offer[],
+  favoriteOffers: Offer[],
   uniqOffer: Offer | null,
   comments: Review[] | null,
   sortedOffers: Offer[],

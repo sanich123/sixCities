@@ -4,9 +4,10 @@ import { changeFavorite } from '../../store/api-actions';
 type FavoriteButtonProps = {
   isFavorite: boolean,
   uniqUrl?: number,
+  id?: number,
 }
 
-function FavoriteButton({ isFavorite, uniqUrl }: FavoriteButtonProps): JSX.Element {
+function FavoriteButton({ isFavorite, uniqUrl, id }: FavoriteButtonProps): JSX.Element {
   const dispatch = useDispatch();
   const buttonClass = cn({'property__bookmark-button property__bookmark-button--active button' : isFavorite && uniqUrl },
     {'place-card__bookmark-button place-card__bookmark-button--active button' : isFavorite},
@@ -16,7 +17,7 @@ function FavoriteButton({ isFavorite, uniqUrl }: FavoriteButtonProps): JSX.Eleme
   return (
     <button
       className={ buttonClass }
-      onClick={ () => dispatch(changeFavorite(uniqUrl)) }
+      onClick={ () => dispatch(changeFavorite(uniqUrl ? uniqUrl : id, isFavorite ? 0 : 1)) }
     >
       <svg
         className={ `${ uniqUrl ? 'property' : 'place-card'}__bookmark-icon`}

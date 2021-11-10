@@ -1,5 +1,5 @@
-import { useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 import Cards from './cards';
 import Header from '../common/header';
 import Sprite from '../common/sprite';
@@ -7,13 +7,17 @@ import Sort from './sort';
 import Filter from './filter';
 import Map from '../map/map';
 import { State } from '../../types/reducer';
+import { fetchHotels } from '../../store/api-actions';
 
 function Main(): JSX.Element {
+  const dispatch = useDispatch();
   const town = useSelector(({ city }: State) => city);
   const sortOffers = useSelector(({ sortedOffers }: State) => sortedOffers);
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
   const onHover = (id: number | null) => setActiveOffer(id);
-
+  useEffect(() => {
+    dispatch(fetchHotels());
+  }, [dispatch]);
   return (
     <>
 

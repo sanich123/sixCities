@@ -34,7 +34,7 @@ function Card({ type, title, price, rating, isPremium, isFavorite, previewImage,
 
           <Price price={ price } />
 
-          <FavoriteButton isFavorite={ isFavorite } />
+          <FavoriteButton id={ id } isFavorite={ isFavorite } />
 
         </div>
 
