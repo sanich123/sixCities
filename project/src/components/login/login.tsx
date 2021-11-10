@@ -1,23 +1,23 @@
 import Sprite from '../common/sprite';
 import Logo from '../common/logo';
-import { FormEvent, useRef, useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginAction } from '../../store/api-actions';
-import { AppRoutes } from '../../const';
 import { useHistory } from 'react-router';
 import { State } from '../../types/reducer';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { AppRoutes, AuthorizationStatus } from '../../const';
 
 const WRONG_PASSWORD = 'Пароль должен состоять минимум из одной буквы и одной цифры';
 
 function LogIn(): JSX.Element {
   const history = useHistory();
   const dispatch = useDispatch();
+  const authStatus = useSelector(({ authorizationStatus }: State) => authorizationStatus);
   const currentCity = useSelector(({ city }: State) => city);
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  const passwordRef = useRef<HTMLInputElement | null>(null);
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
@@ -27,10 +27,12 @@ function LogIn(): JSX.Element {
         login: email,
         password: password,
       }));
-      history.push(AppRoutes.Main);
     }
     else {
-      toast.warn(WRONG_PASSWORD);
+      return toast.warn(WRONG_PASSWORD);
+    }
+    if (authStatus === AuthorizationStatus.AUTH) {
+      history.push(AppRoutes.Main);
     }
   };
 
@@ -82,7 +84,6 @@ function LogIn(): JSX.Element {
                     placeholder="Password"
                     required
                     onChange={ ({ target }) => setPassword(target.value) }
-                    ref={passwordRef}
                   />
                 </div>
                 <button className="login__submit form__submit button" type="submit">Sign in</button>

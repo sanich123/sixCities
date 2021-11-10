@@ -6,7 +6,7 @@ import { commentRequest, commentRequestFail, loadHotels, loadNearBy, loadUniqHot
 import { toast } from 'react-toastify';
 
 const AUTH_FAIL_MESSAGE = 'Не забудьте авторизоваться!';
-const AUTH_FAIL_REQUEST = 'Не удалось отправить логин и пароль на сервер';
+const AUTH_FAIL_REQUEST = 'Не удалось отправить логин и пароль на сервер, отсутствует соединение с интернет';
 const COMMENT_POST_ERROR = 'Не удалось отправить комментарий, неполадки с сетью';
 
 const adaptOffer = (offer: OfferDTO): Offer => ({
