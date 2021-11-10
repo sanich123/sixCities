@@ -7,7 +7,7 @@ import { useHistory } from 'react-router';
 import { State } from '../../types/reducer';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { AppRoutes, AuthorizationStatus } from '../../const';
+import { AppRoutes, AuthorizationStatus, cities } from '../../const';
 
 const WRONG_PASSWORD = 'Пароль должен состоять минимум из одной буквы и одной цифры';
 
@@ -15,7 +15,11 @@ function LogIn(): JSX.Element {
   const history = useHistory();
   const dispatch = useDispatch();
   const authStatus = useSelector(({ authorizationStatus }: State) => authorizationStatus);
-  const currentCity = useSelector(({ city }: State) => city);
+
+  if (authStatus === AuthorizationStatus.AUTH) {
+    history.push(AppRoutes.Main);
+  }
+
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
 
@@ -92,7 +96,8 @@ function LogIn(): JSX.Element {
             <section className="locations locations--login locations--current">
               <div className="locations__item">
                 <Link className="locations__item-link" to="/">
-                  <span>{ currentCity }</span>
+                  <span>{ cities[Math.floor(Math.random() * cities.length)] }
+                  </span>
                 </Link>
               </div>
             </section>

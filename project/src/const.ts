@@ -19,7 +19,8 @@ export enum ApiRoutes {
   Login = '/login',
   Logout = '/logout',
   Comments = '/comments',
-  NearBy = '/nearby'
+  NearBy = '/nearby',
+  Favorites = '/favorite'
 }
 
 export enum AuthorizationStatus {

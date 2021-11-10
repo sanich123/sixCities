@@ -97,6 +97,16 @@ export const postComment = ({ id, rating, comment }: PostComment): ThunkActionRe
     }
   };
 
+export const changeFavorite = (id: number | undefined): ThunkActionResult =>
+  async (dispatch, _getState, api) => {
+    try {
+      await api.post(`${ ApiRoutes.Favorites}/${id}/1`);
+    }
+    catch {
+      toast.warn('Не удалось добавить в избранное');
+    }
+  };
+
 export const logoutAction = (): ThunkActionResult =>
   async (dispatch, _getState, api) => {
     api.delete(ApiRoutes.Logout);
