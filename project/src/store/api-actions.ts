@@ -1,4 +1,4 @@
-import { ApiRoutes, AuthorizationStatus, AUTH_FAIL_MESSAGE, AUTH_FAIL_REQUEST, COMMENT_POST_ERROR  } from '../const';
+import { ApiRoutes, AuthorizationStatus, AUTH_FAIL_MESSAGE, AUTH_FAIL_REQUEST, COMMENT_POST_ERROR, FAVORITES_CHANGE_ERROR, FAVORITES_GET_ERROR  } from '../const';
 import { dropToken, saveToken } from '../services/token';
 import { ThunkActionResult } from '../types/reducer';
 import { AuthData, Offer, OfferDTO, PostComment, Review, ReviewDTO } from '../types/types';
@@ -75,8 +75,8 @@ export const postComment = ({ id, rating, comment }: PostComment): ThunkActionRe
       dispatch(loadUniqHotelComments(adaptComments(data)));
     }
     catch {
-      dispatch(commentRequestFail());
       toast.warn(COMMENT_POST_ERROR);
+      dispatch(commentRequestFail());
     }
   };
 
@@ -87,14 +87,14 @@ export const fetchFavorites = (): ThunkActionResult =>
       dispatch(loadFavorites(adaptOffers(data)));
     }
     catch {
-      toast.warn('Не удалось загрузить избранные объявления');
+      toast.warn(FAVORITES_GET_ERROR);
     }
   };
 
 export const changeFavorite = (id: number | undefined, isFavorite: number): ThunkActionResult =>
   async (dispatch, _getState, api) => {
     try {
-      await api.post(`${ ApiRoutes.Favorites}/${id}/${isFavorite}`);
+      await api.post(`${ ApiRoutes.Favorites}/${ id }/${ isFavorite }`);
       dispatch(fetchHotels());
       if (id) {
         dispatch(fetchUniqHotel(id));
@@ -102,7 +102,7 @@ export const changeFavorite = (id: number | undefined, isFavorite: number): Thun
       dispatch(fetchFavorites());
     }
     catch {
-      toast.warn('Добавлять в избранное могут только авторизованные пользователи');
+      toast.warn(FAVORITES_CHANGE_ERROR);
     }
   };
 

@@ -15,11 +15,6 @@ function ReviewForm({ uniqUrl }: ReviewFormProps): JSX.Element {
   const [rating, setRating] = useState('');
   const commentPost = useSelector(({ isCommentPosted }: State) => isCommentPosted);
 
-  const clearState = () => {
-    setText('');
-    setRating('');
-  };
-
   let isBtnDisabled = true;
 
   if (text.length > 5 && text.length < 300 && rating !== '') {
@@ -33,7 +28,7 @@ function ReviewForm({ uniqUrl }: ReviewFormProps): JSX.Element {
       comment: text,
       rating: rating,
     }));
-    clearState();
+    setText('');
   };
 
   return (

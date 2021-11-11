@@ -10,7 +10,7 @@ export const AUTH_FAIL_MESSAGE = 'Не забудьте авторизовать
 export const AUTH_FAIL_REQUEST = 'Не удалось отправить логин и пароль на сервер, отсутствует соединение с интернет';
 export const COMMENT_POST_ERROR = 'Не удалось отправить комментарий, неполадки с сетью';
 export const FAVORITES_GET_ERROR = 'Не удалось загрузить предложения из-за неполадок с сетью';
-export const FAVORITES_POST_ERROR = 'Добавлять в избранное могут только авторизованные пользователи. Авторизуйтесь пожалуйста!';
+export const FAVORITES_CHANGE_ERROR = 'Проверьте ваше интернет соединение';
 
 export enum AppRoutes {
   Main = '/',
