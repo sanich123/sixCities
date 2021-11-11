@@ -86,8 +86,8 @@ export const fetchFavorites = (): ThunkActionResult =>
       const { data } = await api.get(ApiRoutes.Favorites);
       dispatch(loadFavorites(adaptOffers(data)));
     }
-    catch (error: any) {
-      toast.warn(error.toString());
+    catch {
+      toast.warn('Не удалось загрузить избранные объявления');
     }
   };
 
@@ -101,8 +101,8 @@ export const changeFavorite = (id: number | undefined, isFavorite: number): Thun
       }
       dispatch(fetchFavorites());
     }
-    catch (error: any) {
-      toast.warn(error.toString());
+    catch {
+      toast.warn('Добавлять в избранное могут только авторизованные пользователи');
     }
   };
 
@@ -111,4 +111,5 @@ export const logoutAction = (): ThunkActionResult =>
     api.delete(ApiRoutes.Logout);
     dropToken();
     dispatch(requireLogout());
+    dispatch(fetchHotels());
   };

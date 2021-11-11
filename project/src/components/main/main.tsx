@@ -18,6 +18,7 @@ function Main(): JSX.Element {
   useEffect(() => {
     dispatch(fetchHotels());
   }, [dispatch]);
+
   return (
     <>
 
