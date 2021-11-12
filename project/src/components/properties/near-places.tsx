@@ -1,13 +1,22 @@
 import { Offer } from '../../types/types';
 import { PROPERTIES } from '../../const';
 import Card from '../common/card';
+import { useDispatch } from 'react-redux';
+import { fetchFavorites } from '../../store/api-actions';
+import { useEffect } from 'react';
 
 type NearPlacesProps = {
   nearPlaces: Offer[],
   onHover? : (id: number) => void
 }
 
-function NearPlaces({ nearPlaces, onHover }: NearPlacesProps):JSX.Element {
+function NearPlaces({ nearPlaces, onHover }: NearPlacesProps): JSX.Element {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchFavorites());
+  }, [dispatch]);
+
   return (
     <section className="near-places places">
       <h2 className="near-places__title">Other places in the neighbourhood</h2>
@@ -20,3 +29,5 @@ function NearPlaces({ nearPlaces, onHover }: NearPlacesProps):JSX.Element {
 }
 
 export default NearPlaces;
+
+

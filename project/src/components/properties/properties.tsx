@@ -17,8 +17,10 @@ import Rating from '../common/rating';
 import FavoriteButton from '../common/favorite-button';
 import { useDispatch, useSelector } from 'react-redux';
 import { AuthorizationStatus } from '../../const';
-import { fetchComments, fetchNearBy, fetchUniqHotel } from '../../store/api-actions';
+import { fetchComments, fetchFavorites, fetchNearBy, fetchUniqHotel } from '../../store/api-actions';
 import { offersComments, offerSelected, offersNearBy, statusOfAuth } from '../../utils/selectors';
+import { State } from '../../types/reducer';
+import Page404 from '../page404/page404';
 
 const NUMBER_OF_SLICING = 8;
 
@@ -29,6 +31,7 @@ function Properties(): JSX.Element {
   const authStatus = useSelector(statusOfAuth);
   const uniqUrl = +useHistory().location.pathname.split('').slice(NUMBER_OF_SLICING).join('');
   const selectedOffer = useSelector(offerSelected);
+  const network = useSelector(({ networkIsAvailable }: State) => networkIsAvailable);
 
   useEffect(() => {
     dispatch(fetchUniqHotel(uniqUrl));
@@ -41,6 +44,14 @@ function Properties(): JSX.Element {
   useEffect(() => {
     dispatch(fetchNearBy(uniqUrl));
   }, [dispatch, uniqUrl]);
+
+  useEffect(() => {
+    dispatch(fetchFavorites());
+  }, [dispatch, uniqUrl]);
+
+  if (!network) {
+    return <Page404 />;
+  }
 
   if (selectedOffer) {
     const { images, isPremium, title, isFavorite, rating, type, bedrooms, maxAdults, price, goods, host, description } = selectedOffer;

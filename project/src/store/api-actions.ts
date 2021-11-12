@@ -2,7 +2,7 @@ import { ApiRoutes, AuthorizationStatus, AUTH_FAIL_MESSAGE, AUTH_FAIL_REQUEST, C
 import { dropToken, saveToken } from '../services/token';
 import { ThunkActionResult } from '../types/reducer';
 import { AuthData, Offer, OfferDTO, PostComment, Review, ReviewDTO } from '../types/types';
-import { commentRequest, commentRequestFail, loadFavorites, loadHotels, loadNearBy, loadUniqHotel, loadUniqHotelComments, requireAuthorization, requireLogout } from './actions';
+import { commentRequest, commentRequestFail, failedComment, loadFavorites, loadHotels, loadNearBy, loadUniqHotel, loadUniqHotelComments, networkIsAvailable, requireAuthorization, requireLogout } from './actions';
 import { toast } from 'react-toastify';
 import { adaptOffer } from '../utils/utils';
 
@@ -96,6 +96,7 @@ export const postComment = ({ id, rating, comment }: PostComment): ThunkActionRe
     }
     catch {
       toast.warn(COMMENT_POST_ERROR);
+      dispatch(failedComment());
       dispatch(commentRequestFail());
     }
   };
@@ -107,6 +108,7 @@ export const fetchFavorites = (): ThunkActionResult =>
       dispatch(loadFavorites(adaptOffers(data)));
     }
     catch {
+      dispatch(networkIsAvailable());
       toast.warn(NETWORK_ERROR);
     }
   };

@@ -37,6 +37,10 @@ export const loadUniqHotel = (offer: Offer) => ({
   payload: offer,
 } as const);
 
+export const networkIsAvailable = () => ({
+  type: ActionType.NETWORK_ERROR,
+} as const);
+
 export const loadUniqHotelComments = (comments: Review[]) => ({
   type: ActionType.LOAD_COMMENTS,
   payload: comments,
@@ -51,6 +55,11 @@ export const commentRequest = () => ({
 export const commentRequestFail = () => ({
   type: ActionType.POST_COMMENT_FAIL,
   isCommentPosted: false,
+} as const);
+
+export const failedComment = () => ({
+  type: ActionType.FAILED_COMMENT,
+  failedComment: true,
 } as const);
 
 export const loadNearBy = (hotels: Offer[]) => ({

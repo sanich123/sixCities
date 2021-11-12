@@ -17,6 +17,7 @@ const initialState = {
   isDataLoaded: false,
   isCommentPosted: false,
   networkIsAvailable: true,
+  failedComment: false,
 };
 
 const reducer = (state: State = initialState, action: Actions): State => {
@@ -32,7 +33,11 @@ const reducer = (state: State = initialState, action: Actions): State => {
     case ActionType.POST_COMMENT:
       return { ...state, isCommentPosted: true };
     case ActionType.POST_COMMENT_FAIL:
-      return { ...state, isCommentPosted: false, networkIsAvailable: false };
+      return { ...state, isCommentPosted: false };
+    case ActionType.FAILED_COMMENT:
+      return { ...state, failedComment: true };
+    case ActionType.NETWORK_ERROR:
+      return { ...state, networkIsAvailable: false };
     case ActionType.LOAD_NEARBY:
       return { ...state, nearByOffers: action.payload };
     case ActionType.REQUIRE_AUTHORIZATION: {
