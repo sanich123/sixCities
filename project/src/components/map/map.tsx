@@ -8,10 +8,11 @@ import { iconChanger } from '../../utils/utils';
 
 type MapProps = {
   offers: Offer[],
-  activeOffer: number | null,
+  activeOffer?: number | null,
+  uniqUrl?: number | null,
 }
 
-function Map({ offers, activeOffer }: MapProps): JSX.Element {
+function Map({ offers, activeOffer, uniqUrl }: MapProps): JSX.Element {
   const [{ city }] = offers;
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
@@ -29,11 +30,13 @@ function Map({ offers, activeOffer }: MapProps): JSX.Element {
             lat: location.latitude,
             lng: location.longitude,
           });
-          marker.setIcon(activeOffer === id ? iconChanger(LeafletUrls.URL_MARKER_CURRENT) : iconChanger(LeafletUrls.URL_MARKER_DEFAULT)).addTo(markerLayerRef.current as LayerGroup);
+          activeOffer ?
+            marker.setIcon(activeOffer === id ? iconChanger(LeafletUrls.URL_MARKER_CURRENT) : iconChanger(LeafletUrls.URL_MARKER_DEFAULT)).addTo(markerLayerRef.current as LayerGroup) :
+            marker.setIcon(uniqUrl === id ? iconChanger(LeafletUrls.URL_MARKER_CURRENT) : iconChanger(LeafletUrls.URL_MARKER_DEFAULT)).addTo(markerLayerRef.current as LayerGroup);
         });
       }
     }
-  }, [activeOffer, map, offers]);
+  }, [activeOffer, map, offers, uniqUrl]);
 
   return (
     <div

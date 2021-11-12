@@ -8,8 +8,9 @@ import PropertiesInside from './properties-inside';
 import Price from '../common/price';
 import Images from './images';
 import Reviews from './reviews';
+import LoadingScreen from '../loading-screen/loading-screen';
 import { useHistory } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import NearPlaces from './near-places';
 import Premium from '../common/premium';
 import Rating from '../common/rating';
@@ -19,7 +20,6 @@ import { AuthorizationStatus } from '../../const';
 import { fetchComments, fetchNearBy, fetchUniqHotel } from '../../store/api-actions';
 import { State } from '../../types/reducer';
 import { Offer } from '../../types/types';
-import LoadingScreen from '../loading-screen/loading-screen';
 
 const NUMBER_OF_SLICING = 8;
 
@@ -42,10 +42,6 @@ function Properties(): JSX.Element {
   useEffect(() => {
     dispatch(fetchNearBy(uniqUrl));
   }, [dispatch, uniqUrl]);
-
-  const [activeOffer, setActiveOffer] = useState<number | null>(null);
-  const onHover = (id: number | null) => setActiveOffer(id);
-
 
   if (selectedOffer) {
     const { images, isPremium, title, isFavorite, rating, type, bedrooms, maxAdults, price, goods, host, description } = selectedOffer;
@@ -99,12 +95,12 @@ function Properties(): JSX.Element {
               </div>
               { nearPlaces.length > 0 &&
               <section className="property__map map">
-                <Map offers={ nearPlaces } activeOffer={ activeOffer } />
+                <Map offers={ nearPlaces } uniqUrl={ uniqUrl } />
               </section> }
             </section>
             <div className="container">
               { nearPlaces.length > 0 &&
-              <NearPlaces nearPlaces={ nearPlaces } onHover={ onHover } /> }
+              <NearPlaces nearPlaces={ nearPlaces }/> }
             </div>
           </main>
         </div>
