@@ -6,7 +6,7 @@ type ImageProps = {
 function Image({ avatarUrl, uniqUrl}: ImageProps): JSX.Element {
   return (
     <img
-      className={`${uniqUrl ? 'property' : 'reviews'}__avatar user__avatar`} // почему не используешь библиотеку classnames?
+      className={`${uniqUrl ? 'property' : 'reviews'}__avatar user__avatar`}
       src={ avatarUrl }
       width={uniqUrl ? '74' : '54'}
       height={uniqUrl ? '74' : '54' }

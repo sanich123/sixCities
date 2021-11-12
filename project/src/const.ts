@@ -9,7 +9,7 @@ export const DEFAULT_SORT = 'Popular';
 export const AUTH_FAIL_MESSAGE = 'Не забудьте авторизоваться!';
 export const AUTH_FAIL_REQUEST = 'Не удалось отправить логин и пароль на сервер, отсутствует соединение с интернет';
 export const COMMENT_POST_ERROR = 'Не удалось отправить комментарий, неполадки с сетью';
-export const FAVORITES_GET_ERROR = 'Не удалось загрузить предложения из-за неполадок с сетью';
+export const NETWORK_ERROR = 'Не удалось загрузить предложения из-за неполадок с сетью';
 export const FAVORITES_CHANGE_ERROR = 'Проверьте ваше интернет соединение';
 
 export enum AppRoutes {

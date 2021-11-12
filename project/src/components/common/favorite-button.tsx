@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { AppRoutes, AuthorizationStatus } from '../../const';
 import { changeFavorite } from '../../store/api-actions';
-import { State } from '../../types/reducer';
+import { statusOfAuth } from '../../utils/selectors';
 type FavoriteButtonProps = {
   isFavorite: boolean,
   uniqUrl?: number,
@@ -13,7 +13,7 @@ type FavoriteButtonProps = {
 function FavoriteButton({ isFavorite, uniqUrl, id }: FavoriteButtonProps): JSX.Element {
   const history = useHistory();
   const dispatch = useDispatch();
-  const authStatus = useSelector(({authorizationStatus}: State) => authorizationStatus);
+  const authStatus = useSelector(statusOfAuth);
   const handleClick = () => {
     authStatus === AuthorizationStatus.NO_AUTH ? history.push(AppRoutes.SignIn) : dispatch(changeFavorite(uniqUrl ? uniqUrl : id, isFavorite ? 0 : 1));
   };

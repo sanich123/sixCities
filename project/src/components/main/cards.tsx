@@ -1,14 +1,14 @@
 import Card from '../common/card';
 import { MAIN } from '../../const';
 import { useSelector } from 'react-redux';
-import { State } from '../../types/reducer';
+import { getFiltredOffers } from '../../utils/selectors';
 
 type cardsProps = {
   onHover?: (id: number) => void,
  }
 
 function Cards( { onHover }: cardsProps): JSX.Element {
-  const offersFiltred = useSelector(({ filtredOffers }: State) => filtredOffers);
+  const offersFiltred = useSelector(getFiltredOffers);
 
   return (
     <div className="cities__places-list places__list tabs__content">

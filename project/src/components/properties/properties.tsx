@@ -18,18 +18,17 @@ import FavoriteButton from '../common/favorite-button';
 import { useDispatch, useSelector } from 'react-redux';
 import { AuthorizationStatus } from '../../const';
 import { fetchComments, fetchNearBy, fetchUniqHotel } from '../../store/api-actions';
-import { State } from '../../types/reducer';
-import { Offer } from '../../types/types';
+import { offersComments, offerSelected, offersNearBy, statusOfAuth } from '../../utils/selectors';
 
 const NUMBER_OF_SLICING = 8;
 
 function Properties(): JSX.Element {
   const dispatch = useDispatch();
-  const offerComments = useSelector(({ comments }: State) => comments);
-  const nearOffers = useSelector(({ nearByOffers }: State) => nearByOffers);
-  const authStatus = useSelector(({ authorizationStatus }: State) => authorizationStatus);
+  const comments = useSelector(offersComments);
+  const nearOffers = useSelector(offersNearBy);
+  const authStatus = useSelector(statusOfAuth);
   const uniqUrl = +useHistory().location.pathname.split('').slice(NUMBER_OF_SLICING).join('');
-  const selectedOffer = useSelector(({ uniqOffer }: State): Offer | null => uniqOffer);
+  const selectedOffer = useSelector(offerSelected);
 
   useEffect(() => {
     dispatch(fetchUniqHotel(uniqUrl));
@@ -86,7 +85,7 @@ function Properties(): JSX.Element {
 
                   <section className="property__reviews reviews">
 
-                    { offerComments && <Reviews reviews={ offerComments } /> }
+                    { comments && <Reviews reviews={ comments } /> }
 
                     { authStatus === AuthorizationStatus.AUTH && <ReviewForm uniqUrl={ uniqUrl } /> }
 
@@ -111,5 +110,4 @@ function Properties(): JSX.Element {
 }
 
 export default Properties;
-
 

@@ -5,14 +5,14 @@ import { generateRoutes } from '../../utils/utils';
 import { sortOffers, filterOffers } from '../../store/actions';
 import { pages } from '../../utils/pages';
 import LoadingScreen from '../loading-screen/loading-screen';
-import { State } from '../../types/reducer';
+import { currentPlace, dataLoaded, getOffers, nameOfSort } from '../../utils/selectors';
 
 
 function App(): JSX.Element {
-  const isLoaded = useSelector(({ isDataLoaded }: State) => isDataLoaded);
-  const sortedName = useSelector(({ sortName }: State) => sortName);
-  const town = useSelector(({ city }: State) => city);
-  const filtredOffers = useSelector(({ offers }: State) => offers).filter(({ city }) => city.name === town);
+  const isLoaded = useSelector(dataLoaded);
+  const sortedName = useSelector(nameOfSort);
+  const town = useSelector(currentPlace);
+  const filtredOffers = useSelector(getOffers).filter(({ city }) => city.name === town);
 
   const dispatch = useDispatch();
   dispatch(filterOffers(filtredOffers));

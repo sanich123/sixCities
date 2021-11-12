@@ -2,7 +2,7 @@ import { FormEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Marks } from '../../../const';
 import { postComment } from '../../../store/api-actions';
-import { State } from '../../../types/reducer';
+import { getCommentStatus, getNetworkStatus } from '../../../utils/selectors';
 import Rating from './rating';
 
 type ReviewFormProps = {
@@ -13,8 +13,8 @@ function ReviewForm({ uniqUrl }: ReviewFormProps): JSX.Element {
   const dispatch = useDispatch();
   const [text, setText] = useState('');
   const [rating, setRating] = useState('');
-  const commentPost = useSelector(({ isCommentPosted }: State) => isCommentPosted);
-  const network = useSelector(({ networkIsAvailable }: State) => networkIsAvailable);
+  const commentPost = useSelector(getCommentStatus);
+  const network = useSelector(getNetworkStatus);
 
   let isBtnDisabled = true;
 

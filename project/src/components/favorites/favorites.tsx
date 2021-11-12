@@ -3,13 +3,13 @@ import Header from '../common/header';
 import Footer from '../main/footer';
 import FavoritesList from './favorite-list';
 import { useDispatch, useSelector } from 'react-redux';
-import { State } from '../../types/reducer';
 import { useEffect } from 'react';
 import { fetchFavorites } from '../../store/api-actions';
+import { favorites } from '../../utils/selectors';
 
 function Favorites(): JSX.Element {
   const dispatch = useDispatch();
-  const favoriteHotels = useSelector(({ favoriteOffers }: State) => favoriteOffers);
+  const favoriteHotels = useSelector(favorites);
   const uniqueСities = Array.from(new Set(favoriteHotels.map(({ city }) => city.name)));
 
   useEffect(() => {
