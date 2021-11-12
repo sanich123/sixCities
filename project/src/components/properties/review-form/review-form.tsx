@@ -14,6 +14,7 @@ function ReviewForm({ uniqUrl }: ReviewFormProps): JSX.Element {
   const [text, setText] = useState('');
   const [rating, setRating] = useState('');
   const commentPost = useSelector(({ isCommentPosted }: State) => isCommentPosted);
+  const network = useSelector(({ networkIsAvailable }: State) => networkIsAvailable);
 
   let isBtnDisabled = true;
 
@@ -28,7 +29,7 @@ function ReviewForm({ uniqUrl }: ReviewFormProps): JSX.Element {
       comment: text,
       rating: rating,
     }));
-    setText('');
+    !network && setText('');
   };
 
   return (

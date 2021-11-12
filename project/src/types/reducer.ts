@@ -50,6 +50,7 @@ export type State = {
   authorizationEmail: string | undefined | null,
   isDataLoaded: boolean,
   isCommentPosted: boolean,
+  networkIsAvailable: boolean,
 }
 
 export type ThunkActionResult<R = Promise<void>> = ThunkAction<R, State, AxiosInstance, Actions>;
