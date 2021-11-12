@@ -45,6 +45,7 @@ export const loadUniqHotelComments = (comments: Review[]) => ({
   type: ActionType.LOAD_COMMENTS,
   payload: comments,
   isCommentPosted: false,
+  failedComment: false,
 } as const);
 
 export const commentRequest = () => ({
@@ -60,6 +61,11 @@ export const commentRequestFail = () => ({
 export const failedComment = () => ({
   type: ActionType.FAILED_COMMENT,
   failedComment: true,
+} as const);
+
+export const successComment = () => ({
+  type: ActionType.SUCCESS_COMMENT,
+  failedComment: false,
 } as const);
 
 export const loadNearBy = (hotels: Offer[]) => ({

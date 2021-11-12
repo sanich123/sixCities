@@ -1,7 +1,7 @@
 import { ThunkAction, ThunkDispatch } from 'redux-thunk';
 import { AxiosInstance } from 'axios';
 import { AuthorizationStatus } from '../const';
-import { changeCity, sortOffers, changeSortName, filterOffers, requireAuthorization, requireLogout, loadHotels, loadUniqHotel, loadUniqHotelComments, loadNearBy, commentRequest, commentRequestFail, loadFavorites, networkIsAvailable, failedComment } from '../store/actions';
+import { changeCity, sortOffers, changeSortName, filterOffers, requireAuthorization, requireLogout, loadHotels, loadUniqHotel, loadUniqHotelComments, loadNearBy, commentRequest, commentRequestFail, loadFavorites, networkIsAvailable, failedComment, successComment } from '../store/actions';
 import { Offer, Review } from './types';
 
 export enum ActionType {
@@ -12,6 +12,7 @@ export enum ActionType {
   POST_COMMENT = 'data/post-comment',
   POST_COMMENT_FAIL = 'data/post-comment-fail',
   FAILED_COMMENT = 'data/failed-comment',
+  SUCCESS_COMMENT = 'data/success-comment',
   NETWORK_ERROR = 'data/downloading-is-fail',
   LOAD_NEARBY = 'data/downloading-nearby-hotels',
   REQUIRE_AUTHORIZATION = 'user/authorization-required',
@@ -38,6 +39,7 @@ export type Actions =
 | ReturnType <typeof loadFavorites>
 | ReturnType <typeof networkIsAvailable>
 | ReturnType <typeof failedComment>
+| ReturnType <typeof successComment>
 
 export type State = {
   city: string,

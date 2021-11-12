@@ -15,7 +15,7 @@ function ReviewForm({ uniqUrl }: ReviewFormProps): JSX.Element {
   const [text, setText] = useState('');
   const [rating, setRating] = useState('');
   const commentPost = useSelector(getCommentStatus);
-  const failComment = useSelector(({failedComment}: State) => failedComment);
+  const failComment = useSelector(({ failedComment }: State) => failedComment);
 
   let isBtnDisabled = true;
 
@@ -30,9 +30,8 @@ function ReviewForm({ uniqUrl }: ReviewFormProps): JSX.Element {
       comment: text,
       rating: rating,
     }));
-    if (failComment === true) {
-      setText('');
-    }
+    setRating('');
+    failComment === false && setText('');
   };
 
   return (
@@ -44,7 +43,7 @@ function ReviewForm({ uniqUrl }: ReviewFormProps): JSX.Element {
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         { Object.entries(Marks).reverse().map(([mark, value]) => (
-          <Rating key={ value } value={ value } mark={ mark } setRating={ setRating } isFormDisabled={ commentPost } />
+          <Rating key={ value } value={ value } mark={ mark } rating={ rating } setRating={ setRating } isFormDisabled={ commentPost } />
         )) }
       </div>
 

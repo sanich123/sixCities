@@ -36,6 +36,8 @@ const reducer = (state: State = initialState, action: Actions): State => {
       return { ...state, isCommentPosted: false };
     case ActionType.FAILED_COMMENT:
       return { ...state, failedComment: true };
+    case ActionType.SUCCESS_COMMENT:
+      return { ...state, failedComment: false };
     case ActionType.NETWORK_ERROR:
       return { ...state, networkIsAvailable: false };
     case ActionType.LOAD_NEARBY:
