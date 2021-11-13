@@ -1,11 +1,12 @@
 import { BrowserRouter, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { sortTypeChanger } from '../../const';
 import { generateRoutes } from '../../utils/utils';
-import { sortOffers, filterOffers } from '../../store/actions';
 import { pages } from '../../utils/pages';
+import { currentPlace, dataLoaded, getOffers, nameOfSort } from '../../store/reducer/app/app-selectors';
+import { filterOffers, sortOffers } from '../../store/reducer/data/data-actions';
+import { sortTypeChanger } from '../../const';
+
 import LoadingScreen from '../loading-screen/loading-screen';
-import { currentPlace, dataLoaded, getOffers, nameOfSort } from '../../utils/selectors';
 
 
 function App(): JSX.Element {

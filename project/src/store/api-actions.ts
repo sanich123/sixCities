@@ -2,9 +2,12 @@ import { ApiRoutes, AuthorizationStatus, AUTH_FAIL_MESSAGE, AUTH_FAIL_REQUEST, C
 import { dropToken, saveToken } from '../services/token';
 import { ThunkActionResult } from '../types/reducer';
 import { AuthData, Offer, OfferDTO, PostComment, Review, ReviewDTO } from '../types/types';
-import { commentRequest, commentRequestFail, loadFavorites, loadHotels, loadNearBy, loadUniqHotel, loadUniqHotelComments, networkIsAvailable, requireAuthorization, requireLogout } from './actions';
+
 import { toast } from 'react-toastify';
 import { adaptOffer } from '../utils/utils';
+import { loadHotels } from './reducer/app/app-actions';
+import { isAvailableNetwork, loadFavorites, loadNearBy, loadUniqHotel, loadUniqHotelComments } from './reducer/data/data-actions';
+import { commentRequest, commentRequestFail, requireAuthorization, requireLogout } from './reducer/user/user-actions';
 
 const adaptOffers = (data: OfferDTO[]): Offer[] =>
   data.map((offer) => adaptOffer(offer));
@@ -37,7 +40,7 @@ export const fetchUniqHotel = (id: number | undefined): ThunkActionResult =>
       dispatch(loadUniqHotel(adaptOffer(data)));
     }
     catch {
-      dispatch(networkIsAvailable());
+      dispatch(isAvailableNetwork());
       toast.warn(NETWORK_ERROR);
     }
   };
@@ -109,7 +112,7 @@ export const fetchFavorites = (): ThunkActionResult =>
       dispatch(loadFavorites(adaptOffers(data)));
     }
     catch {
-      dispatch(networkIsAvailable());
+      dispatch(isAvailableNetwork());
       toast.warn(NETWORK_ERROR);
     }
   };

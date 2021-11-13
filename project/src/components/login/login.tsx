@@ -7,7 +7,7 @@ import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AppRoutes, AuthorizationStatus, cities } from '../../const';
-import { statusOfAuth } from '../../utils/selectors';
+import { statusOfAuth } from '../../store/reducer/user/user-selectors';
 
 const WRONG_PASSWORD = 'Пароль должен состоять минимум из одной буквы и одной цифры';
 

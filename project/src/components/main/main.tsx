@@ -7,7 +7,8 @@ import Sort from './sort';
 import Filter from './filter';
 import Map from '../map/map';
 import { fetchHotels } from '../../store/api-actions';
-import { currentPlace, offersSorted } from '../../utils/selectors';
+import { currentPlace } from '../../store/reducer/app/app-selectors';
+import { offersSorted } from '../../store/reducer/data/data-selectors';
 
 function Main(): JSX.Element {
   const dispatch = useDispatch();

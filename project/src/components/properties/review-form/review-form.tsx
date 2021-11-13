@@ -2,7 +2,8 @@ import { FormEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Marks } from '../../../const';
 import { postComment } from '../../../store/api-actions';
-import { getCommentStatus } from '../../../utils/selectors';
+import { getCommentStatus } from '../../../store/reducer/user/user-selectors';
+
 import Rating from './rating';
 
 type ReviewFormProps = {

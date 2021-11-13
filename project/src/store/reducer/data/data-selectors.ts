@@ -3,8 +3,6 @@ import { NameSpace, RootState } from '../root-reducer';
 
 export const getNetworkStatus = (state: RootState): boolean => state[NameSpace.data].networkIsAvailable;
 
-export const getFiltredOffers = (state: RootState): Offer[] => state[NameSpace.data].filtredOffers;
-
 export const offersSorted = (state: RootState): Offer[] => state[NameSpace.data].sortedOffers;
 
 export const favorites = (state: RootState): Offer[] => state[NameSpace.data].favoriteOffers;

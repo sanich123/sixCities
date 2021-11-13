@@ -1,7 +1,8 @@
 import Card from '../common/card';
 import { MAIN } from '../../const';
 import { useSelector } from 'react-redux';
-import { getFiltredOffers } from '../../utils/selectors';
+import { getFiltredOffers } from '../../store/reducer/app/app-selectors';
+
 
 type cardsProps = {
   onHover?: (id: number) => void,

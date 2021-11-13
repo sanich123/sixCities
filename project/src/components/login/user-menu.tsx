@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { AuthorizationStatus } from '../../const';
-import { getAuthEmail, statusOfAuth } from '../../utils/selectors';
+import { getAuthEmail, statusOfAuth } from '../../store/reducer/user/user-selectors';
 import UserMenuAuth from './user-menu-auth';
 import UserMenuNoAuth from './user-menu-noauth';
 

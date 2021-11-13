@@ -16,19 +16,19 @@ const initialState: UserInitialState = {
 
 const userData = createReducer(initialState, (builder) => {
   builder
-    .addCase(requireAuthorization, ({ authorizationStatus, authorizationEmail }: UserInitialState, action) => {
+    .addCase(requireAuthorization, (state: UserInitialState, action) => {
       const { authStatus, authEmail } = action.payload;
-      authorizationStatus = authStatus;
-      authorizationEmail = authEmail;
+      state.authorizationStatus = authStatus;
+      state.authorizationEmail = authEmail;
     })
-    .addCase(requireLogout, ({ authorizationStatus }: UserInitialState) => {
-      authorizationStatus = AuthorizationStatus.NO_AUTH;
+    .addCase(requireLogout, (state: UserInitialState) => {
+      state.authorizationStatus = AuthorizationStatus.NO_AUTH;
     })
-    .addCase(commentRequest, ({ isCommentPosted }: UserInitialState) => {
-      isCommentPosted = true;
+    .addCase(commentRequest, (state: UserInitialState) => {
+      state.isCommentPosted = true;
     })
-    .addCase(commentRequestFail, ({ isCommentPosted }: UserInitialState) => {
-      isCommentPosted = false;
+    .addCase(commentRequestFail, (state: UserInitialState) => {
+      state.isCommentPosted = false;
     });
 
 });

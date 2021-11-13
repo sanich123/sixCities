@@ -1,8 +1,10 @@
 import { ThunkAction, ThunkDispatch } from 'redux-thunk';
 import { AxiosInstance } from 'axios';
 import { AuthorizationStatus } from '../const';
-import { changeCity, sortOffers, changeSortName, filterOffers, requireAuthorization, requireLogout, loadHotels, loadUniqHotel, loadUniqHotelComments, loadNearBy, commentRequest, commentRequestFail, loadFavorites, networkIsAvailable } from '../store/actions';
 import { Offer, Review } from './types';
+import { changeCity, changeSortName, loadHotels } from '../store/reducer/app/app-actions';
+import { filterOffers, isAvailableNetwork, loadFavorites, loadNearBy, loadUniqHotel, loadUniqHotelComments, sortOffers } from '../store/reducer/data/data-actions';
+import { commentRequest, commentRequestFail, requireAuthorization, requireLogout } from '../store/reducer/user/user-actions';
 
 export enum ActionType {
   LOAD_OFFERS = 'data/downloading-offers',
@@ -35,7 +37,7 @@ export type Actions =
 | ReturnType <typeof commentRequest>
 | ReturnType <typeof commentRequestFail>
 | ReturnType <typeof loadFavorites>
-| ReturnType <typeof networkIsAvailable>
+| ReturnType <typeof isAvailableNetwork>
 
 
 export type State = {

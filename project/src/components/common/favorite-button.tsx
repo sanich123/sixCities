@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { AppRoutes, AuthorizationStatus } from '../../const';
 import { changeFavorite } from '../../store/api-actions';
-import { statusOfAuth } from '../../utils/selectors';
+import { statusOfAuth } from '../../store/reducer/user/user-selectors';
+
 type FavoriteButtonProps = {
   isFavorite: boolean,
   uniqUrl?: number,

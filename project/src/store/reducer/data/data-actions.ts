@@ -8,7 +8,7 @@ export const loadFavorites = createAction(
   ActionType.LOAD_FAVORITES,
   (favoriteOffers: Offer[]) => ({
     payload: favoriteOffers,
-    isDataLoaded: true,
+    // isDataLoaded: true,
   }),
 );
 
@@ -34,7 +34,7 @@ export const loadNearBy = createAction(
 );
 
 export const sortOffers = createAction(
-  ActionType.FILTER_OFFERS,
+  ActionType.SORT_OFFERS,
   (offers: Offer[]) => ({
     payload: offers,
   }),

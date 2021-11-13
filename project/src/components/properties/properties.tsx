@@ -9,6 +9,7 @@ import Price from '../common/price';
 import Images from './images';
 import Reviews from './reviews';
 import LoadingScreen from '../loading-screen/loading-screen';
+import Page404 from '../page404/page404';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import NearPlaces from './near-places';
@@ -18,9 +19,8 @@ import FavoriteButton from '../common/favorite-button';
 import { useDispatch, useSelector } from 'react-redux';
 import { AuthorizationStatus } from '../../const';
 import { fetchComments, fetchNearBy, fetchUniqHotel } from '../../store/api-actions';
-import { offersComments, offerSelected, offersNearBy, statusOfAuth } from '../../utils/selectors';
-import { State } from '../../types/reducer';
-import Page404 from '../page404/page404';
+import { getNetworkStatus, offersComments, offerSelected, offersNearBy } from '../../store/reducer/data/data-selectors';
+import { statusOfAuth } from '../../store/reducer/user/user-selectors';
 
 const NUMBER_OF_SLICING = 8;
 
@@ -31,7 +31,7 @@ function Properties(): JSX.Element {
   const authStatus = useSelector(statusOfAuth);
   const uniqUrl = +useHistory().location.pathname.split('').slice(NUMBER_OF_SLICING).join('');
   const selectedOffer = useSelector(offerSelected);
-  const network = useSelector(({ networkIsAvailable }: State) => networkIsAvailable);
+  const network = useSelector(getNetworkStatus);
 
   useEffect(() => {
     dispatch(fetchUniqHotel(uniqUrl));

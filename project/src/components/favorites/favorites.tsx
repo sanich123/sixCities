@@ -5,7 +5,7 @@ import FavoritesList from './favorite-list';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchFavorites } from '../../store/api-actions';
-import { favorites } from '../../utils/selectors';
+import { favorites } from '../../store/reducer/data/data-selectors';
 
 function Favorites(): JSX.Element {
   const dispatch = useDispatch();

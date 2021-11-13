@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { changeCity } from '../../store/actions';
 import cn from 'classnames';
-import { currentPlace } from '../../utils/selectors';
+import { currentPlace } from '../../store/reducer/app/app-selectors';
+import { changeCity } from '../../store/reducer/app/app-actions';
 
 type CityProps = {
   town: string,
