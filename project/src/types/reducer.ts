@@ -1,7 +1,7 @@
 import { ThunkAction, ThunkDispatch } from 'redux-thunk';
 import { AxiosInstance } from 'axios';
 import { AuthorizationStatus } from '../const';
-import { changeCity, sortOffers, changeSortName, filterOffers, requireAuthorization, requireLogout, loadHotels, loadUniqHotel, loadUniqHotelComments, loadNearBy, commentRequest, commentRequestFail, loadFavorites, networkIsAvailable, failedComment, successComment } from '../store/actions';
+import { changeCity, sortOffers, changeSortName, filterOffers, requireAuthorization, requireLogout, loadHotels, loadUniqHotel, loadUniqHotelComments, loadNearBy, commentRequest, commentRequestFail, loadFavorites, networkIsAvailable } from '../store/actions';
 import { Offer, Review } from './types';
 
 export enum ActionType {
@@ -11,8 +11,6 @@ export enum ActionType {
   LOAD_COMMENTS = 'data/downloading-comments',
   POST_COMMENT = 'data/post-comment',
   POST_COMMENT_FAIL = 'data/post-comment-fail',
-  FAILED_COMMENT = 'data/failed-comment',
-  SUCCESS_COMMENT = 'data/success-comment',
   NETWORK_ERROR = 'data/downloading-is-fail',
   LOAD_NEARBY = 'data/downloading-nearby-hotels',
   REQUIRE_AUTHORIZATION = 'user/authorization-required',
@@ -38,8 +36,7 @@ export type Actions =
 | ReturnType <typeof commentRequestFail>
 | ReturnType <typeof loadFavorites>
 | ReturnType <typeof networkIsAvailable>
-| ReturnType <typeof failedComment>
-| ReturnType <typeof successComment>
+
 
 export type State = {
   city: string,
@@ -57,7 +54,6 @@ export type State = {
   isDataLoaded: boolean,
   isCommentPosted: boolean,
   networkIsAvailable: boolean,
-  failedComment: boolean,
 }
 
 export type ThunkActionResult<R = Promise<void>> = ThunkAction<R, State, AxiosInstance, Actions>;

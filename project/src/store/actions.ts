@@ -58,16 +58,6 @@ export const commentRequestFail = () => ({
   isCommentPosted: false,
 } as const);
 
-export const failedComment = () => ({
-  type: ActionType.FAILED_COMMENT,
-  failedComment: true,
-} as const);
-
-export const successComment = () => ({
-  type: ActionType.SUCCESS_COMMENT,
-  failedComment: false,
-} as const);
-
 export const loadNearBy = (hotels: Offer[]) => ({
   type: ActionType.LOAD_NEARBY,
   payload: hotels,
