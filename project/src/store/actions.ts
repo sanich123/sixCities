@@ -44,15 +44,13 @@ export const networkIsAvailable = () => ({
 export const loadUniqHotelComments = (comments: Review[]) => ({
   type: ActionType.LOAD_COMMENTS,
   payload: comments,
-  isCommentPosted: false,
-  failedComment: false,
 } as const);
-
+//
 export const commentRequest = () => ({
   type: ActionType.POST_COMMENT,
   isCommentPosted: true,
 } as const);
-
+//
 export const commentRequestFail = () => ({
   type: ActionType.POST_COMMENT_FAIL,
   isCommentPosted: false,
@@ -62,7 +60,7 @@ export const loadNearBy = (hotels: Offer[]) => ({
   type: ActionType.LOAD_NEARBY,
   payload: hotels,
 } as const);
-
+//
 export const requireAuthorization = (authStatus: AuthorizationStatus, authEmail?: string | null | undefined) => ({
   type: ActionType.REQUIRE_AUTHORIZATION,
   payload: {
@@ -70,8 +68,8 @@ export const requireAuthorization = (authStatus: AuthorizationStatus, authEmail?
     authEmail,
   },
 } as const);
-
+//
 export const requireLogout = () => ({
   type: ActionType.REQUIRE_LOGOUT,
-  payload: AuthorizationStatus.NO_AUTH,
+  authorizationStatus: AuthorizationStatus.NO_AUTH,
 } as const);

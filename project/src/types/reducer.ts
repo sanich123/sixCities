@@ -54,7 +54,7 @@ export type State = {
   isDataLoaded: boolean,
   isCommentPosted: boolean,
   networkIsAvailable: boolean,
-}
+};
 
 export type ThunkActionResult<R = Promise<void>> = ThunkAction<R, State, AxiosInstance, Actions>;
 export type ThunkAppDispatch = ThunkDispatch<State, AxiosInstance, Actions>;

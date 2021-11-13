@@ -17,7 +17,7 @@ function ReviewForm({ uniqUrl }: ReviewFormProps): JSX.Element {
 
   let isBtnDisabled = true;
 
-  if (text.length > 5 && text.length < 300 && rating !== '') {
+  if (text.length > 50 && text.length < 300 && rating !== '') {
     isBtnDisabled = false;
   }
 

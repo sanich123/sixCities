@@ -93,6 +93,7 @@ export const postComment = ({ id, rating, comment }: PostComment): ThunkActionRe
     try {
       const { data } = await api.post(`${ ApiRoutes.Comments }/${ id }`, { rating, comment });
       dispatch(loadUniqHotelComments(adaptComments(data)));
+      dispatch(commentRequestFail());
     }
     catch {
       toast.warn(COMMENT_POST_ERROR);
