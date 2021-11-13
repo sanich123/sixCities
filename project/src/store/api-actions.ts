@@ -37,6 +37,7 @@ export const fetchUniqHotel = (id: number | undefined): ThunkActionResult =>
       dispatch(loadUniqHotel(adaptOffer(data)));
     }
     catch {
+      dispatch(networkIsAvailable());
       toast.warn(NETWORK_ERROR);
     }
   };

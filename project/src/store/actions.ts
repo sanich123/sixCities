@@ -1,49 +1,49 @@
 import { AuthorizationStatus } from '../const';
 import { ActionType } from '../types/reducer';
 import { Offer, Review } from '../types/types';
-
-export const changeCity = (city: string) => ({
-  type: ActionType.CHANGE_CITY,
-  payload: city,
-} as const);
-
-export const sortOffers = (offers: Offer[]) => ({
-  type: ActionType.FILTER_OFFERS,
-  payload: offers,
-} as const);
-
-export const filterOffers = (offers: Offer[]) => ({
-  type: ActionType.SORT_OFFERS,
-  payload: offers,
-} as const);
-
+//
 export const changeSortName = (name: string) => ({
   type: ActionType.CHANGE_SORT,
   payload: name,
 } as const);
-
+//
 export const loadHotels = (offers: Offer[]) => ({
   type: ActionType.LOAD_OFFERS,
   payload: offers,
 } as const);
-
-export const loadFavorites = (favoriteOffers: Offer[]) => ({
-  type: ActionType.LOAD_FAVORITES,
-  payload: favoriteOffers,
+//
+export const changeCity = (city: string) => ({
+  type: ActionType.CHANGE_CITY,
+  payload: city,
 } as const);
-
+//
 export const loadUniqHotel = (offer: Offer) => ({
   type: ActionType.LOAD_OFFER,
   payload: offer,
 } as const);
-
+//
 export const networkIsAvailable = () => ({
   type: ActionType.NETWORK_ERROR,
 } as const);
-
+//
+export const filterOffers = (offers: Offer[]) => ({
+  type: ActionType.SORT_OFFERS,
+  payload: offers,
+} as const);
+//
+export const sortOffers = (offers: Offer[]) => ({
+  type: ActionType.FILTER_OFFERS,
+  payload: offers,
+} as const);
+//
 export const loadUniqHotelComments = (comments: Review[]) => ({
   type: ActionType.LOAD_COMMENTS,
   payload: comments,
+} as const);
+//
+export const loadFavorites = (favoriteOffers: Offer[]) => ({
+  type: ActionType.LOAD_FAVORITES,
+  payload: favoriteOffers,
 } as const);
 //
 export const commentRequest = () => ({
@@ -55,7 +55,7 @@ export const commentRequestFail = () => ({
   type: ActionType.POST_COMMENT_FAIL,
   isCommentPosted: false,
 } as const);
-
+//
 export const loadNearBy = (hotels: Offer[]) => ({
   type: ActionType.LOAD_NEARBY,
   payload: hotels,

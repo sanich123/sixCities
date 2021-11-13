@@ -46,7 +46,6 @@ export type State = {
   comments: Review[] | null,
   sortedOffers: Offer[],
   sortName: string,
-  reviews: Review[],
   filtredOffers: Offer[],
   nearByOffers: Offer[],
   authorizationStatus: AuthorizationStatus,

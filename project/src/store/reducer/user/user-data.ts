@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import { AuthorizationStatus } from '../../../const';
 import { requireAuthorization, requireLogout, commentRequestFail, commentRequest } from './user-actions';
 
-type UserInitialState = {
+export type UserInitialState = {
   authorizationStatus: AuthorizationStatus,
   authorizationEmail: null | string | undefined,
   isCommentPosted: boolean,

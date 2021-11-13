@@ -17,7 +17,7 @@ import Rating from '../common/rating';
 import FavoriteButton from '../common/favorite-button';
 import { useDispatch, useSelector } from 'react-redux';
 import { AuthorizationStatus } from '../../const';
-import { fetchComments, fetchFavorites, fetchNearBy, fetchUniqHotel } from '../../store/api-actions';
+import { fetchComments, fetchNearBy, fetchUniqHotel } from '../../store/api-actions';
 import { offersComments, offerSelected, offersNearBy, statusOfAuth } from '../../utils/selectors';
 import { State } from '../../types/reducer';
 import Page404 from '../page404/page404';
@@ -43,10 +43,6 @@ function Properties(): JSX.Element {
 
   useEffect(() => {
     dispatch(fetchNearBy(uniqUrl));
-  }, [dispatch, uniqUrl]);
-
-  useEffect(() => {
-    dispatch(fetchFavorites());
   }, [dispatch, uniqUrl]);
 
   if (!network) {
