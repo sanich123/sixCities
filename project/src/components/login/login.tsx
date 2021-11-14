@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AppRoutes, AuthorizationStatus, cities } from '../../const';
 import { statusOfAuth } from '../../store/reducer/user/user-selectors';
+import { changeCity } from '../../store/reducer/app/app-actions';
 
 const WRONG_PASSWORD = 'Пароль должен состоять минимум из одной буквы и одной цифры';
 
@@ -15,7 +16,7 @@ function LogIn(): JSX.Element {
   const history = useHistory();
   const dispatch = useDispatch();
   const authStatus = useSelector(statusOfAuth);
-
+  const randomCity = cities[Math.floor(Math.random() * cities.length)];
   if (authStatus === AuthorizationStatus.AUTH) {
     history.push(AppRoutes.Main);
   }
@@ -95,8 +96,8 @@ function LogIn(): JSX.Element {
             </section>
             <section className="locations locations--login locations--current">
               <div className="locations__item">
-                <Link className="locations__item-link" to="/">
-                  <span>{ cities[Math.floor(Math.random() * cities.length)] }
+                <Link className="locations__item-link" to="/" onClick={ () => dispatch(changeCity(randomCity)) }>
+                  <span>{ randomCity }
                   </span>
                 </Link>
               </div>
