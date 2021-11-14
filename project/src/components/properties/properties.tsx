@@ -26,24 +26,19 @@ const NUMBER_OF_SLICING = 8;
 
 function Properties(): JSX.Element {
   const dispatch = useDispatch();
-  const comments = useSelector(offersComments);
-  const nearOffers = useSelector(offersNearBy);
-  const authStatus = useSelector(statusOfAuth);
   const uniqUrl = +useHistory().location.pathname.split('').slice(NUMBER_OF_SLICING).join('');
-  const selectedOffer = useSelector(offerSelected);
-  const network = useSelector(getNetworkStatus);
 
   useEffect(() => {
     dispatch(fetchUniqHotel(uniqUrl));
-  }, [dispatch, uniqUrl]);
-
-  useEffect(() => {
     dispatch(fetchComments(uniqUrl));
-  }, [dispatch, uniqUrl]);
-
-  useEffect(() => {
     dispatch(fetchNearBy(uniqUrl));
   }, [dispatch, uniqUrl]);
+
+  const comments = useSelector(offersComments);
+  const nearOffers = useSelector(offersNearBy);
+  const authStatus = useSelector(statusOfAuth);
+  const network = useSelector(getNetworkStatus);
+  const selectedOffer = useSelector(offerSelected);
 
   if (!network) {
     return <Page404 />;
@@ -105,8 +100,8 @@ function Properties(): JSX.Element {
               </section> }
             </section>
             <div className="container">
-              { nearPlaces.length > 0 &&
-              <NearPlaces nearPlaces={ nearPlaces }/> }
+              { nearOffers.length > 0 &&
+              <NearPlaces nearPlaces={ nearOffers }/> }
             </div>
           </main>
         </div>
