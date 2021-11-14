@@ -62,9 +62,9 @@ export const sortTypes = {
   TOP_RATED: 'Top rated first',
 };
 
-export const sortByPriceLow = (array: Offer[]): Offer[] => array.sort((a, b) => a.price - b.price);
-export const sortByPriceHigh = (array: Offer[]): Offer[] => array.sort((a, b) => b.price - a.price);
-export const sortByRating = (array: Offer[]): Offer[] => array.sort((a, b) => b.rating - a.rating);
+export const sortByPriceLow = (array: Offer[]): Offer[] => array.slice().sort((a, b) => a.price - b.price);
+export const sortByPriceHigh = (array: Offer[]): Offer[] => array.slice().sort((a, b) => b.price - a.price);
+export const sortByRating = (array: Offer[]): Offer[] => array.slice().sort((a, b) => b.rating - a.rating);
 
 export const sortTypeChanger = {
   [sortTypes.PRICE_LOW]: (offers: Offer[]): Offer[] => sortByPriceLow(offers),
