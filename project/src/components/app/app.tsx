@@ -5,23 +5,16 @@ import { pages } from '../../utils/pages';
 import { currentPlace, dataLoaded, getOffers, nameOfSort } from '../../store/reducer/app/app-selectors';
 import { filterOffers, sortOffers } from '../../store/reducer/data/data-actions';
 import { sortTypeChanger } from '../../const';
-
 import LoadingScreen from '../loading-screen/loading-screen';
 
-
 function App(): JSX.Element {
+  const dispatch = useDispatch();
   const isLoaded = useSelector(dataLoaded);
   const sortedName = useSelector(nameOfSort);
   const town = useSelector(currentPlace);
   const filtredOffers = useSelector(getOffers).filter(({ city }) => city.name === town);
-
-  // eslint-disable-next-line no-console
-  console.log(sortedName, filtredOffers);
-  const dispatch = useDispatch();
   dispatch(filterOffers(filtredOffers));
   const sortedOffers = sortTypeChanger[sortedName](filtredOffers);
-  // eslint-disable-next-line no-console
-  console.log(sortedOffers);
   dispatch(sortOffers(sortedOffers));
 
   if (!isLoaded) {
