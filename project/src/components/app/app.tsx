@@ -15,9 +15,13 @@ function App(): JSX.Element {
   const town = useSelector(currentPlace);
   const filtredOffers = useSelector(getOffers).filter(({ city }) => city.name === town);
 
+  // eslint-disable-next-line no-console
+  console.log(sortedName, filtredOffers);
   const dispatch = useDispatch();
   dispatch(filterOffers(filtredOffers));
   const sortedOffers = sortTypeChanger[sortedName](filtredOffers);
+  // eslint-disable-next-line no-console
+  console.log(sortedOffers);
   dispatch(sortOffers(sortedOffers));
 
   if (!isLoaded) {

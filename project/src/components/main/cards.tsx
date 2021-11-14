@@ -3,7 +3,6 @@ import { MAIN } from '../../const';
 import { useSelector } from 'react-redux';
 import { getFiltredOffers } from '../../store/reducer/app/app-selectors';
 
-
 type cardsProps = {
   onHover?: (id: number) => void,
  }
