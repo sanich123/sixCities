@@ -4,11 +4,10 @@ import { FormEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginAction } from '../../store/api-actions';
 import { useHistory } from 'react-router';
-import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { AppRoutes, AuthorizationStatus, cities } from '../../const';
+import { AppRoutes, AuthorizationStatus } from '../../const';
 import { statusOfAuth } from '../../store/reducer/user/user-selectors';
-import { changeCity } from '../../store/reducer/app/app-actions';
+import RandomCity from './random-city';
 
 const WRONG_PASSWORD = 'Пароль должен состоять минимум из одной буквы и одной цифры';
 
@@ -16,7 +15,7 @@ function LogIn(): JSX.Element {
   const history = useHistory();
   const dispatch = useDispatch();
   const authStatus = useSelector(statusOfAuth);
-  const randomCity = cities[Math.floor(Math.random() * cities.length)];
+
   if (authStatus === AuthorizationStatus.AUTH) {
     history.push(AppRoutes.Main);
   }
@@ -96,10 +95,7 @@ function LogIn(): JSX.Element {
             </section>
             <section className="locations locations--login locations--current">
               <div className="locations__item">
-                <Link className="locations__item-link" to="/" onClick={ () => dispatch(changeCity(randomCity)) }>
-                  <span>{ randomCity }
-                  </span>
-                </Link>
+                <RandomCity />
               </div>
             </section>
           </div>

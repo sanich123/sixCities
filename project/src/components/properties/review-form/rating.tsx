@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 type RatingProps = {
   mark: string,
   value: string,
@@ -37,4 +39,4 @@ function Rating({ mark, value, setRating, isFormDisabled, rating }: RatingProps)
   );
 }
 
-export default Rating;
+export default memo(Rating);
