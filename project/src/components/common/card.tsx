@@ -12,6 +12,7 @@ type CardProps = {
 }
 
 function Card({ type, title, price, rating, isPremium, isFavorite, previewImage, id, onHover, modificator }: Offer & CardProps): JSX.Element {
+
   return (
     <article
       className={ modificator ? `${ modificator === FAVORITES ? 'favorites' : 'near-places'}__card place-card` : 'cities__place-card place-card' }
