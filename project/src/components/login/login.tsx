@@ -1,6 +1,6 @@
 import Sprite from '../common/sprite';
 import Logo from '../common/logo';
-import { FormEvent, useState } from 'react';
+import { FormEvent, memo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginAction } from '../../store/api-actions';
 import { useHistory } from 'react-router';
@@ -8,6 +8,8 @@ import { toast } from 'react-toastify';
 import { AppRoutes, AuthorizationStatus } from '../../const';
 import { statusOfAuth } from '../../store/reducer/user/user-selectors';
 import RandomCity from './random-city';
+import LoginInput from './login-input';
+import PasswordInput from './password-input';
 
 const WRONG_PASSWORD = 'Пароль должен состоять минимум из одной буквы и одной цифры';
 
@@ -68,28 +70,10 @@ function LogIn(): JSX.Element {
                 method="post"
                 onSubmit={ handleSubmit }
               >
-                <div className="login__input-wrapper form__input-wrapper">
-                  <label className="visually-hidden">E-mail</label>
-                  <input
-                    onChange={ ({ target }) => setEmail(target.value)}
-                    className="login__input form__input"
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    required
-                  />
-                </div>
-                <div className="login__input-wrapper form__input-wrapper">
-                  <label className="visually-hidden">Password</label>
-                  <input
-                    className="login__input form__input"
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    required
-                    onChange={ ({ target }) => setPassword(target.value) }
-                  />
-                </div>
+                <LoginInput setEmail={ setEmail } />
+
+                <PasswordInput setPassword={ setPassword } />
+
                 <button className="login__submit form__submit button" type="submit">Sign in</button>
               </form>
             </section>
@@ -105,4 +89,4 @@ function LogIn(): JSX.Element {
   );
 }
 
-export default LogIn;
+export default memo(LogIn);

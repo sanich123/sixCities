@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import UserMenu from '../login/user-menu';
 import Logo from './logo';
 
@@ -20,4 +21,4 @@ function Header(): JSX.Element {
   );
 }
 
-export default Header;
+export default memo(Header);

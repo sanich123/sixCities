@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Marks } from '../../../const';
 import { postComment } from '../../../store/api-actions';
 import { getCommentStatus } from '../../../store/reducer/user/user-selectors';
+import { memo } from 'react';
 
 import Rating from './rating';
+import TextArea from './textarea';
 
 type ReviewFormProps = {
   uniqUrl: number,
@@ -46,15 +48,7 @@ function ReviewForm({ uniqUrl }: ReviewFormProps): JSX.Element {
         )) }
       </div>
 
-      <textarea
-        className="reviews__textarea form__textarea"
-        id="review"
-        name="review"
-        placeholder="Tell how was your stay, what you like and what can be improved"
-        value={ text }
-        onChange={ (evt) => setText(evt.target.value) }
-        disabled={ commentPost }
-      />
+      <TextArea text={ text } setText={ setText } commentPost={ commentPost } />
 
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
@@ -69,4 +63,4 @@ function ReviewForm({ uniqUrl }: ReviewFormProps): JSX.Element {
   );
 }
 
-export default ReviewForm;
+export default memo(ReviewForm);
