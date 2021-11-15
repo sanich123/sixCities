@@ -124,6 +124,9 @@ export const changeFavorite = (id: number | undefined, isFavorite: number): Thun
       dispatch(fetchHotels());
       if (id) {
         dispatch(fetchUniqHotel(id));
+        dispatch(fetchFavorites());
+        dispatch(fetchHotels());
+        dispatch(fetchNearBy(id));
       }
       dispatch(fetchFavorites());
     }
