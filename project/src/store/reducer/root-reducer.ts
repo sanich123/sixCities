@@ -1,7 +1,6 @@
-
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 import { appData } from './app/app-data';
-import { dataData } from './data/data';
+import { processData } from './data/data';
 import { userData } from './user/user-data';
 
 export enum NameSpace {
@@ -12,7 +11,7 @@ export enum NameSpace {
 
 export const rootReducer = combineReducers({
   [NameSpace.user]: userData,
-  [NameSpace.data]: dataData,
+  [NameSpace.data]: processData,
   [NameSpace.app]: appData,
 });
 

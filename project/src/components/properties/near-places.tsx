@@ -13,7 +13,7 @@ function NearPlaces({ nearPlaces }: NearPlacesProps): JSX.Element {
       <h2 className="near-places__title">Other places in the neighbourhood</h2>
       <div className="near-places__list places__list">
         { nearPlaces.map(({ id, ...rest }) =>
-          <Card key={ id } id={ id } { ...rest } modificator={ PROPERTIES } />) }
+          (<Card key={ id } id={ id } { ...rest } modificator={ PROPERTIES } />)) }
       </div>
     </section>
   );

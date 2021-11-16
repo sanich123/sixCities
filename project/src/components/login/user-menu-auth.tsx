@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { AppRoutes } from '../../const';
@@ -22,7 +23,7 @@ function UserMenuAuth({ authEmail }: UserMenuAuthProps): JSX.Element {
         <Link
           className="header__nav-link"
           to={ AppRoutes.Main }
-          onClick={() => dispatch(logoutAction())}
+          onClick={ useCallback(() => dispatch(logoutAction()), [dispatch]) }
         >
           <span className="header__signout">Sign out</span>
         </Link>

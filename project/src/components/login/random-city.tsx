@@ -1,5 +1,5 @@
 
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { cities } from '../../const';
@@ -10,7 +10,7 @@ function RandomCity(): JSX.Element {
   const randomCity = cities[Math.floor(Math.random() * cities.length)];
 
   return                 (
-    <Link className="locations__item-link" to="/" onClick={ () => dispatch(changeCity(randomCity)) }>
+    <Link className="locations__item-link" to="/" onClick={ useCallback(() => dispatch(changeCity(randomCity)), [dispatch, randomCity]) }>
       <span>{ randomCity }
       </span>
     </Link>);

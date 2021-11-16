@@ -18,8 +18,9 @@ function LogIn(): JSX.Element {
   const history = useHistory();
   const dispatch = useDispatch();
   const authStatus = useSelector(statusOfAuth);
+  const isAuthorized = authStatus === AuthorizationStatus.AUTH;
 
-  if (authStatus === AuthorizationStatus.AUTH) {
+  if (isAuthorized) {
     history.push(AppRoutes.Main);
   }
 
@@ -34,10 +35,8 @@ function LogIn(): JSX.Element {
         login: email,
         password: password,
       }));
-    }
-
-    else {
-      return toast.warn(WRONG_PASSWORD);
+    } else {
+      toast.warn(WRONG_PASSWORD);
     }
   };
 

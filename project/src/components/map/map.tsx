@@ -17,7 +17,7 @@ function Map({ offers, activeOffer, uniqUrl }: MapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
   const markerLayerRef = useRef<LayerGroup>();
-
+  const changeIcon = (offer: number | null | undefined, id: number) => offer === id ? iconChanger(LeafletUrls.MarkerCurrent) : iconChanger(LeafletUrls.MarkerDefault);
   useEffect(() => {
     if (map) {
       if(markerLayerRef.current) {
@@ -32,9 +32,11 @@ function Map({ offers, activeOffer, uniqUrl }: MapProps): JSX.Element {
             lat: location.latitude,
             lng: location.longitude,
           });
-          activeOffer ?
-            marker.setIcon(activeOffer === id ? iconChanger(LeafletUrls.URL_MARKER_CURRENT) : iconChanger(LeafletUrls.URL_MARKER_DEFAULT)).addTo(markerLayerRef.current as LayerGroup) :
-            marker.setIcon(uniqUrl === id ? iconChanger(LeafletUrls.URL_MARKER_CURRENT) : iconChanger(LeafletUrls.URL_MARKER_DEFAULT)).addTo(markerLayerRef.current as LayerGroup);
+          if (activeOffer) {
+            marker.setIcon(changeIcon(activeOffer, id)).addTo(markerLayerRef.current as LayerGroup);
+          } else {
+            marker.setIcon(changeIcon(uniqUrl, id)).addTo(markerLayerRef.current as LayerGroup);
+          }
         });
       }
     }

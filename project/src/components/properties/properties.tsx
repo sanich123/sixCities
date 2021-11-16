@@ -39,6 +39,7 @@ function Properties(): JSX.Element {
   const authStatus = useSelector(statusOfAuth);
   const network = useSelector(getNetworkStatus);
   const selectedOffer = useSelector(offerSelected);
+  const isAuthorized = authStatus === AuthorizationStatus.AUTH;
 
   if (!network) {
     return <Page404 />;
@@ -89,7 +90,7 @@ function Properties(): JSX.Element {
 
                     { comments && <Reviews reviews={ comments } /> }
 
-                    { authStatus === AuthorizationStatus.AUTH && <ReviewForm uniqUrl={ uniqUrl } /> }
+                    { isAuthorized && <ReviewForm uniqUrl={ uniqUrl } /> }
 
                   </section>
                 </div>

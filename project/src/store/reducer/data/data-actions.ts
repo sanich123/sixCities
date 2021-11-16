@@ -8,7 +8,6 @@ export const loadFavorites = createAction(
   ActionType.LOAD_FAVORITES,
   (favoriteOffers: Offer[]) => ({
     payload: favoriteOffers,
-    // isDataLoaded: true,
   }),
 );
 

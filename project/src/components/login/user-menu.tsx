@@ -7,10 +7,12 @@ import UserMenuNoAuth from './user-menu-noauth';
 function UserMenu(): JSX.Element {
   const authStatus = useSelector(statusOfAuth);
   const authEmail = useSelector(getAuthEmail);
+  const isAuthorized = authStatus === AuthorizationStatus.AUTH;
+
   return (
     <nav className="header__nav">
       <ul className="header__nav-list">
-        { authStatus === AuthorizationStatus.AUTH ?
+        { isAuthorized ?
           <UserMenuAuth authEmail={ authEmail } /> : <UserMenuNoAuth />}
       </ul>
     </nav>

@@ -19,11 +19,12 @@ function useMap(mapRef: MutableRefObject<HTMLElement | null>, { location }: City
         },
         zoom: location.zoom,
       });
-      const layer = new TileLayer(LeafletUrls.LAYER,
+      const layer = new TileLayer(LeafletUrls.Layer,
         {
-          attribution: LeafletUrls.ATTRIBUTION,
+          attribution: LeafletUrls.Attribution,
         },
       );
+
       instance.addLayer(layer);
       setMap(instance);
     }

@@ -22,13 +22,16 @@ function FavoriteButton({ isFavorite, uniqUrl, id }: FavoriteButtonProps): JSX.E
   const history = useHistory();
   const dispatch = useDispatch();
   const authStatus = useSelector(statusOfAuth);
+  const noAuth = authStatus === AuthorizationStatus.NO_AUTH;
+  const isFavoriteNow = isFavorite ? 0 : 1;
+  const isProperties = uniqUrl ? uniqUrl : id;
   const handleClick = useCallback(
     () => {
-      if (authStatus === AuthorizationStatus.NO_AUTH) {
+      if (noAuth) {
         history.push(AppRoutes.SignIn);
       }
-      dispatch(changeFavorite(uniqUrl ? uniqUrl : id, isFavorite ? 0 : 1));
-    }, [authStatus, dispatch, id, uniqUrl, isFavorite, history],
+      dispatch(changeFavorite(isProperties, isFavoriteNow));
+    }, [dispatch, isProperties, history, noAuth, isFavoriteNow],
   );
 
   const buttonClass = cn({'property__bookmark-button property__bookmark-button--active button' : isFavorite && uniqUrl },

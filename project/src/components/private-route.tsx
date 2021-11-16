@@ -11,13 +11,13 @@ type PrivateRouteProps = RouteProps & {
 function PrivateRoute(props: PrivateRouteProps): JSX.Element {
   const { exact, path, render } = props;
   const authStatus = useSelector(statusOfAuth);
-
+  const isAuthorized = authStatus === AuthorizationStatus.AUTH;
   return (
     <Route
       exact={ exact }
       path={ path }
       render={ () => (
-        authStatus === AuthorizationStatus.AUTH
+        isAuthorized
           ? render()
           : <Redirect to={ AppRoutes.SignIn } />
       ) }

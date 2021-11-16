@@ -2,7 +2,6 @@ import { ApiRoutes, AuthorizationStatus, AUTH_FAIL_MESSAGE, AUTH_FAIL_REQUEST, C
 import { dropToken, saveToken } from '../services/token';
 import { ThunkActionResult } from '../types/reducer';
 import { AuthData, Offer, OfferDTO, PostComment, Review, ReviewDTO } from '../types/types';
-
 import { toast } from 'react-toastify';
 import { adaptOffer } from '../utils/utils';
 import { loadHotels } from './reducer/app/app-actions';
@@ -122,6 +121,7 @@ export const changeFavorite = (id: number | undefined, isFavorite: number): Thun
     try {
       await api.post(`${ ApiRoutes.Favorites}/${ id }/${ isFavorite }`);
       dispatch(fetchHotels());
+
       if (id) {
         dispatch(fetchUniqHotel(id));
         dispatch(fetchFavorites());
@@ -138,5 +138,4 @@ export const logoutAction = (): ThunkActionResult =>
     api.delete(ApiRoutes.Logout);
     dropToken();
     dispatch(requireLogout());
-    dispatch(fetchHotels());
   };

@@ -12,6 +12,9 @@ type ReviewFormProps = {
   uniqUrl: number,
 }
 
+const MIN_TEXT_LENGTH = 50;
+const MAX_TEXT_LENGTH = 300;
+
 function ReviewForm({ uniqUrl }: ReviewFormProps): JSX.Element {
   const dispatch = useDispatch();
   const [text, setText] = useState('');
@@ -20,7 +23,7 @@ function ReviewForm({ uniqUrl }: ReviewFormProps): JSX.Element {
 
   let isBtnDisabled = true;
 
-  if (text.length > 50 && text.length < 300 && rating !== '') {
+  if (text.length > MIN_TEXT_LENGTH && text.length < MAX_TEXT_LENGTH && rating !== '') {
     isBtnDisabled = false;
   }
 
@@ -44,7 +47,13 @@ function ReviewForm({ uniqUrl }: ReviewFormProps): JSX.Element {
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         { Object.entries(Marks).reverse().map(([mark, value]) => (
-          <Rating key={ value } value={ value } mark={ mark } rating={ rating } setRating={ setRating } isFormDisabled={ commentPost } />
+          <Rating key={ value }
+            value={ value }
+            mark={ mark }
+            rating={ rating }
+            setRating={ setRating }
+            isFormDisabled={ commentPost }
+          />
         )) }
       </div>
 
@@ -56,7 +65,11 @@ function ReviewForm({ uniqUrl }: ReviewFormProps): JSX.Element {
           and describe your stay with at least
           <b className="reviews__text-amount"> 50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled={ isBtnDisabled }>Submit
+        <button
+          className="reviews__submit form__submit button"
+          type="submit"
+          disabled={ isBtnDisabled }
+        >Submit
         </button>
       </div>
     </form>

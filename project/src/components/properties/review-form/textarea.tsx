@@ -7,7 +7,6 @@ type TextAreaProps = {
 }
 
 function TextArea({ setText, commentPost, text }: TextAreaProps): JSX.Element {
-
   return (
     <textarea
       className="reviews__textarea form__textarea"

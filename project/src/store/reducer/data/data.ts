@@ -21,7 +21,7 @@ const initialState: DataInitialState = {
   networkIsAvailable: true,
 };
 
-const dataData = createReducer(initialState, (builder) => {
+const processData = createReducer(initialState, (builder) => {
   builder
     .addCase(loadFavorites, ((state: DataInitialState, action) => {
       const favoriteOffers = action.payload;
@@ -49,4 +49,4 @@ const dataData = createReducer(initialState, (builder) => {
     }));
 });
 
-export { dataData };
+export { processData };
