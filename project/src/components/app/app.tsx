@@ -12,7 +12,8 @@ function App(): JSX.Element {
   const isLoaded = useSelector(dataLoaded);
   const sortedName = useSelector(nameOfSort);
   const town = useSelector(currentPlace);
-  const filtredOffers = useSelector(getOffers).filter(({ city }) => city.name === town);
+  const offers = useSelector(getOffers);
+  const filtredOffers = offers.filter(({ city }) => city.name === town);
   dispatch(filterOffers(filtredOffers));
   const sortedOffers = sortTypeChanger[sortedName](filtredOffers);
   dispatch(sortOffers(sortedOffers));
