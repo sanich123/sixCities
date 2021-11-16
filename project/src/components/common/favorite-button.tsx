@@ -1,4 +1,5 @@
 import cn from 'classnames';
+import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { AppRoutes, AuthorizationStatus } from '../../const';
@@ -10,14 +11,26 @@ type FavoriteButtonProps = {
   uniqUrl?: number,
   id?: number,
 }
+const BtnModificator = {
+  LargeWidth: '31',
+  SmallWidth: '18',
+  LargeHeight: '33',
+  SmallHeight: '19',
+} as const;
 
 function FavoriteButton({ isFavorite, uniqUrl, id }: FavoriteButtonProps): JSX.Element {
   const history = useHistory();
   const dispatch = useDispatch();
   const authStatus = useSelector(statusOfAuth);
-  const handleClick = () => {
-    authStatus === AuthorizationStatus.NO_AUTH ? history.push(AppRoutes.SignIn) : dispatch(changeFavorite(uniqUrl ? uniqUrl : id, isFavorite ? 0 : 1));
-  };
+  const handleClick = useCallback(
+    () => {
+      if (authStatus === AuthorizationStatus.NO_AUTH) {
+        history.push(AppRoutes.SignIn);
+      }
+      dispatch(changeFavorite(uniqUrl ? uniqUrl : id, isFavorite ? 0 : 1));
+    }, [authStatus, dispatch, id, uniqUrl, isFavorite, history],
+  );
+
   const buttonClass = cn({'property__bookmark-button property__bookmark-button--active button' : isFavorite && uniqUrl },
     {'place-card__bookmark-button place-card__bookmark-button--active button' : isFavorite},
     {'property__bookmark-button button': uniqUrl},
@@ -30,8 +43,8 @@ function FavoriteButton({ isFavorite, uniqUrl, id }: FavoriteButtonProps): JSX.E
     >
       <svg
         className={ `${ uniqUrl ? 'property' : 'place-card'}__bookmark-icon`}
-        width={ uniqUrl ? '31' : '18'}
-        height={ uniqUrl ? '33' : '19' }
+        width={ uniqUrl ? BtnModificator.LargeWidth : BtnModificator.SmallWidth}
+        height={ uniqUrl ? BtnModificator.LargeHeight : BtnModificator.SmallHeight }
       >
         <use xlinkHref="#icon-bookmark" />
       </svg>

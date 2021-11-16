@@ -6,11 +6,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchFavorites } from '../../store/api-actions';
 import { favorites } from '../../store/reducer/data/data-selectors';
+import cn from 'classnames';
 
 function Favorites(): JSX.Element {
   const dispatch = useDispatch();
   const favoriteHotels = useSelector(favorites);
   const uniqueСities = Array.from(new Set(favoriteHotels.map(({ city }) => city.name)));
+  const isEmptyHotels = favoriteHotels.length === 0;
+  const favoritesModificator = cn('page', { 'page--favorites-empty': isEmptyHotels });
+  const favoritesMainModificator = cn('page__main page__main--favorites', { 'page__main--favorites-empty' : isEmptyHotels });
 
   useEffect(() => {
     dispatch(fetchFavorites());
@@ -20,13 +24,13 @@ function Favorites(): JSX.Element {
     <>
       <Sprite />
 
-      <div className={ `${!favoriteHotels.length && 'page--favorites-empty'} page`}>
+      <div className={ favoritesModificator }>
 
         <Header />
 
-        <main className={ `${!favoriteHotels.length && 'page__main--favorites-empty'} page__main page__main--favorites`}>
+        <main className={ favoritesMainModificator }>
           <div className="page__favorites-container container">
-            <section className={ `favorites${ !favoriteHotels.length && '--empty'}`}>
+            <section className={ `favorites${ isEmptyHotels && '--empty'}`}>
               <h1 className={ favoriteHotels.length ? 'favorites__title' : 'visually-hidden'}>{ favoriteHotels.length > 0 ? 'Saved listing' : 'Favorites (empty)'}</h1>
               { favoriteHotels.length > 0 ?
                 <ul className="favorites__list">

@@ -3,6 +3,7 @@ import { memo } from 'react';
 type LoginInputProps = {
   setEmail: (evt: string) => void
 }
+
 function LoginInput({ setEmail }: LoginInputProps): JSX.Element {
 
   return (

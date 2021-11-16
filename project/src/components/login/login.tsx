@@ -12,6 +12,7 @@ import LoginInput from './login-input';
 import PasswordInput from './password-input';
 
 const WRONG_PASSWORD = 'Пароль должен состоять минимум из одной буквы и одной цифры';
+const PASSWORD_PATTERN = /([A-zА-я]{1}[0-9]{1})|([0-9]{1}[A-zА-я]{1})/;
 
 function LogIn(): JSX.Element {
   const history = useHistory();
@@ -27,18 +28,16 @@ function LogIn(): JSX.Element {
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    const testPassword = /([A-zА-я]{1}[0-9]{1})|([0-9]{1}[A-zА-я]{1})/;
-    if (testPassword.test(password)) {
+
+    if (PASSWORD_PATTERN.test(password)) {
       dispatch(loginAction({
         login: email,
         password: password,
       }));
     }
+
     else {
       return toast.warn(WRONG_PASSWORD);
-    }
-    if (authStatus === AuthorizationStatus.AUTH) {
-      history.push(AppRoutes.Main);
     }
   };
 

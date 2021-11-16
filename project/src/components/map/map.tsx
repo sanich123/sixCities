@@ -23,7 +23,9 @@ function Map({ offers, activeOffer, uniqUrl }: MapProps): JSX.Element {
       if(markerLayerRef.current) {
         markerLayerRef.current.clearLayers();
       }
+
       markerLayerRef.current = new LayerGroup().addTo(map);
+
       if (markerLayerRef.current) {
         offers.forEach(({ location, id }) => {
           const marker = new Marker({
