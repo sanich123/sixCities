@@ -18,7 +18,7 @@ import Rating from '../common/rating';
 import FavoriteButton from '../common/favorite-button';
 import { useDispatch, useSelector } from 'react-redux';
 import { AuthorizationStatus } from '../../const';
-import { fetchComments, fetchHotels, fetchNearBy, fetchUniqHotel } from '../../store/api-actions';
+import { fetchComments, fetchNearBy, fetchUniqHotel } from '../../store/api-actions';
 import { getNetworkStatus, offersComments, offerSelected, offersNearBy } from '../../store/reducer/data/data-selectors';
 import { statusOfAuth } from '../../store/reducer/user/user-selectors';
 
@@ -32,7 +32,6 @@ function Properties(): JSX.Element {
     dispatch(fetchUniqHotel(uniqUrl));
     dispatch(fetchComments(uniqUrl));
     dispatch(fetchNearBy(uniqUrl));
-    dispatch(fetchHotels());
   }, [dispatch, uniqUrl]);
 
   const comments = useSelector(offersComments);
