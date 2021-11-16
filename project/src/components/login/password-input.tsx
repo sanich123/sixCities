@@ -3,6 +3,7 @@ import { memo } from 'react';
 type PasswordInputProps = {
   setPassword: (evt: string) => void
 }
+
 function PasswordInput({ setPassword }:  PasswordInputProps): JSX.Element {
 
   return (
