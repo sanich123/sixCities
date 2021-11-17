@@ -4,7 +4,6 @@ import { Marks } from '../../../const';
 import { postComment } from '../../../store/api-actions';
 import { getCommentStatus } from '../../../store/reducer/user/user-selectors';
 import { memo } from 'react';
-
 import Rating from './rating';
 import TextArea from './textarea';
 

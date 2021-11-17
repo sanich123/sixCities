@@ -25,6 +25,7 @@ function FavoriteButton({ isFavorite, uniqUrl, id }: FavoriteButtonProps): JSX.E
   const noAuth = authStatus === AuthorizationStatus.NO_AUTH;
   const isFavoriteNow = isFavorite ? 0 : 1;
   const isProperties = uniqUrl ? uniqUrl : id;
+
   const handleClick = useCallback(
     () => {
       if (noAuth) {

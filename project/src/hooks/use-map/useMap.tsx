@@ -28,6 +28,7 @@ function useMap(mapRef: MutableRefObject<HTMLElement | null>, { location }: City
       instance.addLayer(layer);
       setMap(instance);
     }
+
     else {
       map?.setView({
         lat: location.latitude,

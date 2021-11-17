@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import cn from 'classnames';
 import { currentPlace } from '../../store/reducer/app/app-selectors';
 import { changeCity } from '../../store/reducer/app/app-actions';
+import { useCallback } from 'react';
 
 type CityProps = {
   town: string,
@@ -18,7 +19,7 @@ function City({ town }: CityProps): JSX.Element {
       <Link
         className={ activeCity }
         to="/"
-        onClick={ () => dispatch(changeCity(town)) }
+        onClick={ useCallback(() => dispatch(changeCity(town)), [dispatch, town]) }
       >
         <span>{ town }</span>
       </Link>

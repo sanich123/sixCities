@@ -5,7 +5,6 @@ type LoginInputProps = {
 }
 
 function LoginInput({ setEmail }: LoginInputProps): JSX.Element {
-
   return (
     <div className="login__input-wrapper form__input-wrapper">
       <label className="visually-hidden">E-mail</label>
