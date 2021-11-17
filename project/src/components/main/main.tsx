@@ -9,6 +9,7 @@ import Map from '../map/map';
 import { fetchHotels } from '../../store/api-actions';
 import { currentPlace } from '../../store/reducer/app/app-selectors';
 import { offersSorted } from '../../store/reducer/data/data-selectors';
+import cn from 'classnames';
 
 function Main(): JSX.Element {
   const dispatch = useDispatch();
@@ -16,6 +17,8 @@ function Main(): JSX.Element {
   const sortOffers = useSelector(offersSorted);
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
   const onHover = (id: number | null) => setActiveOffer(id);
+  const emptyPage = sortOffers.length === 0;
+  const mainPageModificator = cn('page__main page__main--index', { 'page__main--index-empty': emptyPage });
 
   useEffect(() => {
     dispatch(fetchHotels());
@@ -30,12 +33,12 @@ function Main(): JSX.Element {
 
         <Header />
 
-        <main className={`page__main page__main--index ${ !sortOffers.length && 'page__main--index-empty'}` }>
+        <main className={ mainPageModificator }>
 
           <Filter />
 
           <div className="cities">
-            <div className={`cities__places-container container ${ !sortOffers.length && 'cities__places-container--empty container'}` }>
+            <div className={`cities__places-container container ${ emptyPage && 'cities__places-container--empty container'}` }>
               { sortOffers.length > 0 ?
                 <section className="cities__places places">
                   <h2 className="visually-hidden">Places</h2>

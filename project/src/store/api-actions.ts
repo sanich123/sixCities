@@ -112,7 +112,7 @@ export const fetchFavorites = (): ThunkActionResult =>
     }
     catch {
       dispatch(isAvailableNetwork());
-      toast.warn(NETWORK_ERROR);
+      toast.warn(FAVORITES_CHANGE_ERROR);
     }
   };
 
@@ -124,9 +124,7 @@ export const changeFavorite = (id: number | undefined, isFavorite: number): Thun
 
       if (id) {
         dispatch(fetchUniqHotel(id));
-        dispatch(fetchFavorites());
       }
-      dispatch(fetchFavorites());
     }
     catch {
       toast.warn(FAVORITES_CHANGE_ERROR);
@@ -138,4 +136,5 @@ export const logoutAction = (): ThunkActionResult =>
     api.delete(ApiRoutes.Logout);
     dropToken();
     dispatch(requireLogout());
+    dispatch(fetchHotels());
   };
