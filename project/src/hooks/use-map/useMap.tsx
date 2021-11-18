@@ -19,13 +19,21 @@ function useMap(mapRef: MutableRefObject<HTMLElement | null>, { location }: City
         },
         zoom: location.zoom,
       });
-      const layer = new TileLayer(LeafletUrls.LAYER,
+      const layer = new TileLayer(LeafletUrls.Layer,
         {
-          attribution: LeafletUrls.ATTRIBUTION,
+          attribution: LeafletUrls.Attribution,
         },
       );
+
       instance.addLayer(layer);
       setMap(instance);
+    }
+
+    else {
+      map?.setView({
+        lat: location.latitude,
+        lng: location.longitude,
+      }, location.zoom);
     }
   }, [mapRef, map, location.latitude, location.longitude, location.zoom]);
 

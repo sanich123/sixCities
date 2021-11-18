@@ -1,20 +1,19 @@
 import { BrowserRouter, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { sortTypeChanger } from '../../const';
 import { generateRoutes } from '../../utils/utils';
-import { sortOffers, filterOffers } from '../../store/actions';
 import { pages } from '../../utils/pages';
+import { currentPlace, dataLoaded, getOffers, nameOfSort } from '../../store/reducer/app/app-selectors';
+import { filterOffers, sortOffers } from '../../store/reducer/data/data-actions';
+import { sortTypeChanger } from '../../const';
 import LoadingScreen from '../loading-screen/loading-screen';
-import { State } from '../../types/reducer';
-
 
 function App(): JSX.Element {
-  const isLoaded = useSelector(({ isDataLoaded }: State) => isDataLoaded);
-  const sortedName = useSelector(({ sortName }: State) => sortName);
-  const town = useSelector(({ city }: State) => city);
-  const filtredOffers = useSelector(({ offers }: State) => offers).filter(({ city }) => city.name === town);
-
   const dispatch = useDispatch();
+  const isLoaded = useSelector(dataLoaded);
+  const sortedName = useSelector(nameOfSort);
+  const town = useSelector(currentPlace);
+  const offers = useSelector(getOffers);
+  const filtredOffers = offers.filter(({ city }) => city.name === town);
   dispatch(filterOffers(filtredOffers));
   const sortedOffers = sortTypeChanger[sortedName](filtredOffers);
   dispatch(sortOffers(sortedOffers));

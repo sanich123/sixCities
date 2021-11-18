@@ -1,25 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import thunk from 'redux-thunk';
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import { reducer } from '../src/store/reducer';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import { requireAuthorization } from './store/actions';
 import { AuthorizationStatus } from './const';
 import { createApi } from './services/api';
-import { applyMiddleware } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import { ThunkAppDispatch } from './types/reducer';
 import { checkAuth, fetchHotels } from './store/api-actions';
 import App from './components/app/app';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { rootReducer } from './store/reducer/root-reducer';
+import { requireAuthorization } from './store/reducer/user/user-actions';
 
 const api = createApi(
   () => store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH)),
 );
 
-const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api))));
+const store = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      thunk: {
+        extraArgument: api,
+      },
+    }),
+});
 
 (store.dispatch as ThunkAppDispatch)(fetchHotels());
 (store.dispatch as ThunkAppDispatch)(checkAuth());
@@ -28,15 +33,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={ store } >
       <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
+        position='top-left'
       />
       <App />
     </Provider>

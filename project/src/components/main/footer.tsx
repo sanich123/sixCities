@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
 
 function Footer(): JSX.Element {
@@ -16,4 +17,4 @@ function Footer(): JSX.Element {
   );
 }
 
-export default Footer;
+export default memo(Footer);

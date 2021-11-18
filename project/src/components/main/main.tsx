@@ -1,18 +1,28 @@
-import { useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 import Cards from './cards';
 import Header from '../common/header';
 import Sprite from '../common/sprite';
 import Sort from './sort';
 import Filter from './filter';
 import Map from '../map/map';
-import { State } from '../../types/reducer';
+import { fetchHotels } from '../../store/api-actions';
+import { currentPlace } from '../../store/reducer/app/app-selectors';
+import { offersSorted } from '../../store/reducer/data/data-selectors';
+import cn from 'classnames';
 
 function Main(): JSX.Element {
-  const town = useSelector(({ city }: State) => city);
-  const sortOffers = useSelector(({ sortedOffers }: State) => sortedOffers);
+  const dispatch = useDispatch();
+  const town = useSelector(currentPlace);
+  const sortOffers = useSelector(offersSorted);
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
   const onHover = (id: number | null) => setActiveOffer(id);
+  const emptyPage = sortOffers.length === 0;
+  const mainPageModificator = cn('page__main page__main--index', { 'page__main--index-empty': emptyPage });
+
+  useEffect(() => {
+    dispatch(fetchHotels());
+  }, [dispatch]);
 
   return (
     <>
@@ -23,12 +33,12 @@ function Main(): JSX.Element {
 
         <Header />
 
-        <main className={`page__main page__main--index ${ !sortOffers.length && 'page__main--index-empty'}` }>
+        <main className={ mainPageModificator }>
 
           <Filter />
 
           <div className="cities">
-            <div className={`cities__places-container container ${ !sortOffers.length && 'cities__places-container--empty container'}` }>
+            <div className={`cities__places-container container ${ emptyPage && 'cities__places-container--empty container'}` }>
               { sortOffers.length > 0 ?
                 <section className="cities__places places">
                   <h2 className="visually-hidden">Places</h2>

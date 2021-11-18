@@ -1,10 +1,14 @@
+import { memo } from 'react';
+
 type RatingProps = {
   mark: string,
   value: string,
   setRating: (evt: string) => void,
+  isFormDisabled: boolean,
+  rating: string,
  }
 
-function Rating({ mark, value, setRating }: RatingProps):JSX.Element {
+function Rating({ mark, value, setRating, isFormDisabled, rating }: RatingProps):JSX.Element {
 
   return (
     <>
@@ -15,6 +19,8 @@ function Rating({ mark, value, setRating }: RatingProps):JSX.Element {
         id={ `${ mark }-stars` }
         type="radio"
         onChange={ (evt) => setRating(evt.target.value) }
+        disabled={ isFormDisabled }
+        checked={ mark === rating }
       />
       <label
         htmlFor={ `${ mark }-stars` }
@@ -33,4 +39,4 @@ function Rating({ mark, value, setRating }: RatingProps):JSX.Element {
   );
 }
 
-export default Rating;
+export default memo(Rating);

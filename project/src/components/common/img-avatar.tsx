@@ -2,15 +2,19 @@ type ImageProps = {
   avatarUrl: string,
   uniqUrl?: number,
 }
+const ImgModificator = {
+  Large: '74',
+  Small: '54',
+} as const;
 
-function Image({ avatarUrl, uniqUrl}: ImageProps): JSX.Element {
+function Image({ avatarUrl, uniqUrl }: ImageProps): JSX.Element {
   return (
     <img
-      className={`${uniqUrl ? 'property' : 'reviews'}__avatar user__avatar`} // почему не используешь библиотеку classnames?
+      className={`${ uniqUrl ? 'property' : 'reviews'}__avatar user__avatar`}
       src={ avatarUrl }
-      width={uniqUrl ? '74' : '54'}
-      height={uniqUrl ? '74' : '54' }
-      alt={`${uniqUrl ? 'Host' : 'Reviews'}avatar`}
+      width={ uniqUrl ? ImgModificator.Large : ImgModificator.Small }
+      height={ uniqUrl ? ImgModificator.Large : ImgModificator.Small }
+      alt={`${ uniqUrl ? 'Host' : 'Reviews'}avatar`}
     />
   );
 }

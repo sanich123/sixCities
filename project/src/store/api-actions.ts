@@ -1,24 +1,12 @@
-import { ApiRoutes, AuthorizationStatus } from '../const';
+import { ApiRoutes, AuthorizationStatus, AUTH_FAIL_MESSAGE, AUTH_FAIL_REQUEST, COMMENT_POST_ERROR, FAVORITES_CHANGE_ERROR, NETWORK_ERROR  } from '../const';
 import { dropToken, saveToken } from '../services/token';
 import { ThunkActionResult } from '../types/reducer';
-import { AuthData, Offer, OfferDTO, Review, ReviewDTO } from '../types/types';
-import { loadHotels, loadNearBy, loadUniqHotel, loadUniqHotelComments, requireAuthorization, requireLogout } from './actions';
+import { AuthData, Offer, OfferDTO, PostComment, Review, ReviewDTO } from '../types/types';
 import { toast } from 'react-toastify';
-
-const AUTH_FAIL_MESSAGE = 'Не забудьте авторизоваться!';
-
-const adaptOffer = (offer: OfferDTO): Offer => ({
-  ...offer,
-  host: {
-    ...offer.host,
-    isPro: offer.host['is_pro'],
-    avatarUrl: offer.host['avatar_url'],
-  },
-  isFavorite: offer['is_favorite'],
-  isPremium: offer['is_premium'],
-  maxAdults: offer['max_adults'],
-  previewImage: offer['preview_image'],
-});
+import { adaptOffer } from '../utils/utils';
+import { loadHotels } from './reducer/app/app-actions';
+import { isAvailableNetwork, loadFavorites, loadNearBy, loadUniqHotel, loadUniqHotelComments } from './reducer/data/data-actions';
+import { commentRequest, commentRequestFail, requireAuthorization, requireLogout } from './reducer/user/user-actions';
 
 const adaptOffers = (data: OfferDTO[]): Offer[] =>
   data.map((offer) => adaptOffer(offer));
@@ -35,28 +23,48 @@ const adaptComments = (comments: ReviewDTO[]): Review[] =>
 
 export const fetchHotels = (): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
-    const { data } = await api.get(ApiRoutes.Hotels);
-    dispatch(loadHotels(adaptOffers(data)));
+    try {
+      const { data } = await api.get(ApiRoutes.Hotels);
+      dispatch(loadHotels(adaptOffers(data)));
+    }
+    catch {
+      toast.warn(NETWORK_ERROR);
+    }
   };
 
-export const fetchUniqHotel = (id: number): ThunkActionResult =>
+export const fetchUniqHotel = (id: number | undefined): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
-    const { data } = await api.get(`${ApiRoutes.Hotels}/${id}`);
-    dispatch(loadUniqHotel(adaptOffer(data)));
+    try {
+      const { data } = await api.get(`${ApiRoutes.Hotels}/${id}`);
+      dispatch(loadUniqHotel(adaptOffer(data)));
+    }
+    catch {
+      dispatch(isAvailableNetwork());
+      toast.warn(NETWORK_ERROR);
+    }
   };
 
 export const fetchComments = (id: number): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
-    const { data } = await api.get(`${ApiRoutes.Comments}/${id}`);
-    dispatch(loadUniqHotelComments(adaptComments(data)));
+    try {
+      const { data } = await api.get(`${ApiRoutes.Comments}/${id}`);
+      dispatch(loadUniqHotelComments(adaptComments(data)));
+    }
+    catch {
+      toast.warn(NETWORK_ERROR);
+    }
   };
 
 export const fetchNearBy = (id: number): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
-    const { data } = await api.get(`${ApiRoutes.Hotels}/${id}${ApiRoutes.NearBy}`);
-    dispatch(loadNearBy(adaptOffers(data)));
+    try {
+      const { data } = await api.get(`${ApiRoutes.Hotels}/${id}${ApiRoutes.NearBy}`);
+      dispatch(loadNearBy(adaptOffers(data)));
+    }
+    catch {
+      toast.warn(NETWORK_ERROR);
+    }
   };
-
 
 export const checkAuth = (): ThunkActionResult =>
   async (dispatch, _getState, api) => {
@@ -71,10 +79,56 @@ export const checkAuth = (): ThunkActionResult =>
 
 export const loginAction = ({ login: email, password }: AuthData): ThunkActionResult =>
   async (dispatch, _getState, api) => {
-    const { data } = await api.post(ApiRoutes.Login, { email, password });
-    const { email: emailAuth, token } = data;
-    saveToken(token);
-    dispatch(requireAuthorization(AuthorizationStatus.AUTH, emailAuth));
+    try {
+      const { data } = await api.post(ApiRoutes.Login, { email, password });
+      const { email: emailAuth, token } = data;
+      saveToken(token);
+      dispatch(requireAuthorization(AuthorizationStatus.AUTH, emailAuth));
+    }
+    catch {
+      toast.warn(AUTH_FAIL_REQUEST);
+    }
+  };
+
+export const postComment = ({ id, rating, comment }: PostComment): ThunkActionResult =>
+  async (dispatch, _getState, api) => {
+    dispatch(commentRequest());
+    try {
+      const { data } = await api.post(`${ ApiRoutes.Comments }/${ id }`, { rating, comment });
+      dispatch(loadUniqHotelComments(adaptComments(data)));
+      dispatch(commentRequestFail());
+    }
+    catch {
+      toast.warn(COMMENT_POST_ERROR);
+      dispatch(commentRequestFail());
+    }
+  };
+
+export const fetchFavorites = (): ThunkActionResult =>
+  async (dispatch, _getState, api): Promise<void> => {
+    try {
+      const { data } = await api.get(ApiRoutes.Favorites);
+      dispatch(loadFavorites(adaptOffers(data)));
+    }
+    catch {
+      dispatch(isAvailableNetwork());
+      toast.warn(FAVORITES_CHANGE_ERROR);
+    }
+  };
+
+export const changeFavorite = (id: number | undefined, isFavorite: number): ThunkActionResult =>
+  async (dispatch, _getState, api) => {
+    try {
+      await api.post(`${ ApiRoutes.Favorites}/${ id }/${ isFavorite }`);
+      dispatch(fetchHotels());
+
+      if (id) {
+        dispatch(fetchUniqHotel(id));
+      }
+    }
+    catch {
+      toast.warn(FAVORITES_CHANGE_ERROR);
+    }
   };
 
 export const logoutAction = (): ThunkActionResult =>
@@ -82,4 +136,5 @@ export const logoutAction = (): ThunkActionResult =>
     api.delete(ApiRoutes.Logout);
     dropToken();
     dispatch(requireLogout());
+    dispatch(fetchHotels());
   };

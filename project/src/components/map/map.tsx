@@ -3,36 +3,44 @@ import { Offer } from '../../types/types';
 import { useEffect, useRef } from 'react';
 import  useMap from '../../hooks/use-map/useMap';
 import {  LeafletUrls } from '../../const';
-import L, { Marker } from 'leaflet';
+import { LayerGroup, Marker } from 'leaflet';
 import { iconChanger } from '../../utils/utils';
 
 type MapProps = {
   offers: Offer[],
-  activeOffer: number | null,
+  activeOffer?: number | null,
+  uniqUrl?: number | null,
 }
 
-let markerGroup: L.LayerGroup;
-
-function Map({ offers, activeOffer }: MapProps): JSX.Element {
+function Map({ offers, activeOffer, uniqUrl }: MapProps): JSX.Element {
   const [{ city }] = offers;
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
-
+  const markerLayerRef = useRef<LayerGroup>();
+  const changeIcon = (offer: number | null | undefined, id: number) => offer === id ? iconChanger(LeafletUrls.MarkerCurrent) : iconChanger(LeafletUrls.MarkerDefault);
   useEffect(() => {
     if (map) {
-      if(markerGroup) {
-        markerGroup.clearLayers();
+      if(markerLayerRef.current) {
+        markerLayerRef.current.clearLayers();
       }
-      markerGroup = L.layerGroup().addTo(map);
-      offers.forEach(({ location, id }) => {
-        const marker = new Marker({
-          lat: location.latitude,
-          lng: location.longitude,
+
+      markerLayerRef.current = new LayerGroup().addTo(map);
+
+      if (markerLayerRef.current) {
+        offers.forEach(({ location, id }) => {
+          const marker = new Marker({
+            lat: location.latitude,
+            lng: location.longitude,
+          });
+          if (activeOffer) {
+            marker.setIcon(changeIcon(activeOffer, id)).addTo(markerLayerRef.current as LayerGroup);
+          } else {
+            marker.setIcon(changeIcon(uniqUrl, id)).addTo(markerLayerRef.current as LayerGroup);
+          }
         });
-        marker.setIcon(activeOffer === id ? iconChanger(LeafletUrls.URL_MARKER_CURRENT) : iconChanger(LeafletUrls.URL_MARKER_DEFAULT)).addTo(markerGroup);
-      });
+      }
     }
-  }, [activeOffer, map, offers]);
+  }, [activeOffer, map, offers, uniqUrl]);
 
   return (
     <div

@@ -78,6 +78,12 @@ export type OfferDTO = {
  }
 
 export type AuthData = {
-  login: string;
-  password: string;
+  login: string,
+  password: string,
 };
+
+export type PostComment = {
+  id: number,
+  comment: string,
+  rating: string,
+}

@@ -1,30 +1,42 @@
 import Sprite from '../common/sprite';
 import Logo from '../common/logo';
-import { FormEvent, useRef } from 'react';
+import { FormEvent, memo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginAction } from '../../store/api-actions';
-import { AppRoutes } from '../../const';
 import { useHistory } from 'react-router';
-import { State } from '../../types/reducer';
-import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { AppRoutes, AuthorizationStatus } from '../../const';
+import { statusOfAuth } from '../../store/reducer/user/user-selectors';
+import RandomCity from './random-city';
+import LoginInput from './login-input';
+import PasswordInput from './password-input';
+
+const WRONG_PASSWORD = 'Пароль должен состоять минимум из одной буквы и одной цифры';
+const PASSWORD_PATTERN = /([A-zА-я]{1}[0-9]{1})|([0-9]{1}[A-zА-я]{1})/;
 
 function LogIn(): JSX.Element {
   const history = useHistory();
   const dispatch = useDispatch();
-  const currentCity = useSelector(({ city }: State) => city);
-  const loginRef = useRef<HTMLInputElement | null>(null);
-  const passwordRef = useRef<HTMLInputElement | null>(null);
+  const authStatus = useSelector(statusOfAuth);
+  const isAuthorized = authStatus === AuthorizationStatus.AUTH;
 
+  if (isAuthorized) {
+    history.push(AppRoutes.Main);
+  }
+
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    if (loginRef.current !== null && passwordRef.current !== null) {
+    if (PASSWORD_PATTERN.test(password)) {
       dispatch(loginAction({
-        login: loginRef.current.value,
-        password: passwordRef.current.value,
+        login: email,
+        password: password,
       }));
-      history.push(AppRoutes.Main);
+    } else {
+      toast.warn(WRONG_PASSWORD);
     }
   };
 
@@ -56,36 +68,16 @@ function LogIn(): JSX.Element {
                 method="post"
                 onSubmit={ handleSubmit }
               >
-                <div className="login__input-wrapper form__input-wrapper">
-                  <label className="visually-hidden">E-mail</label>
-                  <input
-                    ref={ loginRef }
-                    className="login__input form__input"
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    required
-                  />
-                </div>
-                <div className="login__input-wrapper form__input-wrapper">
-                  <label className="visually-hidden">Password</label>
-                  <input
-                    ref={ passwordRef }
-                    className="login__input form__input"
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    required
-                  />
-                </div>
+                <LoginInput setEmail={ setEmail } />
+
+                <PasswordInput setPassword={ setPassword } />
+
                 <button className="login__submit form__submit button" type="submit">Sign in</button>
               </form>
             </section>
             <section className="locations locations--login locations--current">
               <div className="locations__item">
-                <Link className="locations__item-link" to="/">
-                  <span>{ currentCity }</span>
-                </Link>
+                <RandomCity />
               </div>
             </section>
           </div>
@@ -95,4 +87,4 @@ function LogIn(): JSX.Element {
   );
 }
 
-export default LogIn;
+export default memo(LogIn);
