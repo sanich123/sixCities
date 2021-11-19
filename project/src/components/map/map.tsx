@@ -1,6 +1,6 @@
 import 'leaflet/dist/leaflet.css';
 import { Offer } from '../../types/types';
-import { useEffect, useRef } from 'react';
+import { memo, useEffect, useRef } from 'react';
 import  useMap from '../../hooks/use-map/useMap';
 import {  LeafletUrls } from '../../const';
 import { LayerGroup, Marker } from 'leaflet';
@@ -50,4 +50,4 @@ function Map({ offers, activeOffer, uniqUrl }: MapProps): JSX.Element {
   );
 }
 
-export default Map;
+export default memo(Map);
