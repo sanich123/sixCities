@@ -85,8 +85,9 @@ export const loginAction = ({ login: email, password }: AuthData): ThunkActionRe
       saveToken(token);
       dispatch(requireAuthorization(AuthorizationStatus.AUTH, emailAuth));
     }
-    catch {
-      toast.warn(FailMessages.AuthFailRequest);
+    catch (err: any) {
+      err.message === FailMessages.ServerFailResponse ? toast.warn(FailMessages.AuthFailResponse)
+        : toast.warn(FailMessages.AuthFailRequest);
     }
   };
 

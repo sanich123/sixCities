@@ -24,6 +24,8 @@ export const FailMessages = {
   CommentPostError: 'Не удалось отправить комментарий, неполадки с сетью',
   NetworkError: 'Невозможно выполнить действие, проверьте соединение с сетью интернет',
   AuthFailFavorites: 'Добавлять в избранное могут только авторизованные пользователи',
+  ServerFailResponse: 'Request failed with status code 400',
+  AuthFailResponse: 'Email не проходит валидацию на сервере',
 };
 
 export enum AppRoutes {
