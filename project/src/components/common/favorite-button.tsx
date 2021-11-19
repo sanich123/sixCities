@@ -16,7 +16,7 @@ const BtnModificator = {
   SmallWidth: '18',
   LargeHeight: '33',
   SmallHeight: '19',
-} as const;
+};
 
 function FavoriteButton({ isFavorite, uniqUrl, id }: FavoriteButtonProps): JSX.Element {
   const history = useHistory();

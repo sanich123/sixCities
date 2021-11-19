@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { Offer, Review } from '../../../types/types';
 import {   isAvailableNetwork,
-  loadFavorites, loadNearBy, loadUniqHotel, loadUniqHotelComments, sortOffers } from './process-data-actions';
+  loadFavorites, loadNearByHotels, loadSelectedHotel, loadSelectedHotelComments, sortOffers } from './process-data-actions';
 
 export type DataInitialState = {
   favoriteOffers: Offer[],
@@ -27,12 +27,12 @@ const processData = createReducer(initialState, (builder) => {
       const favoriteOffers = action.payload;
       state.favoriteOffers = favoriteOffers;
     }))
-    .addCase(loadUniqHotel, ((state: DataInitialState, action) => {
+    .addCase(loadSelectedHotel, ((state: DataInitialState, action) => {
       const uniqOffer = action.payload;
       state.uniqOffer = uniqOffer;
       state.networkIsAvailable = true;
     }))
-    .addCase(loadUniqHotelComments, ((state: DataInitialState, action) => {
+    .addCase(loadSelectedHotelComments, ((state: DataInitialState, action) => {
       const comments = action.payload;
       state.comments = comments;
     }))
@@ -40,7 +40,7 @@ const processData = createReducer(initialState, (builder) => {
       const offers = action.payload;
       state.sortedOffers = offers;
     }))
-    .addCase(loadNearBy, ((state: DataInitialState, action) => {
+    .addCase(loadNearByHotels, ((state: DataInitialState, action) => {
       const nearByOffers = action.payload;
       state.nearByOffers = nearByOffers;
     }))

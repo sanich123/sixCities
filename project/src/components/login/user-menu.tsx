@@ -1,8 +1,8 @@
+import UserMenuAuth from './user-menu-auth';
+import UserMenuNoAuth from './user-menu-noauth';
 import { useSelector } from 'react-redux';
 import { AuthorizationStatus } from '../../const';
 import { getAuthEmail, statusOfAuth } from '../../store/reducer/user/user-selectors';
-import UserMenuAuth from './user-menu-auth';
-import UserMenuNoAuth from './user-menu-noauth';
 
 function UserMenu(): JSX.Element {
   const authStatus = useSelector(statusOfAuth);

@@ -1,8 +1,9 @@
 import Favorites from '../components/favorites/favorites';
-import PrivateRoute from '../components/private-route';
+import PrivateRoute from '../components/private-route/private-route';
 import { Route } from 'react-router';
 import leaflet, { DivIcon, Icon, IconOptions } from 'leaflet';
 import { Offer, OfferDTO, RoutesProps } from '../types/types';
+import { months, sortTypes } from '../const';
 
 export const generateRoutes = ({ route, component, isPrivate }: RoutesProps): JSX.Element =>
   isPrivate ?
@@ -38,3 +39,16 @@ export const adaptOffer = (offer: OfferDTO): Offer => ({
   maxAdults: offer['max_adults'],
   previewImage: offer['preview_image'],
 });
+
+export const dateFormatter = (date: string): string => `${ months[(new Date(date).getMonth())] } ${ new Date(date).getFullYear() }`;
+
+const sortByPriceLow = (array: Offer[]): Offer[] => array.slice().sort((priceA, priceB) => priceA.price - priceB.price);
+const sortByPriceHigh = (array: Offer[]): Offer[] => array.slice().sort((priceA, priceB) => priceB.price - priceA.price);
+const sortByRating = (array: Offer[]): Offer[] => array.slice().sort((ratingA, ratingB) => ratingB.rating - ratingA.rating);
+
+export const sortTypeChanger = {
+  [sortTypes.PriceLow]: (offers: Offer[]): Offer[] => sortByPriceLow(offers),
+  [sortTypes.PriceHigh]: (offers: Offer[]): Offer[]  => sortByPriceHigh(offers),
+  [sortTypes.TopRated]: (offers: Offer[]): Offer[]  => sortByRating(offers),
+  [sortTypes.Popular]: (offers: Offer[]): Offer[]  => offers,
+};
