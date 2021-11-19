@@ -1,3 +1,9 @@
+export type RoutesProps = {
+  route: string,
+  isPrivate: boolean,
+  component: () => JSX.Element,
+ }
+
 export type Host = {
   isPro: boolean,
   avatarUrl: string,

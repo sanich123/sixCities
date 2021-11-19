@@ -2,13 +2,7 @@ import Favorites from '../components/favorites/favorites';
 import PrivateRoute from '../components/private-route';
 import { Route } from 'react-router';
 import leaflet, { DivIcon, Icon, IconOptions } from 'leaflet';
-import { Offer, OfferDTO } from '../types/types';
-
-type RoutesProps = {
-  route: string,
-  isPrivate: boolean,
-  component: () => JSX.Element,
- }
+import { Offer, OfferDTO, RoutesProps } from '../types/types';
 
 export const generateRoutes = ({ route, component, isPrivate }: RoutesProps): JSX.Element =>
   isPrivate ?
@@ -16,11 +10,11 @@ export const generateRoutes = ({ route, component, isPrivate }: RoutesProps): JS
     <Route exact path={ route } key={ route }>{ component }</Route>;
 
 const RatingToPercent = {
-  DIVIDER: 5,
-  MULTIPLIER: 100,
-};
+  Divider: 5,
+  Multiplier: 100,
+} as const;
 
-export const transformRating = (rating: number): string => `${ rating / RatingToPercent.DIVIDER * RatingToPercent.MULTIPLIER }%`;
+export const transformRating = (rating: number): string => `${ rating / RatingToPercent.Divider * RatingToPercent.Multiplier }%`;
 
 const ICON_WIDTH = 40;
 const ICON_HEIGHT = 13;

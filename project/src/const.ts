@@ -61,7 +61,7 @@ export const sortTypes = {
   PriceLow: 'Price: low to high',
   PriceHigh: 'Price: high to low',
   TopRated: 'Top rated first',
-};
+} as const;
 
 export const sortByPriceLow = (array: Offer[]): Offer[] => array.slice().sort((priceA, priceB) => priceA.price - priceB.price);
 export const sortByPriceHigh = (array: Offer[]): Offer[] => array.slice().sort((priceA, priceB) => priceB.price - priceA.price);

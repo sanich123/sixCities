@@ -1,5 +1,5 @@
 import { Host } from '../../types/types';
-import Image from '../common/img-avatar';
+import Image from '../common/image';
 import UserName from '../common/user-name';
 
 type HostessProps = {
