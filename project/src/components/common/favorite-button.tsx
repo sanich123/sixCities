@@ -2,7 +2,8 @@ import cn from 'classnames';
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
-import { AppRoutes, AuthorizationStatus } from '../../const';
+import { toast } from 'react-toastify';
+import { AppRoutes, AuthorizationStatus, FailMessages } from '../../const';
 import { changeFavorite } from '../../store/api-actions';
 import { statusOfAuth } from '../../store/reducer/user/user-selectors';
 
@@ -11,6 +12,7 @@ type FavoriteButtonProps = {
   uniqUrl?: number,
   id?: number,
 }
+
 const BtnModificator = {
   LargeWidth: '31',
   SmallWidth: '18',
@@ -30,8 +32,10 @@ function FavoriteButton({ isFavorite, uniqUrl, id }: FavoriteButtonProps): JSX.E
     () => {
       if (noAuth) {
         history.push(AppRoutes.SignIn);
+        toast.warn(FailMessages.AuthFailFavorites);
+      } else {
+        dispatch(changeFavorite(isProperties, isFavoriteNow));
       }
-      dispatch(changeFavorite(isProperties, isFavoriteNow));
     }, [dispatch, isProperties, history, noAuth, isFavoriteNow],
   );
 

@@ -1,16 +1,30 @@
 export const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 export const cities = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
+export const DEFAULT_CITY = 'Paris';
+export const DEFAULT_SORT = 'Popular';
+
+export const FAVORITES = 'favorites';
+export const PROPERTIES = 'properties';
+export const MAIN = 'main';
+
+export const CheckLogin = {
+  Password: 'Пароль должен состоять минимум из одной буквы и одной цифры',
+  Email: 'Email должен соответствовать требованиям, предъявляемым к адресам email',
+};
+
+export const Patterns = {
+  Password: /([A-zА-я]{1}[0-9]{1})|([0-9]{1}[A-zА-я]{1})/,
+  Email: /^[A-z0-9._:$!%-]+@[A-z0-9.-]+.+.[A-z]{2,4}$/,
+};
+
 export const FailMessages = {
   AuthFailMessage: 'Не забудьте авторизоваться!',
   AuthFailRequest: 'Не удалось отправить логин и пароль на сервер, отсутствует соединение с интернет',
   CommentPostError: 'Не удалось отправить комментарий, неполадки с сетью',
-  NetworkError: 'Не удалось загрузить предложения из-за неполадок с сетью',
-  FavoirtesChangeError: 'Проверьте ваше интернет соединение',
+  NetworkError: 'Невозможно выполнить действие, проверьте соединение с сетью интернет',
+  AuthFailFavorites: 'Добавлять в избранное могут только авторизованные пользователи',
 };
-
-export const DEFAULT_CITY = 'Paris';
-export const DEFAULT_SORT = 'Popular';
 
 export enum AppRoutes {
   Main = '/',
@@ -48,10 +62,6 @@ export const LeafletUrls = {
   MarkerDefault: 'img/pin.svg',
   MarkerCurrent: 'img/pin-active.svg',
 };
-
-export const FAVORITES = 'favorites';
-export const PROPERTIES = 'properties';
-export const MAIN = 'main';
 
 export const sortTypes = {
   Popular: 'Popular',

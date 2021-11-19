@@ -112,7 +112,7 @@ export const fetchFavorites = (): ThunkActionResult =>
     }
     catch {
       dispatch(isAvailableNetwork());
-      toast.warn(FailMessages.FavoirtesChangeError);
+      toast.warn(FailMessages.NetworkError);
     }
   };
 
@@ -128,7 +128,7 @@ export const changeFavorite = (id: number | undefined, isFavorite: number): Thun
       dispatch(fetchFavorites());
     }
     catch {
-      toast.warn(FailMessages.FavoirtesChangeError);
+      toast.warn(FailMessages.NetworkError);
     }
   };
 

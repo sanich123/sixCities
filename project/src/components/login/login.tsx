@@ -5,14 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginAction } from '../../store/api-actions';
 import { useHistory } from 'react-router';
 import { toast } from 'react-toastify';
-import { AppRoutes, AuthorizationStatus } from '../../const';
+import { AppRoutes, AuthorizationStatus, CheckLogin, Patterns } from '../../const';
 import { statusOfAuth } from '../../store/reducer/user/user-selectors';
 import RandomCity from './random-city';
 import LoginInput from './login-input';
 import PasswordInput from './password-input';
-
-const WRONG_PASSWORD = 'Пароль должен состоять минимум из одной буквы и одной цифры';
-const PASSWORD_PATTERN = /([A-zА-я]{1}[0-9]{1})|([0-9]{1}[A-zА-я]{1})/;
 
 function LogIn(): JSX.Element {
   const history = useHistory();
@@ -30,13 +27,19 @@ function LogIn(): JSX.Element {
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    if (PASSWORD_PATTERN.test(password)) {
+    if (!Patterns.Email.test(email)) {
+      toast.warn(CheckLogin.Email);
+    }
+
+    if (!Patterns.Password.test(password)) {
+      toast.warn(CheckLogin.Password);
+    }
+
+    if (Patterns.Password.test(password) && Patterns.Email.test(email)) {
       dispatch(loginAction({
         login: email,
         password: password,
       }));
-    } else {
-      toast.warn(WRONG_PASSWORD);
     }
   };
 
