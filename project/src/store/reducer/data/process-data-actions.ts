@@ -11,21 +11,21 @@ export const loadFavorites = createAction(
   }),
 );
 
-export const loadUniqHotel = createAction(
+export const loadSelectedHotel = createAction(
   ActionType.LOAD_OFFER,
   (offer: Offer) => ({
     payload: offer,
   }),
 );
 
-export const loadUniqHotelComments = createAction(
+export const loadSelectedHotelComments = createAction(
   ActionType.LOAD_COMMENTS,
   (comments: Review[]) => ({
     payload: comments,
   }),
 );
 
-export const loadNearBy = createAction(
+export const loadNearByHotels = createAction(
   ActionType.LOAD_NEARBY,
   (hotels: Offer[]) => ({
     payload: hotels,

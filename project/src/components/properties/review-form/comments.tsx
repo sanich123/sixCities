@@ -1,7 +1,6 @@
 import Image from '../../common/image';
-import { dateFormatter } from '../../../const';
 import { Review } from '../../../types/types';
-import { transformRating } from '../../../utils/utils';
+import { dateFormatter, transformRating } from '../../../utils/utils';
 import UserName from '../../common/user-name';
 
 function Comments({ comment, date, rating, user }: Review): JSX.Element {

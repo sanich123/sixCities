@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom';
-import { Offer } from '../../types/types';
-import { FAVORITES } from '../../const';
 import FavoriteButton from './favorite-button';
 import Premium from './premium';
 import Price from './price';
 import Rating from './rating';
+import { Link } from 'react-router-dom';
+import { Offer } from '../../types/types';
+import { FAVORITES } from '../../const';
 
 type CardProps = {
   onHover? : (id: number) => void,
@@ -19,6 +19,7 @@ const cardModificator = {
 
 function Card({ type, title, price, rating, isPremium, isFavorite, previewImage, id, onHover, modificator }: Offer & CardProps): JSX.Element {
   const favorites = modificator === FAVORITES;
+
   return (
     <article
       className={ modificator ? `${ favorites ? 'favorites' : 'near-places'}__card place-card` : 'cities__place-card place-card' }

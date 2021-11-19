@@ -3,7 +3,7 @@ import { AxiosInstance } from 'axios';
 import { AuthorizationStatus } from '../const';
 import { Offer, Review } from './types';
 import { changeCity, changeSortName, loadHotels } from '../store/reducer/app/app-actions';
-import { filterOffers, isAvailableNetwork, loadFavorites, loadNearBy, loadUniqHotel, loadUniqHotelComments, sortOffers } from '../store/reducer/data/process-data-actions';
+import { filterOffers, isAvailableNetwork, loadFavorites, loadNearByHotels, loadSelectedHotel, loadSelectedHotelComments, sortOffers } from '../store/reducer/data/process-data-actions';
 import { commentRequest, commentRequestFail, requireAuthorization, requireLogout } from '../store/reducer/user/user-actions';
 
 export enum ActionType {
@@ -29,11 +29,11 @@ export type Actions =
 | ReturnType <typeof changeSortName>
 | ReturnType <typeof filterOffers>
 | ReturnType <typeof loadHotels>
-| ReturnType <typeof loadUniqHotel>
+| ReturnType <typeof loadSelectedHotel>
 | ReturnType <typeof requireAuthorization>
 | ReturnType <typeof requireLogout>
-| ReturnType <typeof loadUniqHotelComments>
-| ReturnType <typeof loadNearBy>
+| ReturnType <typeof loadSelectedHotelComments>
+| ReturnType <typeof loadNearByHotels>
 | ReturnType <typeof commentRequest>
 | ReturnType <typeof commentRequestFail>
 | ReturnType <typeof loadFavorites>

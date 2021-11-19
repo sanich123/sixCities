@@ -1,12 +1,12 @@
-import { ApiRoutes, AuthorizationStatus, AUTH_FAIL_MESSAGE, AUTH_FAIL_REQUEST, COMMENT_POST_ERROR, FAVORITES_CHANGE_ERROR, NETWORK_ERROR  } from '../const';
 import { dropToken, saveToken } from '../services/token';
 import { ThunkActionResult } from '../types/reducer';
 import { AuthData, Offer, OfferDTO, PostComment, Review, ReviewDTO } from '../types/types';
 import { toast } from 'react-toastify';
 import { adaptOffer } from '../utils/utils';
 import { loadHotels } from './reducer/app/app-actions';
-import { isAvailableNetwork, loadFavorites, loadNearBy, loadUniqHotel, loadUniqHotelComments } from './reducer/data/process-data-actions';
+import { isAvailableNetwork, loadFavorites, loadNearByHotels, loadSelectedHotel, loadSelectedHotelComments } from './reducer/data/process-data-actions';
 import { commentRequest, commentRequestFail, requireAuthorization, requireLogout } from './reducer/user/user-actions';
+import { ApiRoutes, AuthorizationStatus, FailMessages } from '../const';
 
 const adaptOffers = (data: OfferDTO[]): Offer[] =>
   data.map((offer) => adaptOffer(offer));
@@ -28,7 +28,7 @@ export const fetchHotels = (): ThunkActionResult =>
       dispatch(loadHotels(adaptOffers(data)));
     }
     catch {
-      toast.warn(NETWORK_ERROR);
+      toast.warn(FailMessages.NetworkError);
     }
   };
 
@@ -36,11 +36,11 @@ export const fetchUniqHotel = (id: number | undefined): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
     try {
       const { data } = await api.get(`${ApiRoutes.Hotels}/${id}`);
-      dispatch(loadUniqHotel(adaptOffer(data)));
+      dispatch(loadSelectedHotel(adaptOffer(data)));
     }
     catch {
       dispatch(isAvailableNetwork());
-      toast.warn(NETWORK_ERROR);
+      toast.warn(FailMessages.NetworkError);
     }
   };
 
@@ -48,10 +48,10 @@ export const fetchComments = (id: number): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
     try {
       const { data } = await api.get(`${ApiRoutes.Comments}/${id}`);
-      dispatch(loadUniqHotelComments(adaptComments(data)));
+      dispatch(loadSelectedHotelComments(adaptComments(data)));
     }
     catch {
-      toast.warn(NETWORK_ERROR);
+      toast.warn(FailMessages.NetworkError);
     }
   };
 
@@ -59,10 +59,10 @@ export const fetchNearBy = (id: number): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
     try {
       const { data } = await api.get(`${ApiRoutes.Hotels}/${id}${ApiRoutes.NearBy}`);
-      dispatch(loadNearBy(adaptOffers(data)));
+      dispatch(loadNearByHotels(adaptOffers(data)));
     }
     catch {
-      toast.warn(NETWORK_ERROR);
+      toast.warn(FailMessages.NetworkError);
     }
   };
 
@@ -73,7 +73,7 @@ export const checkAuth = (): ThunkActionResult =>
       dispatch(requireAuthorization(AuthorizationStatus.AUTH, email));
     }
     catch {
-      toast.warn(AUTH_FAIL_MESSAGE);
+      toast.warn(FailMessages.AuthFailMessage);
     }
   };
 
@@ -86,7 +86,7 @@ export const loginAction = ({ login: email, password }: AuthData): ThunkActionRe
       dispatch(requireAuthorization(AuthorizationStatus.AUTH, emailAuth));
     }
     catch {
-      toast.warn(AUTH_FAIL_REQUEST);
+      toast.warn(FailMessages.AuthFailRequest);
     }
   };
 
@@ -95,11 +95,11 @@ export const postComment = ({ id, rating, comment }: PostComment): ThunkActionRe
     dispatch(commentRequest());
     try {
       const { data } = await api.post(`${ ApiRoutes.Comments }/${ id }`, { rating, comment });
-      dispatch(loadUniqHotelComments(adaptComments(data)));
+      dispatch(loadSelectedHotelComments(adaptComments(data)));
       dispatch(commentRequestFail());
     }
     catch {
-      toast.warn(COMMENT_POST_ERROR);
+      toast.warn(FailMessages.CommentPostError);
       dispatch(commentRequestFail());
     }
   };
@@ -112,7 +112,7 @@ export const fetchFavorites = (): ThunkActionResult =>
     }
     catch {
       dispatch(isAvailableNetwork());
-      toast.warn(FAVORITES_CHANGE_ERROR);
+      toast.warn(FailMessages.FavoirtesChangeError);
     }
   };
 
@@ -125,9 +125,10 @@ export const changeFavorite = (id: number | undefined, isFavorite: number): Thun
       if (id) {
         dispatch(fetchUniqHotel(id));
       }
+      dispatch(fetchFavorites());
     }
     catch {
-      toast.warn(FAVORITES_CHANGE_ERROR);
+      toast.warn(FailMessages.FavoirtesChangeError);
     }
   };
 
