@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { toast } from 'react-toastify';
-import { AppRoutes, AuthorizationStatus, FailMessages } from '../../const';
+import { AppRoutes, AuthorizationStatus, FailMessages, PROPERTIES } from '../../const';
 import { changeFavorite } from '../../store/api-actions';
 import { statusOfAuth } from '../../store/reducer/user/user-selectors';
 
@@ -11,6 +11,7 @@ type FavoriteButtonProps = {
   isFavorite: boolean,
   uniqUrl?: number,
   id?: number,
+  nearPlaces?: string,
 }
 
 const BtnModificator = {
@@ -20,7 +21,7 @@ const BtnModificator = {
   SmallHeight: '19',
 };
 
-function FavoriteButton({ isFavorite, uniqUrl, id }: FavoriteButtonProps): JSX.Element {
+function FavoriteButton({ isFavorite, uniqUrl, id, nearPlaces }: FavoriteButtonProps): JSX.Element {
   const history = useHistory();
   const dispatch = useDispatch();
   const authStatus = useSelector(statusOfAuth);
@@ -30,13 +31,18 @@ function FavoriteButton({ isFavorite, uniqUrl, id }: FavoriteButtonProps): JSX.E
 
   const handleClick = useCallback(
     () => {
+      if (nearPlaces === PROPERTIES) {
+        toast.warn(FailMessages.NearPlacesFailFavorites);
+        return;
+      }
+
       if (noAuth) {
         history.push(AppRoutes.SignIn);
         toast.warn(FailMessages.AuthFailFavorites);
       } else {
         dispatch(changeFavorite(isProperties, isFavoriteNow));
       }
-    }, [dispatch, isProperties, history, noAuth, isFavoriteNow],
+    }, [dispatch, isProperties, history, noAuth, isFavoriteNow, nearPlaces],
   );
 
   const buttonClass = cn({'property__bookmark-button property__bookmark-button--active button' : isFavorite && uniqUrl },

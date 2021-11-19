@@ -10,6 +10,7 @@ type CardProps = {
   onHover? : (id: number) => void,
   modificator?: string,
 }
+
 const cardModificator = {
   SmallWidth: '150',
   HugeWidth: '260',
@@ -19,7 +20,6 @@ const cardModificator = {
 
 function Card({ type, title, price, rating, isPremium, isFavorite, previewImage, id, onHover, modificator }: Offer & CardProps): JSX.Element {
   const favorites = modificator === FAVORITES;
-
   return (
     <article
       className={ modificator ? `${ favorites ? 'favorites' : 'near-places'}__card place-card` : 'cities__place-card place-card' }
@@ -42,7 +42,7 @@ function Card({ type, title, price, rating, isPremium, isFavorite, previewImage,
 
           <Price price={ price } />
 
-          <FavoriteButton id={ id } isFavorite={ isFavorite } />
+          <FavoriteButton id={ id } isFavorite={ isFavorite } nearPlaces={ modificator }/>
 
         </div>
 
