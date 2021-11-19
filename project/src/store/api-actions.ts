@@ -5,7 +5,7 @@ import { AuthData, Offer, OfferDTO, PostComment, Review, ReviewDTO } from '../ty
 import { toast } from 'react-toastify';
 import { adaptOffer } from '../utils/utils';
 import { loadHotels } from './reducer/app/app-actions';
-import { isAvailableNetwork, loadFavorites, loadNearBy, loadUniqHotel, loadUniqHotelComments } from './reducer/data/data-actions';
+import { isAvailableNetwork, loadFavorites, loadNearBy, loadUniqHotel, loadUniqHotelComments } from './reducer/data/process-data-actions';
 import { commentRequest, commentRequestFail, requireAuthorization, requireLogout } from './reducer/user/user-actions';
 
 const adaptOffers = (data: OfferDTO[]): Offer[] =>

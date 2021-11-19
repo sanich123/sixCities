@@ -3,23 +3,23 @@ import { AxiosInstance } from 'axios';
 import { AuthorizationStatus } from '../const';
 import { Offer, Review } from './types';
 import { changeCity, changeSortName, loadHotels } from '../store/reducer/app/app-actions';
-import { filterOffers, isAvailableNetwork, loadFavorites, loadNearBy, loadUniqHotel, loadUniqHotelComments, sortOffers } from '../store/reducer/data/data-actions';
+import { filterOffers, isAvailableNetwork, loadFavorites, loadNearBy, loadUniqHotel, loadUniqHotelComments, sortOffers } from '../store/reducer/data/process-data-actions';
 import { commentRequest, commentRequestFail, requireAuthorization, requireLogout } from '../store/reducer/user/user-actions';
 
 export enum ActionType {
-  LOAD_OFFERS = 'data/downloading-offers',
+  LOAD_OFFERS = 'app/downloading-offers',
   LOAD_FAVORITES = 'data/downloading-favorite-offers',
   LOAD_OFFER = 'data/downloading-offer',
   LOAD_COMMENTS = 'data/downloading-comments',
-  POST_COMMENT = 'data/post-comment',
-  POST_COMMENT_FAIL = 'data/post-comment-fail',
+  POST_COMMENT = 'user/post-comment',
+  POST_COMMENT_FAIL = 'user/post-comment-fail',
   NETWORK_ERROR = 'data/downloading-is-fail',
   LOAD_NEARBY = 'data/downloading-nearby-hotels',
   REQUIRE_AUTHORIZATION = 'user/authorization-required',
   REQUIRE_LOGOUT = 'user/logout-required',
-  CHANGE_CITY = 'data/change-city',
-  SORT_OFFERS = 'data/sort-offers',
-  FILTER_OFFERS = 'data/filter-offers',
+  CHANGE_CITY = 'app/change-city',
+  SORT_OFFERS = 'app/sort-offers',
+  FILTER_OFFERS = 'app/filter-offers',
   CHANGE_SORT = 'data/change-sort-name',
 }
 
@@ -38,7 +38,6 @@ export type Actions =
 | ReturnType <typeof commentRequestFail>
 | ReturnType <typeof loadFavorites>
 | ReturnType <typeof isAvailableNetwork>
-
 
 export type State = {
   city: string,

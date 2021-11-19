@@ -1,4 +1,4 @@
-import Image from '../../common/img-avatar';
+import Image from '../../common/image';
 import { dateFormatter } from '../../../const';
 import { Review } from '../../../types/types';
 import { transformRating } from '../../../utils/utils';

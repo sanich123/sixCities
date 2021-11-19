@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { appData } from './app/app-data';
-import { processData } from './data/data';
+import { processData } from './data/process-data';
 import { userData } from './user/user-data';
 
 export enum NameSpace {

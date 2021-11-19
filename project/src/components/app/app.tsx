@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { generateRoutes } from '../../utils/utils';
 import { pages } from '../../utils/pages';
 import { currentPlace, dataLoaded, getOffers, nameOfSort } from '../../store/reducer/app/app-selectors';
-import { filterOffers, sortOffers } from '../../store/reducer/data/data-actions';
+import { filterOffers, sortOffers } from '../../store/reducer/data/process-data-actions';
 import { sortTypeChanger } from '../../const';
 import LoadingScreen from '../loading-screen/loading-screen';
 

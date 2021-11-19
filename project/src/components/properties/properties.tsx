@@ -2,7 +2,7 @@ import Header from '../common/header';
 import Sprite from '../common/sprite';
 import Map from '../map/map';
 import ReviewForm from './review-form/review-form';
-import Hostess from './host';
+import Hostess from './hostess';
 import Features from './features';
 import PropertiesInside from './properties-inside';
 import Price from '../common/price';
@@ -19,7 +19,7 @@ import FavoriteButton from '../common/favorite-button';
 import { useDispatch, useSelector } from 'react-redux';
 import { AuthorizationStatus } from '../../const';
 import { fetchComments, fetchNearBy, fetchUniqHotel } from '../../store/api-actions';
-import { getNetworkStatus, offersComments, offerSelected, offersNearBy } from '../../store/reducer/data/data-selectors';
+import { getNetworkStatus, offersComments, offerSelected, offersNearBy } from '../../store/reducer/data/process-data-selectors';
 import { statusOfAuth } from '../../store/reducer/user/user-selectors';
 
 const NUMBER_OF_SLICING = 8;

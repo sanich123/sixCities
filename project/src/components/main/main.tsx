@@ -8,7 +8,7 @@ import Filter from './filter';
 import Map from '../map/map';
 import { fetchHotels } from '../../store/api-actions';
 import { currentPlace } from '../../store/reducer/app/app-selectors';
-import { offersSorted } from '../../store/reducer/data/data-selectors';
+import { offersSorted } from '../../store/reducer/data/process-data-selectors';
 import cn from 'classnames';
 
 function Main(): JSX.Element {

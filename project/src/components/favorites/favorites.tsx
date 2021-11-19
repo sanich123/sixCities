@@ -1,11 +1,11 @@
 import Sprite from '../common/sprite';
 import Header from '../common/header';
 import Footer from '../main/footer';
-import FavoritesList from './favorite-list';
+import FavoritesList from './favorites-list';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchFavorites } from '../../store/api-actions';
-import { favorites } from '../../store/reducer/data/data-selectors';
+import { favorites } from '../../store/reducer/data/process-data-selectors';
 import cn from 'classnames';
 
 function Favorites(): JSX.Element {

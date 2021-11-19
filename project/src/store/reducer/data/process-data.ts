@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { Offer, Review } from '../../../types/types';
 import {   isAvailableNetwork,
-  loadFavorites, loadNearBy, loadUniqHotel, loadUniqHotelComments, sortOffers } from './data-actions';
+  loadFavorites, loadNearBy, loadUniqHotel, loadUniqHotelComments, sortOffers } from './process-data-actions';
 
 export type DataInitialState = {
   favoriteOffers: Offer[],
