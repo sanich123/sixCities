@@ -31,7 +31,7 @@ function FavoriteButton({ isFavorite, uniqUrl, id, nearPlaces }: FavoriteButtonP
 
   const handleClick = useCallback(
     () => {
-      if (nearPlaces === PROPERTIES) {
+      if (nearPlaces === PROPERTIES && !noAuth) {
         toast.warn(FailMessages.NearPlacesFailFavorites);
         return;
       }
