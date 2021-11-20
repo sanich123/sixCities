@@ -4,7 +4,7 @@ import { AuthData, Offer, OfferDTO, PostComment, Review, ReviewDTO } from '../ty
 import { toast } from 'react-toastify';
 import { adaptOffer } from '../utils/utils';
 import { loadHotels } from './reducer/app/app-actions';
-import { isAvailableNetwork, loadFavorites, loadNearByHotels, loadSelectedHotel, loadSelectedHotelComments } from './reducer/data/process-data-actions';
+import { isAvailableNetwork, loadFavorites, loadNearByHotels, loadSelectedHotel, loadSelectedHotelComments } from './reducer/process/process-data-actions';
 import { commentRequest, commentRequestFail, requireAuthorization, requireLogout } from './reducer/user/user-actions';
 import { ApiRoutes, AuthorizationStatus, FailMessages } from '../const';
 

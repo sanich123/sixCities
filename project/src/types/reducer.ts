@@ -3,7 +3,7 @@ import { AxiosInstance } from 'axios';
 import { AuthorizationStatus } from '../const';
 import { Offer, Review } from './types';
 import { changeCity, changeSortName, loadHotels } from '../store/reducer/app/app-actions';
-import { filterOffers, isAvailableNetwork, loadFavorites, loadNearByHotels, loadSelectedHotel, loadSelectedHotelComments, sortOffers } from '../store/reducer/data/process-data-actions';
+import { filterOffers, isAvailableNetwork, loadFavorites, loadNearByHotels, loadSelectedHotel, loadSelectedHotelComments, sortOffers } from '../store/reducer/process/process-data-actions';
 import { commentRequest, commentRequestFail, requireAuthorization, requireLogout } from '../store/reducer/user/user-actions';
 
 export enum ActionType {
