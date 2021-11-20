@@ -26,13 +26,13 @@ const NUMBER_OF_SLICING = 8;
 
 function Properties(): JSX.Element {
   const dispatch = useDispatch();
-  const uniqUrl = +useHistory().location.pathname.split('').slice(NUMBER_OF_SLICING).join('');
+  const selectedId = +useHistory().location.pathname.split('').slice(NUMBER_OF_SLICING).join('');
 
   useEffect(() => {
-    dispatch(fetchUniqHotel(uniqUrl));
-    dispatch(fetchComments(uniqUrl));
-    dispatch(fetchNearBy(uniqUrl));
-  }, [dispatch, uniqUrl]);
+    dispatch(fetchUniqHotel(selectedId));
+    dispatch(fetchComments(selectedId));
+    dispatch(fetchNearBy(selectedId));
+  }, [dispatch, selectedId]);
 
   const comments = useSelector(offersComments);
   const nearOffers = useSelector(offersNearBy);
@@ -64,7 +64,7 @@ function Properties(): JSX.Element {
 
               <div className="property__container container">
                 <div className="property__wrapper">
-                  { isPremium && <Premium uniqUrl={ uniqUrl } /> }
+                  { isPremium && <Premium uniqUrl={ selectedId } /> }
 
                   <div className="property__name-wrapper">
 
@@ -72,32 +72,32 @@ function Properties(): JSX.Element {
                       { title }
                     </h1>
 
-                    <FavoriteButton isFavorite={ isFavorite } uniqUrl={ uniqUrl } />
+                    <FavoriteButton isFavorite={ isFavorite } uniqUrl={ selectedId } />
 
                   </div>
 
-                  <Rating rating={ rating } uniqUrl={ uniqUrl } />
+                  <Rating rating={ rating } uniqUrl={ selectedId } />
 
                   <Features type={ type } bedrooms={ bedrooms } maxAdults={ maxAdults } />
 
-                  <Price price={ price } uniqUrl={ uniqUrl } />
+                  <Price price={ price } uniqUrl={ selectedId } />
 
                   <PropertiesInside goods={ goods }/>
 
-                  <Hostess host={ host } description={ description } uniqUrl={ uniqUrl} />
+                  <Hostess host={ host } description={ description } uniqUrl={ selectedId } />
 
                   <section className="property__reviews reviews">
 
                     { comments && <Reviews reviews={ comments } /> }
 
-                    { isAuthorized && <ReviewForm uniqUrl={ uniqUrl } /> }
+                    { isAuthorized && <ReviewForm uniqUrl={ selectedId } /> }
 
                   </section>
                 </div>
               </div>
               { nearPlaces.length > 0 &&
               <section className="property__map map">
-                <Map offers={ nearPlaces } uniqUrl={ uniqUrl } />
+                <Map offers={ nearPlaces } uniqUrl={ selectedId } />
               </section> }
             </section>
             <div className="container">
