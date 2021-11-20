@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { DEFAULT_CITY, DEFAULT_SORT } from '../../../const';
 import { Offer } from '../../../types/types';
-import { filterOffers } from '../data/process-data-actions';
+import { filterOffers } from '../process/process-data-actions';
 
 import { changeCity, changeSortName, loadHotels } from './app-actions';
 
