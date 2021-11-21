@@ -24,21 +24,17 @@ const initialState: AppInitialState = {
 const appData = createReducer(initialState, (builder) => {
   builder
     .addCase(changeCity, ((state: AppInitialState, action) => {
-      const city = action.payload;
-      state.city = city;
+      state.city = action.payload;
     }))
     .addCase(loadHotels, ((state: AppInitialState, action) => {
-      const offers  = action.payload;
-      state.offers = offers;
+      state.offers = action.payload;
       state.isDataLoaded = true;
     }))
     .addCase(changeSortName, ((state: AppInitialState, action) => {
-      const sortName = action.payload;
-      state.sortName = sortName;
+      state.sortName = action.payload;
     }))
     .addCase(filterOffers, ((state: AppInitialState, action) => {
-      const offers = action.payload;
-      state.filtredOffers = offers;
+      state.filtredOffers = action.payload;
     }));
 });
 

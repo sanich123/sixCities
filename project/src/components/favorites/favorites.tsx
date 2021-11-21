@@ -11,7 +11,7 @@ import cn from 'classnames';
 function Favorites(): JSX.Element {
   const dispatch = useDispatch();
   const favoriteHotels = useSelector(favorites);
-  const uniqueСities = Array.from(new Set(favoriteHotels.map(({ city }) => city.name)));
+  const uniqueCities = Array.from(new Set(favoriteHotels.map(({ city }) => city.name)));
   const isEmptyHotels = favoriteHotels.length === 0;
   const favoritesModificator = cn('page', { 'page--favorites-empty': isEmptyHotels });
   const favoritesMainModificator = cn('page__main page__main--favorites', { 'page__main--favorites-empty' : isEmptyHotels });
@@ -34,7 +34,7 @@ function Favorites(): JSX.Element {
               <h1 className={ favoriteHotels.length > 0 ? 'favorites__title' : 'visually-hidden'}>{ favoriteHotels.length > 0 ? 'Saved listing' : 'Favorites (empty)'}</h1>
               { favoriteHotels.length > 0 ?
                 <ul className="favorites__list">
-                  { uniqueСities.map((city) =>
+                  { uniqueCities.map((city) =>
                     (<FavoritesList city={ city } offers={ favoriteHotels } key={ city } />)) }
                 </ul>
                 :

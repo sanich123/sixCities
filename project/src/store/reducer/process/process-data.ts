@@ -24,25 +24,20 @@ const initialState: DataInitialState = {
 const processData = createReducer(initialState, (builder) => {
   builder
     .addCase(loadFavorites, ((state: DataInitialState, action) => {
-      const favoriteOffers = action.payload;
-      state.favoriteOffers = favoriteOffers;
+      state.favoriteOffers = action.payload;
     }))
     .addCase(loadSelectedHotel, ((state: DataInitialState, action) => {
-      const uniqOffer = action.payload;
-      state.uniqOffer = uniqOffer;
+      state.uniqOffer = action.payload;
       state.networkIsAvailable = true;
     }))
     .addCase(loadSelectedHotelComments, ((state: DataInitialState, action) => {
-      const comments = action.payload;
-      state.comments = comments;
+      state.comments = action.payload;
     }))
     .addCase(sortOffers, ((state: DataInitialState, action) => {
-      const offers = action.payload;
-      state.sortedOffers = offers;
+      state.sortedOffers = action.payload;
     }))
     .addCase(loadNearByHotels, ((state: DataInitialState, action) => {
-      const nearByOffers = action.payload;
-      state.nearByOffers = nearByOffers;
+      state.nearByOffers = action.payload;
     }))
     .addCase(isAvailableNetwork, ((state: DataInitialState) => {
       state.networkIsAvailable = false;
