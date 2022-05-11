@@ -2,7 +2,8 @@ This project was written when I studied at https://htmlacademy.ru/
 
 I used React, React-Router, Redux, TypeScript.
 
-Application have three pages: a catalog of points, a separate page, a page of favorite points.
+The application has three pages: a catalog of points, a separate page, a page of favorite points.
+
 All pages fill dynamically.
 
 An application has following functionality:
