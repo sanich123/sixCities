@@ -13,3 +13,9 @@ An application has following functionality:
 3. When you are authenticated, you are able to add comments.
 4. You need to be authenticated to follow favorites page, if you aren't, you will be redirected to authentication page.
 
+If you want to, you can:
+
+clone this project ('git clone'),
+navigate into the src folder ('cd sixCities')
+install dependencies ('npm i'),
+and run the project with 'npm run start' script. 
