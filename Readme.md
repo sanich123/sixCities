@@ -73,7 +73,7 @@ If you want to, you can:
 
 #### clone this project ('git clone [name of repository]'),
 
-#### navigate into project's folder ('cd [folder's name]')
+#### navigate into project's folder ('cd sixCities/project')
 
 #### install dependencies ('npm i'),
 
