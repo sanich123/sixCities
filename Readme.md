@@ -42,3 +42,5 @@ Create React App, React, React Router, Redux(RTK)
 
 * Валидация логина и пароля
 
+*Фильтрация, сортировка
+
