@@ -2,20 +2,9 @@
 
 **You can use deployed version:** [CLICK ME](https://six-cities-sigma.vercel.app)
 
-*or launch locally:*
+*or launch locally - copy and past to your code-editor command line: *
 
-copy ssh link to the project
-
-![image](https://user-images.githubusercontent.com/70276651/227761321-509e81b3-3dff-46af-b74b-14e268261b76.png)
-
-`git clone [ssh link] project`
-
-`cd project`
-
-`npm i`
-
-`npm start`
-
+`git clone git@github.com:sanich123/sixCities.git project&&cd project&&npm i&&npm start`
 
 ### Screenshots
 
