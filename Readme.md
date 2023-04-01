@@ -2,7 +2,7 @@
 
 **You can use deployed version:** [CLICK ME](https://six-cities-sigma.vercel.app)
 
-*or launch locally - copy and past to your code-editor command line: *
+*or launch locally - copy and past to your code-editor command line:*
 
 `git clone git@github.com:sanich123/sixCities.git project&&cd project&&npm i&&npm start`
 
