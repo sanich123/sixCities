@@ -10,7 +10,7 @@
 
 ![merge_from_ofoct](https://user-images.githubusercontent.com/70276651/227761486-2fb9cd75-25a3-4d7a-929a-71bef299b1b8.jpg)
 
-### Done 05/2022
+### Done 11/2021
 
 ### Tech stack:
 Create React App, React, React Router, Redux(RTK)
